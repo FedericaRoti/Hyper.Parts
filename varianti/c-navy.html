@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="it" class="marks">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyper.Parts</title>
+<script>
+  document.documentElement.classList.add('js');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduce');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Tema unico chiaro. Colore: fondo carta, testo scuro, blu solo sui titoli, giallo solo su sfera e pulsante principale. */
+:root {
+  color-scheme: light;
+  --navy: #003B75; --accent: #FFD300; --ink: #1F2426; --text: #333333;
+  --bg: #EDEDEA; --surface: #F8F8F5; --muted: #5C5C55; --line: #CFCFC7; --light: #FAFAF7;
+  --radius: 2px; --ease: cubic-bezier(.16, 1, .3, 1);
+  --gutter: clamp(20px, 5vw, 72px);
+  --display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  --r-shadow: 50 70 70;
+  --cut: #324646;
+}
+[data-cut="blu"] { --cut: #003B75; }
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.6 var(--body); }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+.container { max-width: 1240px; margin: 0 auto; padding-inline: var(--gutter); }
+.marks .prov { text-decoration: underline dashed 1px; text-underline-offset: .2em; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
+
+/* la sfera: è il punto di Hyper.Parts e segna dove sei */
+.sphere { display: inline-block; flex: none; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--accent), #fff 40%), var(--accent) 70%);
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / .5), inset 0 -3px 5px color-mix(in srgb, var(--accent), #000 30%), 0 4px 10px -2px rgb(var(--r-shadow) / .35); }
+
+/* pulsanti a pillola in mono con [+] */
+.pill { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 13px 26px; border-radius: 999px; border: 1px solid var(--navy); background: var(--navy); color: var(--light);
+  font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: transform .35s var(--ease); }
+.pill .plus { color: var(--accent); }
+.pill:hover { transform: translateY(-2px); }
+.pill:active { transform: translateY(1px); transition-duration: .06s; }
+.textlink { font-weight: 600; color: var(--navy); text-underline-offset: 5px; }
+
+/* il taglio del logo: la curva che divide l'icona. Il disco è la carta, sotto resta il colore del taglio */
+.cut-host { position: relative; overflow: hidden; background: var(--cut); transition: background-color .5s ease; }
+.cut { position: absolute; z-index: 0; left: -200vw; bottom: 0; width: 400vw; height: 400vw; border-radius: 50%; background: var(--bg); pointer-events: none; }
+.cut-host > .container { position: relative; z-index: 1; }
+.pill--on-cut { background: var(--accent); border-color: var(--accent); color: var(--navy); }
+.pill--on-cut .plus { color: var(--navy); }
+
+/* vetro del design kit, intensità sobria: solo sopra l'immagine del prodotto */
+.glass {
+  --g-tint: rgba(248, 248, 245, .5); --g-blur: 20px; --g-rim: .5; --g-spec: .3; --g-inner: .3; --g-shadow: rgba(20, 30, 60, .3);
+  isolation: isolate; background: var(--g-tint);
+  -webkit-backdrop-filter: blur(var(--g-blur)) saturate(1.6); backdrop-filter: blur(var(--g-blur)) saturate(1.6);
+  box-shadow: 0 10px 30px -10px var(--g-shadow), inset 0 1px 0 rgb(255 255 255 / calc(var(--g-spec) * .9)), inset 0 -14px 22px -14px rgb(255 255 255 / calc(var(--g-inner) * .6));
+}
+.glass::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  background: linear-gradient(135deg, rgb(255 255 255 / .95), rgb(255 255 255 / .08) 35% 60%, rgb(255 255 255 / .55));
+  -webkit-mask: linear-gradient(black 0 0) content-box, linear-gradient(black 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: var(--g-rim); }
+
+/* navigazione */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
+.wordmark { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; }
+.wordmark-icon { width: 44px; height: 44px; flex: none; }
+.wordmark-text { display: inline-flex; align-items: baseline; font: 800 26px var(--display); letter-spacing: .04em; text-transform: uppercase; }
+.wordmark .sphere { width: .3em; height: .3em; margin: 0 .09em; align-self: center; transform: translateY(.18em); box-shadow: inset 0 1px 1px rgb(255 255 255 / .5), inset 0 -2px 3px color-mix(in srgb, var(--accent), #000 30%); }
+.nav-links { display: flex; align-items: center; gap: 28px; font-size: 15px; }
+.nav-links a { text-decoration: none; white-space: nowrap; }
+.nav-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* apertura: titolo molto grande, poi l'immagine che si allarga con lo scroll */
+.hero-text { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end; padding-block: clamp(32px, 6vw, 80px) clamp(64px, 9vw, 150px); }
+.hero h1 { grid-column: 1 / -1; font: 800 clamp(48px, 9.6vw, 128px)/.9 var(--display); letter-spacing: -.005em; color: var(--ink); margin: 0; }
+.hero h1 .line { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+.hero h1 .line > span { display: block; }
+.hero-side { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 18px 40px; margin-top: clamp(24px, 3vw, 40px); }
+.hero-side p { margin: 0; max-width: 34ch; font-size: clamp(17px, 1.3vw, 19px); }
+.hero-corner { display: none; position: absolute; z-index: 1; right: var(--gutter); bottom: clamp(32px, 4vw, 56px); }
+.hero-stage { margin-top: -1px; background: var(--cut); transition: background-color .5s ease; }
+.hero-media { position: relative; margin: 0; overflow: hidden; }
+.media-note { position: absolute; left: var(--gutter); bottom: clamp(12px, 3vw, 40px); margin: 0; padding: 12px 20px; border-radius: 18px; font: 500 clamp(13px, 1.2vw, 16px)/1.35 var(--body); color: var(--ink); }
+.no-glass .media-note { display: none; }
+@media (min-width: 900px) {
+  .hero-corner { display: inline-flex; }
+  .hero-side .pill { display: none; }
+}
+.hero-media img { width: 100%; height: auto; aspect-ratio: 1920 / 940; object-fit: cover; object-position: 50% 100%; }
+
+.js:not(.reduce) .hero h1 .line > span { transform: translateY(105%); transition: transform 1s var(--ease) calc(var(--i) * 110ms); }
+.js:not(.reduce) .hero.play h1 .line > span { transform: none; }
+.js:not(.reduce) .hero-side { opacity: 0; transform: translateY(14px); transition: opacity .7s ease .5s, transform .8s var(--ease) .5s; }
+.js:not(.reduce) .hero.play .hero-side { opacity: 1; transform: none; }
+.js:not(.reduce) .hero .cut { transform: translate(14vw, 9vw); transition: transform 1.4s var(--ease) .15s; }
+.js:not(.reduce) .hero.play .cut { transform: none; }
+.js:not(.reduce) .hero-corner { opacity: 0; transition: opacity .6s ease .9s, transform .35s var(--ease); }
+.js:not(.reduce) .hero.play .hero-corner { opacity: 1; }
+.reset, .reset * { transition: none !important; }
+
+/* etichetta di capitolo */
+.chapter { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 20px; font: 500 12.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.chapter .sphere { width: 12px; height: 12px; }
+.chapter .sep { color: var(--muted); }
+.js:not(.reduce) .chapter { opacity: 0; transform: translateX(-20px); transition: opacity .6s ease, transform .8s var(--ease); }
+.js:not(.reduce) .chapter.is-in { opacity: 1; transform: none; }
+.h2 { font: 800 clamp(30px, 3.4vw, 48px)/1.02 var(--display); color: var(--navy); margin: 0; text-wrap: balance; }
+.section { padding-block: clamp(72px, 9vw, 128px); border-top: 1px solid var(--line); }
+
+/* scena fissata «Dalla macchina al ricambio»: il testo si sostituisce, lo schermo scorre come dentro l'app */
+.scene { position: relative; height: 300dvh; }
+.sent { position: absolute; left: 0; width: 1px; height: 33.34%; pointer-events: none; }
+.sent[data-step="0"] { top: 0; } .sent[data-step="1"] { top: 33.33%; } .sent[data-step="2"] { top: 66.66%; }
+.pin { position: sticky; top: 0; height: 100dvh; overflow: hidden; }
+.pin-grid { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr auto; column-gap: clamp(24px, 6vw, 96px); padding-block: clamp(28px, 6dvh, 64px) clamp(48px, 8dvh, 80px); }
+.pin-head { grid-column: 1 / -1; }
+.texts { position: relative; align-self: center; min-height: clamp(200px, 30dvh, 280px); }
+.tx { position: absolute; inset: 0; opacity: 0; transform: translateY(30px); transition: opacity .45s ease, transform .7s var(--ease); }
+.tx.on { opacity: 1; transform: none; }
+.tx.past { transform: translateY(-30px); }
+.tx h3 { font: 800 clamp(40px, 6.4vw, 96px)/.95 var(--display); color: var(--navy); margin: 0 0 14px; }
+.tx p { margin: 0; max-width: 36ch; font-size: clamp(17px, 1.4vw, 20px); }
+.phone { --pw: min(280px, 31dvh); position: relative; width: var(--pw); aspect-ratio: 600 / 1300; align-self: center; grid-row: 2 / 4; grid-column: 2; border-radius: 34px; border: 8px solid var(--ink); background: #F4F5F7; overflow: hidden;
+  box-shadow: 0 1px 2px rgb(var(--r-shadow) / .08), 0 14px 28px -8px rgb(var(--r-shadow) / .22), 0 40px 70px -24px rgb(var(--r-shadow) / .3); }
+.film { display: flex; flex-direction: column; height: 300%; transition: transform .8s var(--ease); }
+.film img { width: 100%; height: 33.3334%; flex: none; object-fit: cover; }
+.progress { position: relative; align-self: end; height: 3px; background: var(--line); max-width: 460px; margin-top: 24px; }
+.progress .sphere { position: absolute; top: -10px; left: -11px; width: 23px; height: 23px; transition: transform .8s var(--ease); }
+.source { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; max-width: 34ch; }
+
+/* fascia «A chi serve»: colore di superficie scelto dal pannello (data-mid su <html>) */
+:root { --mid-bg: color-mix(in srgb, var(--navy) 9%, var(--bg)); }
+[data-mid="carta"] { --mid-bg: var(--bg); }
+[data-mid="navy"] { --mid-bg: var(--navy); }
+[data-mid="grafite"] { --mid-bg: #324646; }
+.mid { background: var(--mid-bg); border-top: 0; transition: background-color .5s ease; }
+[data-mid="navy"] .mid, [data-mid="grafite"] .mid { color: rgb(250 250 247 / .86); }
+[data-mid="navy"] .mid .chapter, [data-mid="grafite"] .mid .chapter { color: rgb(250 250 247 / .86); }
+[data-mid="navy"] .mid .chapter .sep, [data-mid="grafite"] .mid .chapter .sep { color: rgb(250 250 247 / .5); }
+[data-mid="navy"] .mid .h2, [data-mid="navy"] .mid .role h3, [data-mid="grafite"] .mid .h2, [data-mid="grafite"] .mid .role h3 { color: var(--light); }
+[data-mid="navy"] .mid .roles, [data-mid="navy"] .mid .role, [data-mid="grafite"] .mid .roles, [data-mid="grafite"] .mid .role { border-color: rgb(250 250 247 / .22); }
+[data-mid="navy"] .mid .lab, [data-mid="navy"] .mid .swap .was p, [data-mid="grafite"] .mid .lab, [data-mid="grafite"] .mid .swap .was p { color: rgb(250 250 247 / .6); }
+[data-mid="navy"] .mid .now p, [data-mid="grafite"] .mid .now p { border-color: rgb(250 250 247 / .6); }
+.mid :focus-visible { outline-color: var(--navy); }
+[data-mid="navy"] .mid :focus-visible, [data-mid="grafite"] .mid :focus-visible { outline-color: var(--accent); }
+/* blu fuori dai titoli: filetto sulla frase «Con Hyper.Parts» e etichetta */
+.role .swap p { padding-left: 17px; border-left: 3px solid transparent; }
+.role .now p { border-left-color: var(--navy); }
+.role .now .lab { color: var(--navy); font-weight: 500; padding-left: 20px; }
+.role .was .lab { padding-left: 20px; }
+[data-mid="navy"] .mid .now .lab, [data-mid="grafite"] .mid .now .lab { color: rgb(250 250 247 / .86); }
+
+/* a chi serve: in ogni riga «Oggi» lascia il posto a «Con Hyper.Parts» quando la riga passa al centro */
+.roles { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
+.role { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: clamp(24px, 4vw, 64px); align-items: start; padding-block: clamp(28px, 3.4vw, 48px); border-top: 1px solid var(--line); }
+.role h3 { font: 800 clamp(30px, 4.4vw, 64px)/.98 var(--display); color: var(--navy); margin: 0; text-wrap: balance; }
+.swap { display: grid; }
+.swap > div { margin-bottom: 14px; }
+.lab { display: block; font: 13px var(--mono); color: var(--muted); margin-bottom: 6px; }
+.swap p { margin: 0; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.45; max-width: 40ch; }
+.swap .was p { color: var(--muted); }
+.js:not(.reduce) .swap > div { grid-area: 1 / 1; margin-bottom: 0; transition: opacity .45s ease, transform .7s var(--ease); }
+.js:not(.reduce) .swap .now { opacity: 0; transform: translateY(22px); }
+.js:not(.reduce) .role.done .swap .was { opacity: 0; transform: translateY(-22px); }
+.js:not(.reduce) .role.done .swap .now { opacity: 1; transform: none; }
+
+/* come funziona: tre passaggi sobri */
+.how-grid { display: grid; grid-template-columns: 5fr 4fr 4fr; gap: clamp(24px, 3vw, 48px); margin-top: clamp(32px, 4vw, 56px); border-top: 3px solid var(--navy); padding-top: 24px; }
+.how-grid h3 { font: 800 clamp(24px, 2.2vw, 30px)/1.05 var(--display); color: var(--navy); margin: 0 0 10px; }
+.how-grid p { margin: 0; max-width: 38ch; }
+.how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
+
+/* Due.Zero: due righe sull'azienda */
+.dz-lines { font: 500 clamp(24px, 3vw, 44px)/1.22 var(--body); color: var(--ink); max-width: 26ch; margin: 0; letter-spacing: -.005em; }
+.dz-lines + .textlink { display: inline-block; margin-top: 28px; }
+.js:not(.reduce) .dz-lines { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .9s var(--ease); }
+.js:not(.reduce) .dz-lines.is-in { opacity: 1; transform: none; }
+
+/* chiusura */
+.closing h2 { font: 800 clamp(44px, 7vw, 104px)/.94 var(--display); color: var(--ink); margin: 0 0 clamp(24px, 3vw, 40px); max-width: 12ch; }
+.closing-row { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 40px; }
+.closing-row p { margin: 0; max-width: 46ch; }
+.closing-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 32px 0 0; font-size: 15px; }
+.closing { border-top: 0; }
+.foot { background: var(--cut); color: rgb(250 250 247 / .74); font-size: 14px; transition: background-color .5s ease; }
+.foot-top { padding-block: clamp(40px, 5vw, 72px) 8px; }
+.foot-lead { margin: 0; max-width: 34ch; font: 500 clamp(22px, 2.6vw, 38px)/1.22 var(--body); color: var(--light); }
+.foot-lead a { display: block; margin-top: 18px; font-size: 15px; font-weight: 600; color: var(--accent); text-underline-offset: 5px; }
+.foot .container:not(.foot-top) { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 20px 28px; border-top: 1px solid rgb(250 250 247 / .2); }
+
+/* pannello, fuori dalla pagina */
+.draft { position: fixed; left: 12px; bottom: 12px; z-index: 50; width: min(320px, calc(100vw - 24px)); background: var(--ink); color: #ECECE7; font: 13px/1.45 var(--mono); border-radius: var(--radius); box-shadow: 0 8px 24px rgba(10, 10, 10, .3); }
+.draft summary { cursor: pointer; padding: 10px 14px; list-style: none; }
+.draft summary::-webkit-details-marker { display: none; }
+.draft-body { padding: 0 14px 14px; display: grid; gap: 10px; }
+.draft-body p { margin: 0; color: #B7BAB4; }
+.seg { display: flex; flex-wrap: wrap; gap: 5px; }
+.seg button { font: inherit; color: #ECECE7; background: transparent; border: 1px solid #6B706D; border-radius: var(--radius); padding: 5px 9px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+
+@media (max-width: 767px) {
+  .nav-links .sec { display: none; }
+  .wordmark { gap: 9px; }
+  .wordmark-icon { width: 38px; height: 38px; }
+  .wordmark-text { font-size: 21px; letter-spacing: .03em; }
+  .nav-links { font-size: 14px; }
+  .hero-text { grid-template-columns: 1fr; row-gap: 24px; }
+  .hero h1, .hero-side { grid-column: 1; }
+  .hero-side { margin-top: 0; }
+  .pin-grid { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; }
+  .texts { min-height: 190px; }
+  .phone { --pw: min(170px, 23dvh); grid-row: 3; grid-column: 1; justify-self: center; border-width: 5px; border-radius: 24px; }
+  .role { grid-template-columns: 1fr; row-gap: 16px; }
+  .how-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+
+/* VARIANTE C, navy a gradini: navy pieno, testo chiaro, blocchi sfalsati come la diagonale della vela */
+.vc-roles { --steel: color-mix(in srgb, var(--navy) 42%, var(--light)); background: var(--navy); color: rgb(250 250 247 / .9); border-top: 0; }
+.vc-roles .chapter { color: rgb(250 250 247 / .86); }
+.vc-roles .chapter .sep { color: rgb(250 250 247 / .5); }
+.vc-lead { margin: 0; max-width: 22ch; font: 500 clamp(20px, 2vw, 28px)/1.3 var(--body); color: var(--steel); }
+.vc-list { list-style: none; margin: clamp(40px, 6vw, 96px) 0 0; padding: 0; }
+.vc-item { padding-block: clamp(20px, 2.6vw, 40px); max-width: 78%; }
+.vc-item:nth-child(even) { margin-left: auto; }
+.vc-item h3 { margin: 0 0 clamp(14px, 1.6vw, 24px); font: 800 clamp(40px, 7.4vw, 116px)/.9 var(--display); text-transform: uppercase; color: var(--light); }
+.vc-txt { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(20px, 3vw, 48px); }
+.vc-txt p { margin: 0; padding-top: 12px; border-top: 2px solid rgb(250 250 247 / .25); }
+.vc-txt .lab { display: block; font: 13px var(--mono); margin-bottom: 6px; color: inherit; opacity: .8; }
+.vc-was { color: var(--steel); }
+.vc-now { border-top-color: var(--light) !important; color: var(--light); }
+.vc-now .prov { font-size: clamp(17px, 1.5vw, 20px); }
+.js:not(.reduce) .vc-item { opacity: 0; transform: translateX(-36px); transition: opacity .7s ease, transform 1s var(--ease); }
+.js:not(.reduce) .vc-item:nth-child(even) { transform: translateX(36px); }
+.js:not(.reduce) .vc-item.is-in { opacity: 1; transform: none; }
+.vc-how { background: var(--bg); }
+.vc-how .h2 { color: var(--ink); font-size: clamp(40px, 6vw, 92px); text-transform: uppercase; line-height: .92; }
+.vc-steps { list-style: none; margin: clamp(32px, 4vw, 64px) 0 0; padding: 0; }
+.vc-step { max-width: 560px; padding-left: 22px; border-left: 6px solid var(--navy); margin-bottom: clamp(24px, 3vw, 40px); }
+.vc-step:nth-child(2) { margin-left: clamp(0px, 16vw, 220px); }
+.vc-step:nth-child(3) { margin-left: clamp(0px, 32vw, 440px); margin-bottom: 0; }
+.vc-step h3 { margin: 0 0 10px; font: 800 clamp(28px, 3vw, 44px)/1 var(--display); text-transform: uppercase; color: var(--ink); }
+.vc-step p { margin: 0; }
+.js:not(.reduce) .vc-step { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .9s var(--ease); }
+.js:not(.reduce) .vc-step.is-in { opacity: 1; transform: none; }
+@media (max-width: 767px) { .vc-item { max-width: none; } .vc-txt { grid-template-columns: 1fr; row-gap: 14px; } .vc-step:nth-child(n) { margin-left: 0; } }
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="hero-top cut-host">
+  <div class="cut" aria-hidden="true"></div>
+  <nav class="container nav" aria-label="Principale">
+    <a class="wordmark" href="#top" aria-label="Hyper.Parts, inizio pagina"><img class="wordmark-icon" src="../assets/hyperparts-icona-hover.svg" alt="" width="44" height="44"><span class="wordmark-text" aria-hidden="true">Hyper<span class="sphere"></span>Parts</span></a>
+    <div class="nav-links">
+      <a class="sec" href="#come-si-vede">Come si vede</a>
+      <a class="sec" href="#a-chi-serve">A chi serve</a>
+      <a class="sec" href="#come-funziona">Come funziona</a>
+      <a href="https://hyperparts.it">Accesso clienti</a>
+    </div>
+  </nav>
+  <div class="container hero-text">
+    <h1 class="prov"><span class="line"><span style="--i:0">Il ricambio giusto,</span></span><span class="line"><span style="--i:1">al primo ordine.</span></span></h1>
+    <div class="hero-side">
+      <p class="prov">Tavole ricambi legate alla matricola di ogni macchina, da browser e da app.</p>
+      <a class="pill" href="#contatti">Parla con noi <span class="plus">[+]</span></a>
+    </div>
+  </div>
+  <a class="pill pill--on-cut hero-corner" href="#contatti">Parla con noi <span class="plus">[+]</span></a>
+  </div>
+  <div class="hero-stage">
+  <figure class="hero-media" id="hero-media">
+    <img src="../assets/img/apertura-dashboard-app.webp" alt="Portatile con la dashboard di Hyper.Parts e telefono con la scheda macchina, davanti a macchine di confezionamento" width="1920" height="1080">
+    <figcaption class="media-note glass"><span class="prov">Dashboard da browser, scheda macchina da app.</span></figcaption>
+  </figure>
+  </div>
+</header>
+
+<main>
+  <section class="scene" id="come-si-vede" aria-labelledby="scene-title">
+    <div class="sent" data-step="0"></div><div class="sent" data-step="1"></div><div class="sent" data-step="2"></div>
+    <div class="pin cut-host">
+      <div class="cut" aria-hidden="true"></div>
+      <div class="container pin-grid">
+        <div class="pin-head">
+          <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 1 <span class="sep">|</span> Come si vede</p>
+          <h2 class="h2 prov" id="scene-title">Dalla macchina al ricambio</h2>
+        </div>
+        <div class="texts">
+          <div class="tx" data-tx="0"><h3 class="prov">Inquadra il QR</h3><p class="prov">Il tecnico è davanti alla macchina. Con l’app inquadra il QR e la riconosce, anche senza rete.</p></div>
+          <div class="tx" data-tx="1"><h3 class="prov">Apre la matricola</h3><p class="prov">Ogni macchina ha la sua scheda, con il disegno e i dati di quella matricola.</p></div>
+          <div class="tx" data-tx="2"><h3 class="prov">Trova quello che serve</h3><p class="prov">Documenti, ricambi consigliati e disponibilità a magazzino, nello stesso posto.</p></div>
+        </div>
+        <div class="phone">
+          <div class="film">
+            <img src="../assets/img/app-01-home.webp" alt="Home dell'app con il bottone Scansiona QR">
+            <img src="../assets/img/app-02-matricole.webp" alt="Elenco delle matricole con il disegno di ciascuna macchina">
+            <img src="../assets/img/app-03-scheda-macchina.webp" alt="Scheda della macchina con documenti, ricambi consigliati e magazzino">
+          </div>
+        </div>
+        <div>
+          <div class="progress" aria-hidden="true"><span class="sphere"></span></div>
+          <p class="source">Schermate provvisorie dall’App Store, con dati dimostrativi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section vc-roles" id="a-chi-serve" aria-labelledby="risolve-title">
+    <div class="container">
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 2 <span class="sep">|</span> A chi serve</p>
+      <h2 class="vc-lead prov" id="risolve-title">Cosa cambia, per chi lavora con i ricambi</h2>
+      <ul class="vc-list"><li class="vc-item" data-reveal><h3 class="prov">Ufficio ricambi e post-vendita</h3><div class="vc-txt"><p class="vc-was"><span class="lab">Oggi</span><span class="prov">Richieste per telefono o email, descritte a parole, da ricondurre al codice incrociando distinta e disegno.</span></p><p class="vc-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Il cliente trova il pezzo sul disegno della sua matricola e ordina il codice giusto.</span></p></div></li><li class="vc-item" data-reveal><h3 class="prov">Tecnici e manutenzione in campo</h3><div class="vc-txt"><p class="vc-was"><span class="lab">Oggi</span><span class="prov">In reparto servono manuali e schemi, spesso dove la rete non arriva.</span></p><p class="vc-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Il QR sulla macchina apre tavole e documenti dall’app, anche offline.</span></p></div></li><li class="vc-item" data-reveal><h3 class="prov">Costruttori di macchine</h3><div class="vc-txt"><p class="vc-was"><span class="lab">Oggi</span><span class="prov">Cataloghi PDF da aggiornare e listini da gestire cliente per cliente.</span></p><p class="vc-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Tavole legate alla matricola, listini multivaluta, ricarichi e disponibilità in un unico posto.</span></p></div></li><li class="vc-item" data-reveal><h3 class="prov">Pianificazione della manutenzione</h3><div class="vc-txt"><p class="vc-was"><span class="lab">Oggi</span><span class="prov">Lo storico dei ricambi ordinati è sparso tra email e gestionale.</span></p><p class="vc-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Report sui componenti più soggetti a usura, per programmare gli interventi.</span></p></div></li></ul>
+    </div>
+  </section>
+
+  <section class="section vc-how" id="come-funziona" aria-labelledby="how-title">
+    <div class="container">
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 3 <span class="sep">|</span> Come funziona</p>
+      <h2 class="h2 prov" id="how-title">Come funziona</h2>
+      <p class="how-intro prov">Un servizio gestito: il catalogo lo prepara Due.Zero insieme al costruttore.</p>
+      <ol class="vc-steps"><li class="vc-step" data-reveal><h3 class="prov">La richiesta</h3><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></li><li class="vc-step" data-reveal><h3 class="prov">Il catalogo costruito insieme</h3><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></li><li class="vc-step" data-reveal><h3 class="prov">La crescita</h3><p class="prov">Il costruttore abilita clienti e rivenditori. Macchine e documenti si aggiungono nel tempo.</p></li></ol>
+    </div>
+  </section>
+
+  <section class="section closing cut-host" id="contatti" aria-labelledby="closing-title">
+    <div class="cut" aria-hidden="true"></div>
+    <div class="container">
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 4 <span class="sep">|</span> Contatti</p>
+      <h2 class="prov" id="closing-title">Parliamo dei vostri ricambi.</h2>
+      <div class="closing-row">
+        <!-- TODO destinazione del contatto da definire (il brief indica #contatti come segnaposto) -->
+        <a class="pill" href="#contatti">Parla con noi <span class="plus">[+]</span></a>
+        <p class="prov">L’accesso è riservato: le credenziali le fornisce il costruttore della macchina.</p>
+      </div>
+      <p class="closing-links">
+        <a class="textlink" href="https://hyperparts.it">Accesso clienti</a>
+        <a class="textlink" href="https://apps.apple.com/it/app/hyperparts/id6797175665">App per iPhone</a>
+        <a class="textlink" href="https://play.google.com/store/apps/details?id=it.hyperparts.app&amp;hl=it">App per Android</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="container foot-top">
+    <p class="foot-lead prov">Hyper.Parts è di Due.Zero: da oltre vent’anni, a Bologna, l’ufficio tecnico documentazione che affianca l’industria manifatturiera. <a href="https://www.duezero.eu/">duezero.eu</a></p>
+  </div>
+  <div class="container">
+    <span>© 2026 Due.Zero Srl, Bologna</span>
+    <span>Bozza, testo provvisorio</span>
+  </div>
+</footer>
+
+<details class="draft">
+  <summary>Bozza con il taglio del logo</summary>
+  <div class="draft-body">
+    <p><a href="index.html" style="color:var(--accent)">← Tutte le varianti</a></p>
+    <p>Testo provvisorio, sottolineato a tratteggio. Immagini provvisorie da duezero.eu e dall’App Store.</p>
+    <div class="seg">
+      <button type="button" id="toggle-marks" aria-pressed="true">Segni del testo provvisorio</button>
+      <button type="button" id="replay">Rivedi l’apertura</button>
+    </div>
+    <p>Colore del taglio</p>
+    <div class="seg" id="cut-seg">
+      <button type="button" data-cut="grafite" aria-pressed="true">Grafite</button>
+      <button type="button" data-cut="blu" aria-pressed="false">Blu</button>
+    </div>
+    <p>Vetro sull’immagine</p>
+    <div class="seg">
+      <button type="button" id="toggle-glass" aria-pressed="true">Didascalia in vetro</button>
+    </div>
+  </div>
+</details>
+
+<!--
+  TODO immagini: originali dall'azienda per eco_hyperparts_bg (chiarire se foto o fotomontaggio) e per le schermate dell'app; schermata desktop della tavola ricambi.
+-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = root.classList.contains('reduce');
+  var hasIO = 'IntersectionObserver' in window;
+
+  var hero = document.querySelector('.hero');
+  function playHero() {
+    hero.classList.add('reset'); hero.classList.remove('play');
+    void hero.offsetWidth;
+    hero.classList.remove('reset');
+    requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add('play'); }); });
+  }
+  if (!reduce) {
+    var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    ready.then(function () { setTimeout(playHero, 80); });
+  }
+
+  // l'immagine dell'apertura parte in cornice e si allarga a tutta larghezza mentre si scorre
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    var mm = gsap.matchMedia();
+    mm.add('(prefers-reduced-motion: no-preference)', function () {
+      var media = document.getElementById('hero-media');
+      gsap.fromTo(media, { clipPath: 'inset(7% 16% 7% 16% round 2px)' }, { clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none',
+        scrollTrigger: { trigger: media, start: 'top 92%', end: 'top 12%', scrub: 0.6 } });
+      gsap.fromTo(media.querySelector('img'), { scale: 1.14 }, { scale: 1, ease: 'none',
+        scrollTrigger: { trigger: media, start: 'top 92%', end: 'top 12%', scrub: 0.6 } });
+    });
+  }
+
+  // scena fissata: il passo attivo è quello la cui fascia attraversa la linea di mezzo dello schermo
+  var scene = document.querySelector('.scene');
+  function setStep(i) {
+    if (scene.dataset.active === String(i)) return;
+    scene.dataset.active = i;
+    scene.querySelectorAll('[data-tx]').forEach(function (el, n) { el.classList.toggle('on', n === i); el.classList.toggle('past', n < i); });
+    scene.querySelector('.film').style.transform = 'translateY(' + (-33.3334 * i) + '%)';
+    var prog = scene.querySelector('.progress');
+    prog.querySelector('.sphere').style.transform = 'translateX(' + (prog.clientWidth * i / 2) + 'px)';
+  }
+  setStep(0);
+  if (hasIO) {
+    var sceneIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) setStep(Number(e.target.dataset.step)); });
+    }, { rootMargin: '-49% 0px -49% 0px', threshold: 0 });
+    scene.querySelectorAll('.sent').forEach(function (s) { sceneIO.observe(s); });
+  }
+
+  // a chi serve: la riga passa da «Oggi» a «Con Hyper.Parts» quando supera la metà dello schermo, e torna indietro risalendo
+  if (!reduce && hasIO) {
+    var roleIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        var above = e.boundingClientRect.top < (e.rootBounds ? e.rootBounds.top : 0);
+        e.target.classList.toggle('done', e.isIntersecting || above);
+      });
+    }, { rootMargin: '0px 0px -48% 0px', threshold: 0 });
+    document.querySelectorAll('.role').forEach(function (r) { roleIO.observe(r); });
+  }
+
+  // etichette e righe che entrano
+  var reveals = document.querySelectorAll('[data-reveal]');
+  if (!reduce && hasIO) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (t) { io.observe(t); });
+  } else {
+    reveals.forEach(function (t) { t.classList.add('is-in'); });
+  }
+
+  var marks = document.getElementById('toggle-marks');
+  marks.addEventListener('click', function () {
+    var on = root.classList.toggle('marks');
+    marks.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  document.querySelectorAll('#cut-seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      root.dataset.cut = b.dataset.cut;
+      document.querySelectorAll('#cut-seg button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+    });
+  });
+  document.querySelectorAll('#mid-seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      root.dataset.mid = b.dataset.mid;
+      document.querySelectorAll('#mid-seg button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+    });
+  });
+  var glass = document.getElementById('toggle-glass');
+  glass.addEventListener('click', function () {
+    var off = root.classList.toggle('no-glass');
+    glass.setAttribute('aria-pressed', off ? 'false' : 'true');
+  });
+  document.getElementById('replay').addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    if (!reduce) setTimeout(playHero, 450);
+  });
+})();
+</script>
+</body>
+</html>
