@@ -133,16 +133,27 @@ img { max-width: 100%; display: block; }
 .progress .sphere { position: absolute; top: -10px; left: -11px; width: 23px; height: 23px; transition: transform .8s var(--ease); }
 .source { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; max-width: 34ch; }
 
-/* superficie del taglio capovolta: la curva apre la sezione dall'alto */
-.cut--top { bottom: auto; top: calc(-400vw + 11vw); }
-.on-cut { color: rgb(250 250 247 / .86); border-top: 0; padding-top: calc(11vw + clamp(40px, 5vw, 72px)); }
-.on-cut .chapter { color: rgb(250 250 247 / .86); }
-.on-cut .chapter .sep { color: rgb(250 250 247 / .5); }
-.on-cut .h2, .on-cut .role h3 { color: var(--light); }
-.on-cut .roles, .on-cut .role { border-color: rgb(250 250 247 / .22); }
-.on-cut .lab { color: rgb(250 250 247 / .6); }
-.on-cut .swap .was p { color: rgb(250 250 247 / .6); }
-.on-cut :focus-visible { outline-color: var(--accent); }
+/* fascia «A chi serve»: colore di superficie scelto dal pannello (data-mid su <html>) */
+:root { --mid-bg: color-mix(in srgb, var(--navy) 9%, var(--bg)); }
+[data-mid="carta"] { --mid-bg: var(--bg); }
+[data-mid="navy"] { --mid-bg: var(--navy); }
+[data-mid="grafite"] { --mid-bg: #324646; }
+.mid { background: var(--mid-bg); border-top: 0; transition: background-color .5s ease; }
+[data-mid="navy"] .mid, [data-mid="grafite"] .mid { color: rgb(250 250 247 / .86); }
+[data-mid="navy"] .mid .chapter, [data-mid="grafite"] .mid .chapter { color: rgb(250 250 247 / .86); }
+[data-mid="navy"] .mid .chapter .sep, [data-mid="grafite"] .mid .chapter .sep { color: rgb(250 250 247 / .5); }
+[data-mid="navy"] .mid .h2, [data-mid="navy"] .mid .role h3, [data-mid="grafite"] .mid .h2, [data-mid="grafite"] .mid .role h3 { color: var(--light); }
+[data-mid="navy"] .mid .roles, [data-mid="navy"] .mid .role, [data-mid="grafite"] .mid .roles, [data-mid="grafite"] .mid .role { border-color: rgb(250 250 247 / .22); }
+[data-mid="navy"] .mid .lab, [data-mid="navy"] .mid .swap .was p, [data-mid="grafite"] .mid .lab, [data-mid="grafite"] .mid .swap .was p { color: rgb(250 250 247 / .6); }
+[data-mid="navy"] .mid .now p, [data-mid="grafite"] .mid .now p { border-color: rgb(250 250 247 / .6); }
+.mid :focus-visible { outline-color: var(--navy); }
+[data-mid="navy"] .mid :focus-visible, [data-mid="grafite"] .mid :focus-visible { outline-color: var(--accent); }
+/* blu fuori dai titoli: filetto sulla frase «Con Hyper.Parts» e etichetta */
+.role .swap p { padding-left: 17px; border-left: 3px solid transparent; }
+.role .now p { border-left-color: var(--navy); }
+.role .now .lab { color: var(--navy); font-weight: 500; padding-left: 20px; }
+.role .was .lab { padding-left: 20px; }
+[data-mid="navy"] .mid .now .lab, [data-mid="grafite"] .mid .now .lab { color: rgb(250 250 247 / .86); }
 
 /* a chi serve: in ogni riga «Oggi» lascia il posto a «Con Hyper.Parts» quando la riga passa al centro */
 .roles { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
@@ -159,7 +170,7 @@ img { max-width: 100%; display: block; }
 .js:not(.reduce) .role.done .swap .now { opacity: 1; transform: none; }
 
 /* come funziona: tre passaggi sobri */
-.how-grid { display: grid; grid-template-columns: 5fr 4fr 4fr; gap: clamp(24px, 3vw, 48px); margin-top: clamp(32px, 4vw, 56px); border-top: 1px solid var(--ink); padding-top: 24px; }
+.how-grid { display: grid; grid-template-columns: 5fr 4fr 4fr; gap: clamp(24px, 3vw, 48px); margin-top: clamp(32px, 4vw, 56px); border-top: 3px solid var(--navy); padding-top: 24px; }
 .how-grid h3 { font: 800 clamp(24px, 2.2vw, 30px)/1.05 var(--display); color: var(--navy); margin: 0 0 10px; }
 .how-grid p { margin: 0; max-width: 38ch; }
 .how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
@@ -273,8 +284,7 @@ img { max-width: 100%; display: block; }
     </div>
   </section>
 
-  <section class="section on-cut cut-host" id="a-chi-serve" aria-labelledby="risolve-title">
-    <div class="cut cut--top" aria-hidden="true"></div>
+  <section class="section mid" id="a-chi-serve" aria-labelledby="risolve-title">
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 2 <span class="sep">|</span> A chi serve</p>
       <h2 class="h2 prov" id="risolve-title">Cosa cambia, per chi lavora con i ricambi</h2>
@@ -365,6 +375,13 @@ img { max-width: 100%; display: block; }
     <div class="seg" id="cut-seg">
       <button type="button" data-cut="grafite" aria-pressed="true">Grafite</button>
       <button type="button" data-cut="blu" aria-pressed="false">Blu</button>
+    </div>
+    <p>Fascia «A chi serve»</p>
+    <div class="seg" id="mid-seg">
+      <button type="button" data-mid="tinta" aria-pressed="true">Tinta blu</button>
+      <button type="button" data-mid="carta" aria-pressed="false">Carta</button>
+      <button type="button" data-mid="navy" aria-pressed="false">Navy</button>
+      <button type="button" data-mid="grafite" aria-pressed="false">Grafite</button>
     </div>
     <p>Vetro sull’immagine</p>
     <div class="seg">
@@ -459,6 +476,12 @@ img { max-width: 100%; display: block; }
     b.addEventListener('click', function () {
       root.dataset.cut = b.dataset.cut;
       document.querySelectorAll('#cut-seg button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+    });
+  });
+  document.querySelectorAll('#mid-seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      root.dataset.mid = b.dataset.mid;
+      document.querySelectorAll('#mid-seg button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
     });
   });
   var glass = document.getElementById('toggle-glass');
