@@ -133,6 +133,17 @@ img { max-width: 100%; display: block; }
 .progress .sphere { position: absolute; top: -10px; left: -11px; width: 23px; height: 23px; transition: transform .8s var(--ease); }
 .source { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; max-width: 34ch; }
 
+/* superficie del taglio capovolta: la curva apre la sezione dall'alto */
+.cut--top { bottom: auto; top: calc(-400vw + 11vw); }
+.on-cut { color: rgb(250 250 247 / .86); border-top: 0; padding-top: calc(11vw + clamp(40px, 5vw, 72px)); }
+.on-cut .chapter { color: rgb(250 250 247 / .86); }
+.on-cut .chapter .sep { color: rgb(250 250 247 / .5); }
+.on-cut .h2, .on-cut .role h3 { color: var(--light); }
+.on-cut .roles, .on-cut .role { border-color: rgb(250 250 247 / .22); }
+.on-cut .lab { color: rgb(250 250 247 / .6); }
+.on-cut .swap .was p { color: rgb(250 250 247 / .6); }
+.on-cut :focus-visible { outline-color: var(--accent); }
+
 /* a chi serve: in ogni riga «Oggi» lascia il posto a «Con Hyper.Parts» quando la riga passa al centro */
 .roles { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
 .role { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: clamp(24px, 4vw, 64px); align-items: start; padding-block: clamp(28px, 3.4vw, 48px); border-top: 1px solid var(--line); }
@@ -166,7 +177,10 @@ img { max-width: 100%; display: block; }
 .closing-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 32px 0 0; font-size: 15px; }
 .closing { border-top: 0; }
 .foot { background: var(--cut); color: rgb(250 250 247 / .74); font-size: 14px; transition: background-color .5s ease; }
-.foot .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 20px 28px; border-top: 1px solid rgb(250 250 247 / .2); }
+.foot-top { padding-block: clamp(40px, 5vw, 72px) 8px; }
+.foot-lead { margin: 0; max-width: 34ch; font: 500 clamp(22px, 2.6vw, 38px)/1.22 var(--body); color: var(--light); }
+.foot-lead a { display: block; margin-top: 18px; font-size: 15px; font-weight: 600; color: var(--accent); text-underline-offset: 5px; }
+.foot .container:not(.foot-top) { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 20px 28px; border-top: 1px solid rgb(250 250 247 / .2); }
 
 /* pannello, fuori dalla pagina */
 .draft { position: fixed; left: 12px; bottom: 12px; z-index: 50; width: min(320px, calc(100vw - 24px)); background: var(--ink); color: #ECECE7; font: 13px/1.45 var(--mono); border-radius: var(--radius); box-shadow: 0 8px 24px rgba(10, 10, 10, .3); }
@@ -259,7 +273,8 @@ img { max-width: 100%; display: block; }
     </div>
   </section>
 
-  <section class="section" id="a-chi-serve" aria-labelledby="risolve-title">
+  <section class="section on-cut cut-host" id="a-chi-serve" aria-labelledby="risolve-title">
+    <div class="cut cut--top" aria-hidden="true"></div>
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 2 <span class="sep">|</span> A chi serve</p>
       <h2 class="h2 prov" id="risolve-title">Cosa cambia, per chi lavora con i ricambi</h2>
@@ -309,18 +324,10 @@ img { max-width: 100%; display: block; }
     </div>
   </section>
 
-  <section class="section" id="due-zero" aria-labelledby="dz-title">
-    <div class="container">
-      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 4 <span class="sep">|</span> Due.Zero</p>
-      <h2 class="dz-lines prov" id="dz-title" data-reveal>Hyper.Parts è di Due.Zero: da oltre vent’anni, a Bologna, l’ufficio tecnico documentazione che affianca l’industria manifatturiera.</h2>
-      <a class="textlink" href="https://www.duezero.eu/">duezero.eu</a>
-    </div>
-  </section>
-
   <section class="section closing cut-host" id="contatti" aria-labelledby="closing-title">
     <div class="cut" aria-hidden="true"></div>
     <div class="container">
-      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 5 <span class="sep">|</span> Contatti</p>
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 4 <span class="sep">|</span> Contatti</p>
       <h2 class="prov" id="closing-title">Parliamo dei vostri ricambi.</h2>
       <div class="closing-row">
         <!-- TODO destinazione del contatto da definire (il brief indica #contatti come segnaposto) -->
@@ -337,6 +344,9 @@ img { max-width: 100%; display: block; }
 </main>
 
 <footer class="foot">
+  <div class="container foot-top">
+    <p class="foot-lead prov">Hyper.Parts è di Due.Zero: da oltre vent’anni, a Bologna, l’ufficio tecnico documentazione che affianca l’industria manifatturiera. <a href="https://www.duezero.eu/">duezero.eu</a></p>
+  </div>
   <div class="container">
     <span>© 2026 Due.Zero Srl, Bologna</span>
     <span>Bozza, testo provvisorio</span>
