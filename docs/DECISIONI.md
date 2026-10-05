@@ -6,7 +6,7 @@ Aggiornato: 2026-10-05. Resoconto del lavoro di ricerca e di bozza svolto prima 
 
 Single page informativa di Hyper.Parts, la piattaforma post-vendita ricambi di Due.Zero (Bologna). Oggi Hyper.Parts **non è un SaaS**: l'accesso lo concede il costruttore della macchina, non esiste registrazione autonoma. La pagina presenta un servizio gestito e il testo deve restare coerente con una possibile trasformazione futura in SaaS, senza anticiparla.
 
-`index.html` è una **bozza di direzione**, non la versione finale. Il testo è provvisorio (le frasi portano la classe `.prov`; i segni a tratteggio si accendono col pannello bozza, ma sono spenti di default): quello definitivo lo fornisce l'azienda prima dello sviluppo.
+`index.html` è una **bozza di direzione**, non la versione finale. Il testo è provvisorio (le frasi portano la classe `.prov`, oggi senza effetto visivo; serve a ritrovarle): quello definitivo lo fornisce l'azienda prima dello sviluppo.
 
 Il brief originale è in [BRIEF.md](BRIEF.md). Alcuni punti sono stati superati dalle decisioni qui sotto; dove c'è conflitto vale questo documento.
 
@@ -59,7 +59,7 @@ Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders 
 6. **Capitolo 4, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
 7. **Capitolo 5, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Hai già le credenziali?» con tre pulsanti a contorno: Accedi, App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
 
-Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo provvisorio, colore del taglio, vetro) e va tolto dalla versione finale. Le direzioni provate per le sezioni centrali sono in `varianti/`.
+Il pannello bozza è stato tolto. Le direzioni provate per le sezioni centrali sono in `varianti/`.
 
 ## Decisioni prese
 
@@ -99,13 +99,12 @@ Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo
 ## Aperte
 
 - **Colore del taglio**: ora blu `#003B75` (il livello del logo), provato su richiesta. Il grafite `#324646` resta disponibile: si cambia con `data-cut` su `<html>`.
-- **Vetro**: provato solo come didascalia sopra l'immagine del prodotto (classe `.glass`, si spegne con `.no-glass` su `<html>`). Da confermare o togliere.
+- **Vetro**: provato solo come didascalia sopra l'immagine del prodotto (classe `.glass`), oggi sempre acceso. Da confermare o togliere.
 - **Nome**: «Hyper.Parts» o «HyperParts».
 - **Destinazione di «Parla con noi»**: oggi `#contatti`, segnaposto.
 - **GSAP**: caricato da cdnjs solo per l'immagine che si allarga. duezero.eu non lo usa: va deciso se tenerlo in produzione.
 - **Ritmo della parte centrale**: con «A chi serve» e «Come funziona» entrambe su carta e a righe, la parte centrale è calma; il contrasto viene da Due.Zero (nero) e dalla vela. Da rivalutare.
 - **Due.Zero**: manca il logo; il rosso `#E2231A` è dedotto dal sito, da confermare come segno di Due.Zero.
-- **Pannello bozza**: da togliere prima della pubblicazione.
 - **Testo definitivo**: da ricevere.
 
 ## Immagini
