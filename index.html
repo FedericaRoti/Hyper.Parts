@@ -133,53 +133,33 @@ img { max-width: 100%; display: block; }
 .progress .sphere { position: absolute; top: -10px; left: -11px; width: 23px; height: 23px; transition: transform .8s var(--ease); }
 .source { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; max-width: 34ch; }
 
-/* fascia «A chi serve»: colore di superficie scelto dal pannello (data-mid su <html>) */
-:root { --mid-bg: color-mix(in srgb, var(--navy) 9%, var(--bg)); }
-[data-mid="carta"] { --mid-bg: var(--bg); }
-[data-mid="navy"] { --mid-bg: var(--navy); }
-[data-mid="grafite"] { --mid-bg: #324646; }
-.mid { background: var(--mid-bg); border-top: 0; transition: background-color .5s ease; }
-[data-mid="navy"] .mid, [data-mid="grafite"] .mid { color: rgb(250 250 247 / .86); }
-[data-mid="navy"] .mid .chapter, [data-mid="grafite"] .mid .chapter { color: rgb(250 250 247 / .86); }
-[data-mid="navy"] .mid .chapter .sep, [data-mid="grafite"] .mid .chapter .sep { color: rgb(250 250 247 / .5); }
-[data-mid="navy"] .mid .h2, [data-mid="navy"] .mid .role h3, [data-mid="grafite"] .mid .h2, [data-mid="grafite"] .mid .role h3 { color: var(--light); }
-[data-mid="navy"] .mid .roles, [data-mid="navy"] .mid .role, [data-mid="grafite"] .mid .roles, [data-mid="grafite"] .mid .role { border-color: rgb(250 250 247 / .22); }
-[data-mid="navy"] .mid .lab, [data-mid="navy"] .mid .swap .was p, [data-mid="grafite"] .mid .lab, [data-mid="grafite"] .mid .swap .was p { color: rgb(250 250 247 / .6); }
-[data-mid="navy"] .mid .now p, [data-mid="grafite"] .mid .now p { border-color: rgb(250 250 247 / .6); }
-.mid :focus-visible { outline-color: var(--navy); }
-[data-mid="navy"] .mid :focus-visible, [data-mid="grafite"] .mid :focus-visible { outline-color: var(--accent); }
-/* blu fuori dai titoli: filetto sulla frase «Con Hyper.Parts» e etichetta */
-.role .swap p { padding-left: 17px; border-left: 3px solid transparent; }
-.role .now p { border-left-color: var(--navy); }
-.role .now .lab { color: var(--navy); font-weight: 500; padding-left: 20px; }
-.role .was .lab { padding-left: 20px; }
-[data-mid="navy"] .mid .now .lab, [data-mid="grafite"] .mid .now .lab { color: rgb(250 250 247 / .86); }
+/* A chi serve: navy, righe allineate. Il titolo del ruolo sta sopra, sotto «Oggi» e «Con Hyper.Parts» in due colonne uguali */
+.need { --steel: color-mix(in srgb, var(--navy) 42%, var(--light)); background: var(--navy); color: rgb(250 250 247 / .9); border-top: 0; }
+.need .chapter { color: rgb(250 250 247 / .86); }
+.need .chapter .sep { color: rgb(250 250 247 / .5); }
+.need-h { margin: 0; max-width: 24ch; font: 800 clamp(32px, 4.2vw, 60px)/1 var(--display); color: var(--light); text-wrap: balance; }
+.need-list { list-style: none; margin: clamp(36px, 5vw, 72px) 0 0; padding: 0; border-bottom: 1px solid rgb(250 250 247 / .25); }
+.need-item { padding-block: clamp(26px, 3.2vw, 48px); border-top: 1px solid rgb(250 250 247 / .25); }
+.need-item h3 { margin: 0 0 clamp(16px, 2vw, 28px); font: 800 clamp(38px, 6.4vw, 100px)/.92 var(--display); text-transform: uppercase; color: var(--light); text-wrap: balance; }
+.need-txt { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(24px, 4vw, 64px); }
+.need-txt p { margin: 0; padding-top: 12px; border-top: 2px solid rgb(250 250 247 / .25); max-width: 44ch; }
+.need-txt .lab { display: block; margin-bottom: 6px; font: 13px var(--mono); color: inherit; opacity: .8; }
+.need-was { color: var(--steel); }
+.need-now { border-top-color: var(--light) !important; color: var(--light); }
+.need-now .prov { font-size: clamp(17px, 1.5vw, 20px); }
+.js:not(.reduce) .need-item { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .9s var(--ease); }
+.js:not(.reduce) .need-item.is-in { opacity: 1; transform: none; }
 
-/* a chi serve: in ogni riga «Oggi» lascia il posto a «Con Hyper.Parts» quando la riga passa al centro */
-.roles { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
-.role { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: clamp(24px, 4vw, 64px); align-items: start; padding-block: clamp(28px, 3.4vw, 48px); border-top: 1px solid var(--line); }
-.role h3 { font: 800 clamp(30px, 4.4vw, 64px)/.98 var(--display); color: var(--navy); margin: 0; text-wrap: balance; }
-.swap { display: grid; }
-.swap > div { margin-bottom: 14px; }
-.lab { display: block; font: 13px var(--mono); color: var(--muted); margin-bottom: 6px; }
-.swap p { margin: 0; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.45; max-width: 40ch; }
-.swap .was p { color: var(--muted); }
-.js:not(.reduce) .swap > div { grid-area: 1 / 1; margin-bottom: 0; transition: opacity .45s ease, transform .7s var(--ease); }
-.js:not(.reduce) .swap .now { opacity: 0; transform: translateY(22px); }
-.js:not(.reduce) .role.done .swap .was { opacity: 0; transform: translateY(-22px); }
-.js:not(.reduce) .role.done .swap .now { opacity: 1; transform: none; }
-
-/* come funziona: tre passaggi sobri */
-.how-grid { display: grid; grid-template-columns: 5fr 4fr 4fr; gap: clamp(24px, 3vw, 48px); margin-top: clamp(32px, 4vw, 56px); border-top: 3px solid var(--navy); padding-top: 24px; }
-.how-grid h3 { font: 800 clamp(24px, 2.2vw, 30px)/1.05 var(--display); color: var(--navy); margin: 0 0 10px; }
-.how-grid p { margin: 0; max-width: 38ch; }
+/* come funziona: un passaggio per riga, titolo grande a sinistra, testo a destra */
+.how .h2 { font-size: clamp(40px, 6vw, 92px); color: var(--ink); text-transform: uppercase; line-height: .92; }
 .how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
-
-/* Due.Zero: due righe sull'azienda */
-.dz-lines { font: 500 clamp(24px, 3vw, 44px)/1.22 var(--body); color: var(--ink); max-width: 26ch; margin: 0; letter-spacing: -.005em; }
-.dz-lines + .textlink { display: inline-block; margin-top: 28px; }
-.js:not(.reduce) .dz-lines { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .9s var(--ease); }
-.js:not(.reduce) .dz-lines.is-in { opacity: 1; transform: none; }
+.how-steps { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; }
+.how-step { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(24px, 4vw, 64px); align-items: end; padding-block: clamp(22px, 2.6vw, 36px); border-top: 1px solid var(--ink); }
+.how-step .tab { display: block; width: 56px; height: 8px; background: var(--navy); margin-bottom: 16px; }
+.how-step h3 { margin: 0; font: 800 clamp(34px, 5.4vw, 84px)/.95 var(--display); text-transform: uppercase; color: var(--ink); text-wrap: balance; }
+.how-step p { margin: 0; max-width: 36ch; }
+.js:not(.reduce) .how-step { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .9s var(--ease); }
+.js:not(.reduce) .how-step.is-in { opacity: 1; transform: none; }
 
 /* chiusura */
 .closing h2 { font: 800 clamp(44px, 7vw, 104px)/.94 var(--display); color: var(--ink); margin: 0 0 clamp(24px, 3vw, 40px); max-width: 12ch; }
@@ -215,8 +195,8 @@ img { max-width: 100%; display: block; }
   .pin-grid { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; }
   .texts { min-height: 190px; }
   .phone { --pw: min(170px, 23dvh); grid-row: 3; grid-column: 1; justify-self: center; border-width: 5px; border-radius: 24px; }
-  .role { grid-template-columns: 1fr; row-gap: 16px; }
-  .how-grid { grid-template-columns: 1fr; }
+  .need-txt { grid-template-columns: 1fr; row-gap: 14px; }
+  .how-step { grid-template-columns: 1fr; row-gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
@@ -257,8 +237,7 @@ img { max-width: 100%; display: block; }
 <main>
   <section class="scene" id="come-si-vede" aria-labelledby="scene-title">
     <div class="sent" data-step="0"></div><div class="sent" data-step="1"></div><div class="sent" data-step="2"></div>
-    <div class="pin cut-host">
-      <div class="cut" aria-hidden="true"></div>
+    <div class="pin">
       <div class="container pin-grid">
         <div class="pin-head">
           <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 1 <span class="sep">|</span> Come si vede</p>
@@ -284,53 +263,53 @@ img { max-width: 100%; display: block; }
     </div>
   </section>
 
-  <section class="section mid" id="a-chi-serve" aria-labelledby="risolve-title">
+  <section class="section need" id="a-chi-serve" aria-labelledby="risolve-title">
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 2 <span class="sep">|</span> A chi serve</p>
-      <h2 class="h2 prov" id="risolve-title">Cosa cambia, per chi lavora con i ricambi</h2>
-      <ul class="roles">
-        <li class="role">
+      <h2 class="need-h prov" id="risolve-title">Cosa cambia, per chi lavora con i ricambi</h2>
+      <ul class="need-list">
+        <li class="need-item" data-reveal>
           <h3 class="prov">Ufficio ricambi e post-vendita</h3>
-          <div class="swap">
-            <div class="was"><span class="lab">Oggi</span><p class="prov">Richieste per telefono o email, descritte a parole, da ricondurre al codice incrociando distinta e disegno.</p></div>
-            <div class="now"><span class="lab">Con Hyper.Parts</span><p class="prov">Il cliente trova il pezzo sul disegno della sua matricola e ordina il codice giusto.</p></div>
+          <div class="need-txt">
+            <p class="need-was"><span class="lab">Oggi</span><span class="prov">Richieste per telefono o email, descritte a parole, da ricondurre al codice incrociando distinta e disegno.</span></p>
+            <p class="need-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Il cliente trova il pezzo sul disegno della sua matricola e ordina il codice giusto.</span></p>
           </div>
         </li>
-        <li class="role">
+        <li class="need-item" data-reveal>
           <h3 class="prov">Tecnici e manutenzione in campo</h3>
-          <div class="swap">
-            <div class="was"><span class="lab">Oggi</span><p class="prov">In reparto servono manuali e schemi, spesso dove la rete non arriva.</p></div>
-            <div class="now"><span class="lab">Con Hyper.Parts</span><p class="prov">Il QR sulla macchina apre tavole e documenti dall’app, anche offline.</p></div>
+          <div class="need-txt">
+            <p class="need-was"><span class="lab">Oggi</span><span class="prov">In reparto servono manuali e schemi, spesso dove la rete non arriva.</span></p>
+            <p class="need-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Il QR sulla macchina apre tavole e documenti dall’app, anche offline.</span></p>
           </div>
         </li>
-        <li class="role">
+        <li class="need-item" data-reveal>
           <h3 class="prov">Costruttori di macchine</h3>
-          <div class="swap">
-            <div class="was"><span class="lab">Oggi</span><p class="prov">Cataloghi PDF da aggiornare e listini da gestire cliente per cliente.</p></div>
-            <div class="now"><span class="lab">Con Hyper.Parts</span><p class="prov">Tavole legate alla matricola, listini multivaluta, ricarichi e disponibilità in un unico posto.</p></div>
+          <div class="need-txt">
+            <p class="need-was"><span class="lab">Oggi</span><span class="prov">Cataloghi PDF da aggiornare e listini da gestire cliente per cliente.</span></p>
+            <p class="need-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Tavole legate alla matricola, listini multivaluta, ricarichi e disponibilità in un unico posto.</span></p>
           </div>
         </li>
-        <li class="role">
+        <li class="need-item" data-reveal>
           <h3 class="prov">Pianificazione della manutenzione</h3>
-          <div class="swap">
-            <div class="was"><span class="lab">Oggi</span><p class="prov">Lo storico dei ricambi ordinati è sparso tra email e gestionale.</p></div>
-            <div class="now"><span class="lab">Con Hyper.Parts</span><p class="prov">Report sui componenti più soggetti a usura, per programmare gli interventi.</p></div>
+          <div class="need-txt">
+            <p class="need-was"><span class="lab">Oggi</span><span class="prov">Lo storico dei ricambi ordinati è sparso tra email e gestionale.</span></p>
+            <p class="need-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Report sui componenti più soggetti a usura, per programmare gli interventi.</span></p>
           </div>
         </li>
       </ul>
     </div>
   </section>
 
-  <section class="section" id="come-funziona" aria-labelledby="how-title">
+  <section class="section how" id="come-funziona" aria-labelledby="how-title">
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 3 <span class="sep">|</span> Come funziona</p>
       <h2 class="h2 prov" id="how-title">Come funziona</h2>
       <p class="how-intro prov">Un servizio gestito: il catalogo lo prepara Due.Zero insieme al costruttore.</p>
-      <div class="how-grid">
-        <article><h3 class="prov">La richiesta</h3><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></article>
-        <article><h3 class="prov">Il catalogo costruito insieme</h3><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></article>
-        <article><h3 class="prov">La crescita</h3><p class="prov">Il costruttore abilita clienti e rivenditori. Macchine e documenti si aggiungono nel tempo.</p></article>
-      </div>
+      <ol class="how-steps">
+        <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">La richiesta</h3></div><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></li>
+        <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">Il catalogo costruito insieme</h3></div><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></li>
+        <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">La crescita</h3></div><p class="prov">Il costruttore abilita clienti e rivenditori. Macchine e documenti si aggiungono nel tempo.</p></li>
+      </ol>
     </div>
   </section>
 
@@ -375,13 +354,6 @@ img { max-width: 100%; display: block; }
     <div class="seg" id="cut-seg">
       <button type="button" data-cut="grafite" aria-pressed="true">Grafite</button>
       <button type="button" data-cut="blu" aria-pressed="false">Blu</button>
-    </div>
-    <p>Fascia «A chi serve»</p>
-    <div class="seg" id="mid-seg">
-      <button type="button" data-mid="tinta" aria-pressed="true">Tinta blu</button>
-      <button type="button" data-mid="carta" aria-pressed="false">Carta</button>
-      <button type="button" data-mid="navy" aria-pressed="false">Navy</button>
-      <button type="button" data-mid="grafite" aria-pressed="false">Grafite</button>
     </div>
     <p>Vetro sull’immagine</p>
     <div class="seg">
@@ -445,17 +417,6 @@ img { max-width: 100%; display: block; }
     scene.querySelectorAll('.sent').forEach(function (s) { sceneIO.observe(s); });
   }
 
-  // a chi serve: la riga passa da «Oggi» a «Con Hyper.Parts» quando supera la metà dello schermo, e torna indietro risalendo
-  if (!reduce && hasIO) {
-    var roleIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        var above = e.boundingClientRect.top < (e.rootBounds ? e.rootBounds.top : 0);
-        e.target.classList.toggle('done', e.isIntersecting || above);
-      });
-    }, { rootMargin: '0px 0px -48% 0px', threshold: 0 });
-    document.querySelectorAll('.role').forEach(function (r) { roleIO.observe(r); });
-  }
-
   // etichette e righe che entrano
   var reveals = document.querySelectorAll('[data-reveal]');
   if (!reduce && hasIO) {
@@ -476,12 +437,6 @@ img { max-width: 100%; display: block; }
     b.addEventListener('click', function () {
       root.dataset.cut = b.dataset.cut;
       document.querySelectorAll('#cut-seg button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-    });
-  });
-  document.querySelectorAll('#mid-seg button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      root.dataset.mid = b.dataset.mid;
-      document.querySelectorAll('#mid-seg button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
     });
   });
   var glass = document.getElementById('toggle-glass');
