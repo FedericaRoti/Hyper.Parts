@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" class="marks">
+<html lang="it" data-cut="blu">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -213,6 +213,31 @@ img { max-width: 100%; display: block; }
 .dz-text { margin: 0; max-width: 36ch; font: 500 clamp(22px, 2.4vw, 32px)/1.25 var(--body); color: var(--light); }
 .dz-link { display: inline-block; margin-top: 24px; padding-bottom: 4px; border-bottom: 2px solid var(--red); font: 500 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--light); text-decoration: none; }
 .dz :focus-visible { outline-color: var(--light); }
+
+/* DIREZIONE D, secondo giro: A chi serve di nuovo su carta, vela blu, niente sottolineature, azioni con gerarchia */
+.need { background: var(--bg); color: var(--text); border-top: 1px solid var(--line); }
+.need .chapter { color: var(--navy); }
+.need .chapter .sep { color: var(--muted); }
+.need-h, .need-item h3 { color: var(--ink); }
+.need-list { border-bottom-color: var(--line); }
+.need-item { border-top-color: var(--line); }
+.need-txt p { border-top-color: var(--line); }
+.need-was { color: var(--muted); }
+.need-now { border-top-color: var(--navy) !important; color: var(--ink); }
+.need-now .lab { color: var(--navy); opacity: 1; }
+.need-was .lab { color: var(--muted); }
+.pill--ghost { min-height: 44px; padding: 11px 22px; background: transparent; color: var(--navy); }
+.pill--ghost:hover { background: color-mix(in srgb, var(--navy) 8%, transparent); }
+.nav-links .pill { text-decoration: none; }
+.nav-links .pill:hover { text-decoration: none; }
+.path-q { margin: 0 0 12px; font: 500 13px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.path .path-note { margin: 0 0 24px; max-width: 46ch; }
+.closing .path h2 { margin-bottom: 16px; }
+.path--in { margin-top: clamp(28px, 3.4vw, 44px); padding-top: clamp(24px, 3vw, 36px); border-top: 1px solid var(--line); max-width: 640px; }
+.path-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.dz-link .arr { color: var(--red); }
+.dz-link { border-bottom: 0; padding-bottom: 0; }
+@media (max-width: 767px) { .nav-links .pill { padding: 10px 18px; min-height: 40px; } }
 </style>
 </head>
 <body>
@@ -226,7 +251,7 @@ img { max-width: 100%; display: block; }
       <a class="sec" href="#come-si-vede">Come si vede</a>
       <a class="sec" href="#a-chi-serve">A chi serve</a>
       <a class="sec" href="#come-funziona">Come funziona</a>
-      <a href="https://hyperparts.it">Accesso clienti</a>
+      <a class="pill pill--ghost" href="https://hyperparts.it">Accedi</a>
     </div>
   </nav>
   <div class="container hero-text">
@@ -329,7 +354,7 @@ img { max-width: 100%; display: block; }
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 4 <span class="sep">|</span> Due.Zero</p>
       <p class="dz-text prov" id="dz-title">Hyper.Parts è di Due.Zero: da oltre vent’anni, a Bologna, l’ufficio tecnico documentazione che affianca l’industria manifatturiera.</p>
-      <a class="dz-link" href="https://www.duezero.eu/">duezero.eu</a>
+      <a class="dz-link" href="https://www.duezero.eu/">duezero.eu <span class="arr" aria-hidden="true">→</span></a>
     </div>
   </section>
 
@@ -337,17 +362,21 @@ img { max-width: 100%; display: block; }
     <div class="cut" aria-hidden="true"></div>
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 5 <span class="sep">|</span> Contatti</p>
-      <h2 class="prov" id="closing-title">Parliamo dei vostri ricambi.</h2>
-      <div class="closing-row">
+      <div class="path">
+        <p class="path-q">Vuoi attivare Hyper.Parts?</p>
+        <h2 id="closing-title">Parliamo dei vostri ricambi.</h2>
+        <p class="path-note">L’accesso è riservato: le credenziali le fornisce il costruttore della macchina.</p>
         <!-- TODO destinazione del contatto da definire (il brief indica #contatti come segnaposto) -->
         <a class="pill" href="#contatti">Parla con noi <span class="plus">[+]</span></a>
-        <p class="prov">L’accesso è riservato: le credenziali le fornisce il costruttore della macchina.</p>
       </div>
-      <p class="closing-links">
-        <a class="textlink" href="https://hyperparts.it">Accesso clienti</a>
-        <a class="textlink" href="https://apps.apple.com/it/app/hyperparts/id6797175665">App per iPhone</a>
-        <a class="textlink" href="https://play.google.com/store/apps/details?id=it.hyperparts.app&amp;hl=it">App per Android</a>
-      </p>
+      <div class="path path--in">
+        <p class="path-q">Hai già le credenziali?</p>
+        <div class="path-actions">
+          <a class="pill pill--ghost" href="https://hyperparts.it">Accedi</a>
+          <a class="pill pill--ghost" href="https://apps.apple.com/it/app/hyperparts/id6797175665">App iPhone</a>
+          <a class="pill pill--ghost" href="https://play.google.com/store/apps/details?id=it.hyperparts.app&amp;hl=it">App Android</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -365,13 +394,13 @@ img { max-width: 100%; display: block; }
     <p><a href="index.html" style="color:var(--accent)">← Altre varianti</a></p>
     <p>Testo provvisorio, sottolineato a tratteggio. Immagini provvisorie da duezero.eu e dall’App Store.</p>
     <div class="seg">
-      <button type="button" id="toggle-marks" aria-pressed="true">Segni del testo provvisorio</button>
+      <button type="button" id="toggle-marks" aria-pressed="false">Segni del testo provvisorio</button>
       <button type="button" id="replay">Rivedi l’apertura</button>
     </div>
     <p>Colore del taglio</p>
     <div class="seg" id="cut-seg">
-      <button type="button" data-cut="grafite" aria-pressed="true">Grafite</button>
-      <button type="button" data-cut="blu" aria-pressed="false">Blu</button>
+      <button type="button" data-cut="grafite" aria-pressed="false">Grafite</button>
+      <button type="button" data-cut="blu" aria-pressed="true">Blu</button>
     </div>
     <p>Vetro sull’immagine</p>
     <div class="seg">
