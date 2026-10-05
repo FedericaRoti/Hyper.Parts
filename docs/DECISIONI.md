@@ -6,7 +6,7 @@ Aggiornato: 2026-10-05. Resoconto del lavoro di ricerca e di bozza svolto prima 
 
 Single page informativa di Hyper.Parts, la piattaforma post-vendita ricambi di Due.Zero (Bologna). Oggi Hyper.Parts **non è un SaaS**: l'accesso lo concede il costruttore della macchina, non esiste registrazione autonoma. La pagina presenta un servizio gestito e il testo deve restare coerente con una possibile trasformazione futura in SaaS, senza anticiparla.
 
-`index.html` è una **bozza di direzione**, non la versione finale. Il testo è provvisorio (in pagina è sottolineato a tratteggio, classe `.prov`): quello definitivo lo fornisce l'azienda prima dello sviluppo.
+`index.html` è una **bozza di direzione**, non la versione finale. Il testo è provvisorio (le frasi portano la classe `.prov`; i segni a tratteggio si accendono col pannello bozza, ma sono spenti di default): quello definitivo lo fornisce l'azienda prima dello sviluppo.
 
 Il brief originale è in [BRIEF.md](BRIEF.md). Alcuni punti sono stati superati dalle decisioni qui sotto; dove c'è conflitto vale questo documento.
 
@@ -34,28 +34,32 @@ Fonti: duezero.eu, scheda App Store, pagina di login di hyperparts.it. L'ambient
 
 ## Palette e font
 
-Dal logo dell'app, non dal sito corporate.
+Principio: **struttura in carta, inchiostro e nero (casa Due.Zero); navy e giallo solo dove c'è il prodotto; rosso solo per Due.Zero.** Così il marchio Hyper.Parts resta riconoscibile senza vincolare tutto il resto, e Due.Zero può comparire nel suo colore senza stonare.
 
 | Token | Valore | Uso |
 |---|---|---|
-| `--navy` | `#003B75` | titoli, pulsante |
-| `--accent` | `#FFD300` | solo sfera, `[+]` e pulsante sul taglio |
-| `--cut` | `#324646` (grafite) oppure `#003B75` | superficie del taglio |
-| `--ink` | `#1F2426` | titolo d'apertura, testo forte |
+| `--bg` | `#EDEDEA` | fondo carta (la stessa di duezero.eu) |
+| `--ink` | `#141412` | titoli, testo forte (come duezero.eu) |
 | `--text` | `#333333` | testo |
-| `--bg` | `#EDEDEA` | fondo carta, preso da duezero.eu |
+| `--black` | `#0A0A0A` | sezione Due.Zero (come duezero.eu) |
+| `--red` | `#E2231A` | solo Due.Zero: pallino del capitolo e freccia del link (il rosso di duezero.eu) |
+| `--navy` | `#003B75` | prodotto: vela (taglio), pulsanti, filetti, etichette dei capitoli e di «Con Hyper.Parts» |
+| `--accent` | `#FFD300` | prodotto: sfera, `[+]`, pulsante sulla vela |
+| `--cut` | `#003B75` (blu, predefinito) oppure `#324646` (grafite) | superficie del taglio |
 
-Il rosso `#CC0000` del brief non è usato. Font: Big Shoulders Display (titoli), IBM Plex Sans (testo), IBM Plex Mono (etichette e pulsanti).
+Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders Display (titoli), IBM Plex Sans (testo), IBM Plex Mono (etichette e pulsanti).
 
 ## Struttura attuale di index.html
 
-1. **Apertura**: titolo molto grande su due righe, sottotitolo, pulsante, con la vela del logo. Sotto, l'immagine del prodotto parte incorniciata e si allarga a tutta larghezza con lo scroll. In alto, l'icona reale (stato blu) accanto al nome in stampatello.
-2. **Capitolo 1, Come si vede**: scena fissata, su carta, senza vela. Il telefono resta fermo, il testo si sostituisce in tre passi e lo schermo scorre tra tre schermate reali.
-3. **Capitolo 2, A chi serve**: fascia navy `#003B75` con testo chiaro. Quattro righe allineate, una per ruolo: titolo in maiuscolo grande, sotto due colonne uguali «Oggi» (spenta) e «Con Hyper.Parts».
-4. **Capitolo 3, Come funziona**: su carta. Un passaggio per riga, titolo in maiuscolo grande a sinistra con un segno navy sopra, testo a destra.
-5. **Capitolo 4, Contatti**: titolo grande, pulsante, link ad accesso clienti e alle app, poi il footer con la vela. Il footer contiene le due righe su Due.Zero e il link.
+1. **Navigazione**: icona reale (stato blu) con nome in stampatello; link alle sezioni; **Accedi** sempre visibile come pulsante a contorno (va a hyperparts.it), anche su mobile.
+2. **Apertura**: titolo molto grande su due righe, sottotitolo, pulsante primario «Parla con noi» (nell'angolo sulla vela da 900px in su). Vela blu. Sotto, l'immagine del prodotto parte incorniciata e si allarga a tutta larghezza con lo scroll.
+3. **Capitolo 1, Come si vede**: scena fissata su carta, senza vela. Il telefono resta fermo, il testo si sostituisce in tre passi e lo schermo scorre tra tre schermate reali.
+4. **Capitolo 2, A chi serve**: su carta. Quattro righe allineate, tre colonne: ruolo, «Oggi» (grigio), «Con Hyper.Parts» (filetto e etichetta navy).
+5. **Capitolo 3, Come funziona**: su carta. Un passaggio per riga: segno navy, titolo a sinistra, testo a destra.
+6. **Capitolo 4, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
+7. **Capitolo 5, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Hai già le credenziali?» con tre pulsanti a contorno: Accedi, App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
 
-Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo provvisorio, colore del taglio, vetro) e va tolto dalla versione finale. Le tre direzioni provate per le sezioni centrali sono in `varianti/`.
+Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo provvisorio, colore del taglio, vetro) e va tolto dalla versione finale. Le direzioni provate per le sezioni centrali sono in `varianti/`.
 
 ## Decisioni prese
 
@@ -66,11 +70,13 @@ Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo
 - **Pulsanti**: pillola in mono maiuscolo con `[+]`, il linguaggio di duezero.eu.
 - **Passaggi tra sezioni**: etichetta «Capitolo N | titolo» con la sfera gialla.
 - **La sfera** è il punto di Hyper.Parts e segna solo dove sei (logo, capitoli, avanzamento della scena). Non è un elenco puntato.
-- **Il taglio del logo** come elemento riconoscibile: la curva che divide l'icona, in grande, separa la carta da una superficie di colore. Compare in apertura, nella scena e in chiusura. Il disco chiaro è la carta, sotto resta `--cut`.
-- **Palette non ovunque**: fondo carta, blu sui titoli, giallo su pochi dettagli.
-- **Due.Zero**: niente sezione a sé, due righe nel footer.
-- **Vela solo in apertura e nel footer**: tolta dalla scena del telefono, perché due curve ravvicinate si pestavano.
-- **Sezioni centrali**: «A chi serve» su navy in righe allineate, «Come funziona» su carta a righe con titoli grandi. Scartati: fascia gialla (troppo forte), indice tipografico interattivo, zig-zag dei ruoli (disordinato), fascia di colore diverso su una sola sezione.
+- **Il taglio del logo** come elemento riconoscibile: la curva che divide l'icona, in grande, separa la carta da una superficie di colore. Compare in apertura e in chiusura (non nella scena del telefono). Il disco chiaro è la carta, sotto resta `--cut`.
+- **Palette per ruoli**: struttura neutra (carta, inchiostro, nero), navy e giallo solo sul prodotto, rosso solo Due.Zero. Titoli in inchiostro, non più in blu.
+- **Vela solo in apertura e nel footer**: tolta dalla scena del telefono, perché due curve ravvicinate si pestavano. Colore blu (il livello del logo), non grigio.
+- **Due.Zero**: piccola sezione scura prima dei contatti. Nel testo «dal 2008», non «da oltre vent'anni». Niente frase bianca sulla vela nel footer.
+- **Sezioni centrali**: «A chi serve» e «Come funziona» su carta, righe allineate, titoli di dimensione media. Meno tipografia: i titoli giganti in maiuscolo sono stati ridotti.
+- **Nessuna sottolineatura**: né i segni del testo provvisorio né quelle dei link. I link d'azione sono pulsanti.
+- **Azioni con gerarchia**: una sola azione primaria piena («Parla con noi»), le altre a contorno. L'accesso per chi ha già le credenziali è sempre raggiungibile (in alto) e ha un suo percorso in chiusura.
 
 ## Scartate, con il motivo
 
@@ -79,20 +85,27 @@ Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo
 - Bianco e sezioni a colore pieno alternate: sterile il primo, troppo staccate le seconde.
 - Pagina a sezioni impilate con immagini e testo: statica, senza carattere.
 - Angolo tagliato come passaggio tra sezioni: è la firma di Due.Zero, su Hyper.Parts è forzato.
-- Sezione Due.Zero con blocco nero, foto o icone dell'ecosistema: sembrava un inserto estraneo e portava ad altri prodotti.
+- Sezione Due.Zero con foto o icone dell'ecosistema: sembrava un inserto estraneo e portava ad altri prodotti. Il blocco nero era stato scartato quando la palette era tutta navy e giallo; con la struttura neutra di carta, inchiostro e nero è tornato, come piccola sezione di testo.
 - Sfere usate come decorazione diffusa: sembravano a caso.
 - Sfera grande come oggetto protagonista dell'apertura.
 - Vetro su tutte le sezioni sopra foto di sfondo: obbliga a riempire il fondo di immagini e diventa prevedibile.
 - Tabella di confronto e card: poco convincenti.
+- Fascia scura (navy, grafite o nera) per «A chi serve»: nel nero «non ha senso»; il navy pieno era troppo; una sola sezione di colore diverso era solo uno sfondo diverso.
+- Fascia gialla a tutta larghezza per «A chi serve»: troppo forte.
+- Indice tipografico interattivo (nomi dei ruoli giganti) e ruoli a zig-zag: disordinati, poco chiari, troppa tipografia.
+- Frase grande bianca su Due.Zero nel footer, sopra la vela: brutta.
+- CTA con sotto tre link sciolti (Accesso clienti, App iPhone, App Android): confusionaria.
 
 ## Aperte
 
-- **Colore del taglio**: grafite `#324646` o blu `#003B75`. Entrambi vengono dall'icona: a riposo la metà sotto la curva è grigio scuro, al passaggio del mouse diventa blu. In pagina si cambia con `data-cut="blu"` su `<html>`.
+- **Colore del taglio**: ora blu `#003B75` (il livello del logo), provato su richiesta. Il grafite `#324646` resta disponibile: si cambia con `data-cut` su `<html>`.
 - **Vetro**: provato solo come didascalia sopra l'immagine del prodotto (classe `.glass`, si spegne con `.no-glass` su `<html>`). Da confermare o togliere.
 - **Nome**: «Hyper.Parts» o «HyperParts».
 - **Destinazione di «Parla con noi»**: oggi `#contatti`, segnaposto.
 - **GSAP**: caricato da cdnjs solo per l'immagine che si allarga. duezero.eu non lo usa: va deciso se tenerlo in produzione.
-- **Sezioni da rifinire**: la struttura è approvata, alcune sezioni sono ancora da lavorare.
+- **Ritmo della parte centrale**: con «A chi serve» e «Come funziona» entrambe su carta e a righe, la parte centrale è calma; il contrasto viene da Due.Zero (nero) e dalla vela. Da rivalutare.
+- **Due.Zero**: manca il logo; il rosso `#E2231A` è dedotto dal sito, da confermare come segno di Due.Zero.
+- **Pannello bozza**: da togliere prima della pubblicazione.
 - **Testo definitivo**: da ricevere.
 
 ## Immagini
