@@ -1,6 +1,6 @@
 # Hyper.Parts, single page: decisioni e stato
 
-Aggiornato: 2026-10-02. Resoconto del lavoro di ricerca e di bozza svolto prima di questa repo.
+Aggiornato: 2026-10-05. Resoconto del lavoro di ricerca e di bozza svolto prima di questa repo.
 
 ## Cos'è
 
@@ -14,7 +14,7 @@ Il brief originale è in [BRIEF.md](BRIEF.md). Alcuni punti sono stati superati 
 
 - Un solo file statico, HTML/CSS/JS vanilla, nessun build, nessun backend.
 - Niente prezzi pubblici, niente «Prova gratis» o «Registrati», niente login come sezione centrale. Una sola azione: «Parla con noi».
-- Solo tema chiaro. Il tema scuro automatico è stato provato e bocciato: non ha motivazione per un fornitore industriale.
+- Solo tema chiaro (una fascia navy di sezione è ammessa). Il tema scuro automatico è stato provato e bocciato: non ha motivazione per un fornitore industriale.
 - Il prodotto si mostra solo con immagini e schermate reali, mai ricostruite in HTML o SVG.
 - Nessuna texture sul fondo.
 - Tono professionale, settore industriale.
@@ -49,14 +49,13 @@ Il rosso `#CC0000` del brief non è usato. Font: Big Shoulders Display (titoli),
 
 ## Struttura attuale di index.html
 
-1. **Apertura**: titolo molto grande su due righe, sottotitolo, pulsante. Sotto, l'immagine del prodotto parte incorniciata e si allarga a tutta larghezza con lo scroll.
-2. **Capitolo 1, Come si vede**: scena fissata. Il telefono resta fermo, il testo si sostituisce in tre passi (inquadra il QR, apre la matricola, trova quello che serve) e lo schermo scorre tra tre schermate reali.
-3. **Capitolo 2, A chi serve**: quattro righe, una per ruolo. In ogni riga «Oggi» lascia il posto a «Con Hyper.Parts» quando la riga supera la metà dello schermo.
-4. **Capitolo 3, Come funziona**: tre passaggi (la richiesta, il catalogo costruito insieme, la crescita).
-5. **Capitolo 4, Due.Zero**: due righe sull'azienda e il link.
-6. **Capitolo 5, Contatti**: titolo grande, pulsante, link ad accesso clienti e alle app.
+1. **Apertura**: titolo molto grande su due righe, sottotitolo, pulsante, con la vela del logo. Sotto, l'immagine del prodotto parte incorniciata e si allarga a tutta larghezza con lo scroll. In alto, l'icona reale (stato blu) accanto al nome in stampatello.
+2. **Capitolo 1, Come si vede**: scena fissata, su carta, senza vela. Il telefono resta fermo, il testo si sostituisce in tre passi e lo schermo scorre tra tre schermate reali.
+3. **Capitolo 2, A chi serve**: fascia navy `#003B75` con testo chiaro. Quattro righe allineate, una per ruolo: titolo in maiuscolo grande, sotto due colonne uguali «Oggi» (spenta) e «Con Hyper.Parts».
+4. **Capitolo 3, Come funziona**: su carta. Un passaggio per riga, titolo in maiuscolo grande a sinistra con un segno navy sopra, testo a destra.
+5. **Capitolo 4, Contatti**: titolo grande, pulsante, link ad accesso clienti e alle app, poi il footer con la vela. Il footer contiene le due righe su Due.Zero e il link.
 
-Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo provvisorio, colore del taglio, vetro) e va tolto dalla versione finale.
+Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo provvisorio, colore del taglio, vetro) e va tolto dalla versione finale. Le tre direzioni provate per le sezioni centrali sono in `varianti/`.
 
 ## Decisioni prese
 
@@ -69,7 +68,9 @@ Il pannello scuro in basso a sinistra è uno strumento di bozza (segni del testo
 - **La sfera** è il punto di Hyper.Parts e segna solo dove sei (logo, capitoli, avanzamento della scena). Non è un elenco puntato.
 - **Il taglio del logo** come elemento riconoscibile: la curva che divide l'icona, in grande, separa la carta da una superficie di colore. Compare in apertura, nella scena e in chiusura. Il disco chiaro è la carta, sotto resta `--cut`.
 - **Palette non ovunque**: fondo carta, blu sui titoli, giallo su pochi dettagli.
-- **Sezione Due.Zero**: solo due righe sull'azienda.
+- **Due.Zero**: niente sezione a sé, due righe nel footer.
+- **Vela solo in apertura e nel footer**: tolta dalla scena del telefono, perché due curve ravvicinate si pestavano.
+- **Sezioni centrali**: «A chi serve» su navy in righe allineate, «Come funziona» su carta a righe con titoli grandi. Scartati: fascia gialla (troppo forte), indice tipografico interattivo, zig-zag dei ruoli (disordinato), fascia di colore diverso su una sola sezione.
 
 ## Scartate, con il motivo
 
