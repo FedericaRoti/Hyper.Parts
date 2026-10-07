@@ -56,8 +56,9 @@ Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders 
 3. **Capitolo 1, Come si vede**: scena fissata su carta, senza vela. Il telefono resta fermo, il testo si sostituisce in tre passi e lo schermo scorre tra tre schermate reali.
 4. **Capitolo 2, A chi serve**: su carta. Quattro righe allineate, tre colonne: ruolo, «Oggi» (grigio), «Con Hyper.Parts» (filetto e etichetta navy).
 5. **Capitolo 3, Come funziona**: su carta. Un passaggio per riga: segno navy, titolo a sinistra, testo a destra.
-6. **Capitolo 4, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
-7. **Capitolo 5, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Hai già le credenziali?» con tre pulsanti a contorno: Accedi, App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
+6. **Capitolo 4, Domande**: quattro domande rapide con risposta visibile (accesso, cosa c'è per ogni macchina, rete, dispositivi), solo con fatti verificati.
+7. **Capitolo 5, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
+8. **Capitolo 6, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Hai già le credenziali?» con tre pulsanti a contorno: Accedi, App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
 
 Il pannello bozza è stato tolto. Le direzioni provate per le sezioni centrali sono in `varianti/`.
 
@@ -105,7 +106,8 @@ Il pannello bozza è stato tolto. Le direzioni provate per le sezioni centrali s
 - **GSAP**: caricato da cdnjs solo per l'immagine che si allarga. duezero.eu non lo usa: va deciso se tenerlo in produzione.
 - **Ritmo della parte centrale**: con «A chi serve» e «Come funziona» entrambe su carta e a righe, la parte centrale è calma; il contrasto viene da Due.Zero (nero) e dalla vela. Da rivalutare.
 - **Due.Zero**: manca il logo; il rosso `#E2231A` è dedotto dal sito, da confermare come segno di Due.Zero.
-- **Testo definitivo**: da ricevere.
+- **Testo definitivo**: da ricevere. Il motivo di ogni sezione è in [SEZIONI.md](SEZIONI.md).
+- **Spunti da confermare con Due.Zero**: «ciascuno con la propria area» (passo «La crescita») e «video» tra i contenuti; vedi l'elenco in SEZIONI.md.
 
 ## Immagini
 

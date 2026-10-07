@@ -158,6 +158,15 @@ img { max-width: 100%; display: block; }
 .js:not(.reduce) .how-step { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .9s var(--ease); }
 .js:not(.reduce) .how-step.is-in { opacity: 1; transform: none; }
 
+.faq { background: var(--bg); }
+.faq-list { margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
+.faq-item { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(24px, 4vw, 64px); padding-block: clamp(18px, 2.2vw, 28px); border-top: 1px solid var(--line); }
+.faq-item dt { font: 600 clamp(18px, 1.6vw, 22px)/1.3 var(--body); color: var(--ink); }
+.faq-item dd { margin: 0; max-width: 52ch; }
+.js:not(.reduce) .faq-item { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .8s var(--ease); }
+.js:not(.reduce) .faq-item.is-in { opacity: 1; transform: none; }
+@media (max-width: 767px) { .faq-item { grid-template-columns: 1fr; row-gap: 8px; } }
+
 /* chiusura */
 .closing h2 { font: 800 clamp(36px, 5vw, 72px)/.96 var(--display); color: var(--ink); margin: 0 0 clamp(24px, 3vw, 40px); max-width: 16ch; }
 .closing { border-top: 0; }
@@ -266,7 +275,7 @@ img { max-width: 100%; display: block; }
         <div class="texts">
           <div class="tx" data-tx="0"><h3 class="prov">Inquadra il QR</h3><p class="prov">Il tecnico è davanti alla macchina. Con l’app inquadra il QR e la riconosce, anche senza rete.</p></div>
           <div class="tx" data-tx="1"><h3 class="prov">Apre la matricola</h3><p class="prov">Ogni macchina ha la sua scheda, con il disegno e i dati di quella matricola.</p></div>
-          <div class="tx" data-tx="2"><h3 class="prov">Trova quello che serve</h3><p class="prov">Documenti, ricambi consigliati e disponibilità a magazzino, nello stesso posto.</p></div>
+          <div class="tx" data-tx="2"><h3 class="prov">Trova quello che serve</h3><p class="prov">Documenti, video, ricambi consigliati e disponibilità a magazzino, nello stesso posto.</p></div>
         </div>
         <div class="phone">
           <div class="film">
@@ -328,14 +337,27 @@ img { max-width: 100%; display: block; }
       <ol class="how-steps">
         <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">La richiesta</h3></div><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></li>
         <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">Il catalogo costruito insieme</h3></div><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></li>
-        <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">La crescita</h3></div><p class="prov">Il costruttore abilita clienti e rivenditori. Macchine e documenti si aggiungono nel tempo.</p></li>
+        <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">La crescita</h3></div><p class="prov">Il costruttore abilita clienti e rivenditori, ciascuno con la propria area. Macchine e documenti si aggiungono nel tempo.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="section faq" id="domande" aria-labelledby="faq-title">
+    <div class="container">
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 4 <span class="sep">|</span> Domande</p>
+      <h2 class="h2 prov" id="faq-title">Cosa serve sapere</h2>
+      <dl class="faq-list">
+        <div class="faq-item" data-reveal><dt class="prov">Come si ottiene l’accesso?</dt><dd class="prov">L’accesso è riservato: le credenziali le fornisce il costruttore della macchina.</dd></div>
+        <div class="faq-item" data-reveal><dt class="prov">Cosa si trova per ogni macchina?</dt><dd class="prov">Le tavole ricambi legate alla matricola, i documenti, i video, i ricambi consigliati e la disponibilità a magazzino.</dd></div>
+        <div class="faq-item" data-reveal><dt class="prov">Serve la rete?</dt><dd class="prov">Il QR sulla macchina apre tavole e documenti dall’app, anche offline.</dd></div>
+        <div class="faq-item" data-reveal><dt class="prov">Da quali dispositivi si usa?</dt><dd class="prov">Da browser e dall’app, per iPhone e Android.</dd></div>
+      </dl>
     </div>
   </section>
 
   <section class="section dz" id="due-zero" aria-labelledby="dz-title">
     <div class="container">
-      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 4 <span class="sep">|</span> Due.Zero</p>
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 5 <span class="sep">|</span> Due.Zero</p>
       <p class="dz-text prov" id="dz-title">Hyper.Parts è di Due.Zero: dal 2008, a Bologna, l’ufficio tecnico documentazione che affianca l’industria manifatturiera.</p>
       <a class="dz-link" href="https://www.duezero.eu/">duezero.eu <span class="arr" aria-hidden="true">→</span></a>
     </div>
@@ -344,7 +366,7 @@ img { max-width: 100%; display: block; }
   <section class="section closing cut-host" id="contatti" aria-labelledby="closing-title">
     <div class="cut" aria-hidden="true"></div>
     <div class="container">
-      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 5 <span class="sep">|</span> Contatti</p>
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 6 <span class="sep">|</span> Contatti</p>
       <div class="path">
         <p class="path-q">Vuoi attivare Hyper.Parts?</p>
         <h2 id="closing-title">Parliamo dei vostri ricambi.</h2>
