@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html lang="it" class="marks">
+<html lang="it" data-cut="blu">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hyper.Parts</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#EDEDEA">
 <script>
   document.documentElement.classList.add('js');
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduce');
@@ -12,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Tema unico chiaro. Colore: fondo carta, testo scuro, blu solo sui titoli, giallo solo su sfera e pulsante principale. */
+/* Tema unico chiaro. Struttura in carta, inchiostro e nero (casa Due.Zero); navy e giallo solo sul prodotto (icona, sfera, pulsanti, filetti, vela); rosso solo per Due.Zero. */
 :root {
   color-scheme: light;
   --navy: #003B75; --accent: #FFD300; --ink: #1F2426; --text: #333333;
@@ -32,7 +37,6 @@ a { color: inherit; }
 img { max-width: 100%; display: block; }
 :focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
 .container { max-width: 1240px; margin: 0 auto; padding-inline: var(--gutter); }
-.marks .prov { text-decoration: underline dashed 1px; text-underline-offset: .2em; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
 
 /* la sfera: è il punto di Hyper.Parts e segna dove sei */
 .sphere { display: inline-block; flex: none; border-radius: 50%;
@@ -45,7 +49,6 @@ img { max-width: 100%; display: block; }
 .pill .plus { color: var(--accent); }
 .pill:hover { transform: translateY(-2px); }
 .pill:active { transform: translateY(1px); transition-duration: .06s; }
-.textlink { font-weight: 600; color: var(--navy); text-underline-offset: 5px; }
 
 /* il taglio del logo: la curva che divide l'icona. Il disco è la carta, sotto resta il colore del taglio */
 .cut-host { position: relative; overflow: hidden; background: var(--cut); transition: background-color .5s ease; }
@@ -67,10 +70,12 @@ img { max-width: 100%; display: block; }
 
 /* navigazione */
 .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 72px; }
-.wordmark { display: inline-flex; align-items: baseline; font: 800 26px var(--display); letter-spacing: .01em; color: var(--ink); text-decoration: none; }
-.wordmark .sphere { width: .26em; height: .26em; margin: 0 .07em; align-self: center; transform: translateY(.2em); box-shadow: inset 0 1px 1px rgb(255 255 255 / .5), inset 0 -2px 3px color-mix(in srgb, var(--accent), #000 30%); }
+.wordmark { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); text-decoration: none; }
+.wordmark-icon { width: 44px; height: 44px; flex: none; }
+.wordmark-text { display: inline-flex; align-items: baseline; font: 800 26px var(--display); letter-spacing: .04em; text-transform: uppercase; }
+.wordmark .sphere { width: .3em; height: .3em; margin: 0 .09em; align-self: center; transform: translateY(.18em); box-shadow: inset 0 1px 1px rgb(255 255 255 / .5), inset 0 -2px 3px color-mix(in srgb, var(--accent), #000 30%); }
 .nav-links { display: flex; align-items: center; gap: 28px; font-size: 15px; }
-.nav-links a { text-decoration: none; }
+.nav-links a { text-decoration: none; white-space: nowrap; }
 .nav-links a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* apertura: titolo molto grande, poi l'immagine che si allarga con lo scroll */
@@ -84,7 +89,6 @@ img { max-width: 100%; display: block; }
 .hero-stage { margin-top: -1px; background: var(--cut); transition: background-color .5s ease; }
 .hero-media { position: relative; margin: 0; overflow: hidden; }
 .media-note { position: absolute; left: var(--gutter); bottom: clamp(12px, 3vw, 40px); margin: 0; padding: 12px 20px; border-radius: 18px; font: 500 clamp(13px, 1.2vw, 16px)/1.35 var(--body); color: var(--ink); }
-.no-glass .media-note { display: none; }
 @media (min-width: 900px) {
   .hero-corner { display: inline-flex; }
   .hero-side .pill { display: none; }
@@ -131,65 +135,119 @@ img { max-width: 100%; display: block; }
 .progress .sphere { position: absolute; top: -10px; left: -11px; width: 23px; height: 23px; transition: transform .8s var(--ease); }
 .source { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; max-width: 34ch; }
 
-/* a chi serve: in ogni riga «Oggi» lascia il posto a «Con Hyper.Parts» quando la riga passa al centro */
-.roles { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
-.role { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: clamp(24px, 4vw, 64px); align-items: start; padding-block: clamp(28px, 3.4vw, 48px); border-top: 1px solid var(--line); }
-.role h3 { font: 800 clamp(30px, 4.4vw, 64px)/.98 var(--display); color: var(--navy); margin: 0; text-wrap: balance; }
-.swap { display: grid; }
-.swap > div { margin-bottom: 14px; }
-.lab { display: block; font: 13px var(--mono); color: var(--muted); margin-bottom: 6px; }
-.swap p { margin: 0; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.45; max-width: 40ch; }
-.swap .was p { color: var(--muted); }
-.js:not(.reduce) .swap > div { grid-area: 1 / 1; margin-bottom: 0; transition: opacity .45s ease, transform .7s var(--ease); }
-.js:not(.reduce) .swap .now { opacity: 0; transform: translateY(22px); }
-.js:not(.reduce) .role.done .swap .was { opacity: 0; transform: translateY(-22px); }
-.js:not(.reduce) .role.done .swap .now { opacity: 1; transform: none; }
+/* A chi serve: navy, righe allineate. Il titolo del ruolo sta sopra, sotto «Oggi» e «Con Hyper.Parts» in due colonne uguali */
 
-/* come funziona: tre passaggi sobri */
-.how-grid { display: grid; grid-template-columns: 5fr 4fr 4fr; gap: clamp(24px, 3vw, 48px); margin-top: clamp(32px, 4vw, 56px); border-top: 1px solid var(--ink); padding-top: 24px; }
-.how-grid h3 { font: 800 clamp(24px, 2.2vw, 30px)/1.05 var(--display); color: var(--navy); margin: 0 0 10px; }
-.how-grid p { margin: 0; max-width: 38ch; }
+/* come funziona: un passaggio per riga, titolo grande a sinistra, testo a destra */
 .how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
 
-/* Due.Zero: due righe sull'azienda */
-.dz-lines { font: 500 clamp(24px, 3vw, 44px)/1.22 var(--body); color: var(--ink); max-width: 26ch; margin: 0; letter-spacing: -.005em; }
-.dz-lines + .textlink { display: inline-block; margin-top: 28px; }
-.js:not(.reduce) .dz-lines { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .9s var(--ease); }
-.js:not(.reduce) .dz-lines.is-in { opacity: 1; transform: none; }
+.faq { background: var(--bg); }
+.faq-list { margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
+.faq-item { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(24px, 4vw, 64px); padding-block: clamp(18px, 2.2vw, 28px); border-top: 1px solid var(--line); }
+.faq-item dt { font: 600 clamp(18px, 1.6vw, 22px)/1.3 var(--body); color: var(--ink); }
+.faq-item dd { margin: 0; max-width: 52ch; }
+.js:not(.reduce) .faq-item { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .8s var(--ease); }
+.js:not(.reduce) .faq-item.is-in { opacity: 1; transform: none; }
+@media (max-width: 767px) { .faq-item { grid-template-columns: 1fr; row-gap: 8px; } }
+
+/* A chi serve: ogni ruolo è una riga calda. «Oggi» spento a sinistra, «Con Hyper.Parts» in risalto con una tinta gialla morbida */
+.need { background: var(--bg); border-top: 1px solid var(--line); }
+.need-h { margin: 0; max-width: 18ch; font: 800 clamp(34px, 4vw, 56px)/1 var(--display); color: var(--ink); text-wrap: balance; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.cmp { width: 100%; margin-top: clamp(28px, 3.6vw, 52px); border-collapse: separate; border-spacing: 0 14px; table-layout: fixed; }
+.cmp .c-role { width: 26%; } .cmp .c-was { width: 29%; }
+.cmp thead th { padding: 0 clamp(20px, 2.4vw, 32px) 2px; text-align: left; font: 500 12.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.cmp thead th.now { padding-left: clamp(28px, 3.4vw, 48px); color: var(--navy); }
+.cmp thead th.now .sphere { width: 11px; height: 11px; margin-right: 10px; vertical-align: -1px; }
+.cmp th[scope="row"] { padding: 8px clamp(16px, 2vw, 28px) 8px 0; text-align: left; vertical-align: middle; font: 800 clamp(24px, 2.6vw, 36px)/1.05 var(--display); color: var(--ink); text-wrap: balance; }
+.cmp td { padding: 26px clamp(20px, 2.4vw, 32px); vertical-align: middle; line-height: 1.5; }
+.cmp td.was { background: color-mix(in srgb, var(--ink) 6%, var(--bg)); color: var(--muted); border-radius: 16px 0 0 16px; }
+.cmp td.now { --now-bg: color-mix(in srgb, var(--accent) 24%, var(--bg)); position: relative; padding-left: clamp(28px, 3.4vw, 48px); background: linear-gradient(var(--now-bg), var(--now-bg)) no-repeat 0 0 / 100% 100%; color: var(--ink); border-radius: 0 16px 16px 0; font-size: clamp(18px, 1.6vw, 21px); transition: background-color .3s ease; }
+.cmp td.now strong { font-weight: 700; color: var(--navy); }
+.cmp td.now::before { content: "\2192"; position: absolute; left: -16px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--light); font: 500 15px/1 var(--mono); }
+.cmp-row:hover td.now { --now-bg: color-mix(in srgb, var(--accent) 36%, var(--bg)); }
+.js:not(.reduce) .cmp td.now { background-size: 0% 100%; transition: background-size .9s var(--ease) .15s, background-color .3s ease; }
+.js:not(.reduce) .cmp-row.is-in td.now { background-size: 100% 100%; }
+.js:not(.reduce) .cmp td.was { transition: opacity .6s ease .4s; }
+.js:not(.reduce) .cmp-row.is-in td.was { opacity: .75; }
+
+/* Come funziona: tre passaggi, ognuno con la sua immagine */
+.how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
+.flow { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); }
+.flow-step { min-width: 0; }
+.flow-k { margin: 0 0 12px; padding-top: 12px; border-top: 3px solid var(--navy); font: 500 12.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.flow-img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; margin-bottom: 18px; border-radius: 2px; object-fit: cover; background: var(--line); }
+.flow-step h3 { margin: 0 0 8px; font: 800 clamp(24px, 2.4vw, 34px)/1.05 var(--display); color: var(--ink); text-wrap: balance; }
+.flow-step p:not(.flow-k) { margin: 0; max-width: 40ch; }
+.js:not(.reduce) .flow-step { opacity: 0; transform: translateY(20px); transition: opacity .7s ease calc(var(--i, 0) * 120ms), transform .9s var(--ease) calc(var(--i, 0) * 120ms); }
+.js:not(.reduce) .flow-step.is-in { opacity: 1; transform: none; }
+.flow-step:nth-child(2) { --i: 1; } .flow-step:nth-child(3) { --i: 2; }
+
+/* Scarica l'app: i badge ufficiali, a un'altezza sola */
+.badges { display: flex; flex-wrap: wrap; gap: 12px; }
+.badges a { display: block; line-height: 0; border-radius: 8px; }
+.badges img { display: block; height: 44px; width: auto; }
+.badges a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
 
 /* chiusura */
-.closing h2 { font: 800 clamp(44px, 7vw, 104px)/.94 var(--display); color: var(--ink); margin: 0 0 clamp(24px, 3vw, 40px); max-width: 12ch; }
-.closing-row { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 40px; }
-.closing-row p { margin: 0; max-width: 46ch; }
-.closing-links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 32px 0 0; font-size: 15px; }
-.closing { border-top: 0; }
+.closing h2 { font: 800 clamp(36px, 5vw, 72px)/.96 var(--display); color: var(--ink); margin: 0 0 clamp(24px, 3vw, 40px); max-width: 16ch; }
+.closing { border-top: 0; padding-bottom: clamp(150px, 19vw, 280px); }
 .foot { background: var(--cut); color: rgb(250 250 247 / .74); font-size: 14px; transition: background-color .5s ease; }
 .foot .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 20px 28px; border-top: 1px solid rgb(250 250 247 / .2); }
 
-/* pannello, fuori dalla pagina */
-.draft { position: fixed; left: 12px; bottom: 12px; z-index: 50; width: min(320px, calc(100vw - 24px)); background: var(--ink); color: #ECECE7; font: 13px/1.45 var(--mono); border-radius: var(--radius); box-shadow: 0 8px 24px rgba(10, 10, 10, .3); }
-.draft summary { cursor: pointer; padding: 10px 14px; list-style: none; }
-.draft summary::-webkit-details-marker { display: none; }
-.draft-body { padding: 0 14px 14px; display: grid; gap: 10px; }
-.draft-body p { margin: 0; color: #B7BAB4; }
-.seg { display: flex; flex-wrap: wrap; gap: 5px; }
-.seg button { font: inherit; color: #ECECE7; background: transparent; border: 1px solid #6B706D; border-radius: var(--radius); padding: 5px 9px; cursor: pointer; }
-.seg button[aria-pressed="true"] { background: var(--accent); color: var(--ink); border-color: var(--accent); }
-
 @media (max-width: 767px) {
   .nav-links .sec { display: none; }
+  .wordmark { gap: 9px; }
+  .wordmark-icon { width: 38px; height: 38px; }
+  .wordmark-text { font-size: 21px; letter-spacing: .03em; }
+  .nav-links { font-size: 14px; }
   .hero-text { grid-template-columns: 1fr; row-gap: 24px; }
   .hero h1, .hero-side { grid-column: 1; }
   .hero-side { margin-top: 0; }
   .pin-grid { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; }
   .texts { min-height: 190px; }
   .phone { --pw: min(170px, 23dvh); grid-row: 3; grid-column: 1; justify-self: center; border-width: 5px; border-radius: 24px; }
-  .role { grid-template-columns: 1fr; row-gap: 16px; }
-  .how-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 899px) { .flow { grid-template-columns: 1fr; } .flow-img { aspect-ratio: 16 / 10; } }
+@media (max-width: 767px) {
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: auto; }
+  .cmp thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .cmp colgroup { display: none; }
+  .cmp-row { margin-bottom: 20px; }
+  .cmp th[scope="row"] { padding: 0 0 10px; }
+  .cmp td.was { border-radius: 16px 16px 0 0; padding: 20px 22px 14px; }
+  .cmp td.now { border-radius: 0 0 16px 16px; padding: 14px 22px 22px; }
+  .cmp td::before { content: attr(data-label); display: block; margin-bottom: 6px; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
+  .cmp td.now::before { content: attr(data-label); position: static; transform: none; display: block; width: auto; height: auto; border-radius: 0; background: none; color: var(--navy); font: 500 12px/1 var(--mono); opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
 }
+
+/* DIREZIONE D, casa Due.Zero e prodotto Hyper.Parts: struttura in carta, inchiostro e nero; navy e giallo solo dove c'è il prodotto; rosso solo per Due.Zero */
+:root { --black: #0A0A0A; --ink: #141412; --red: #E2231A; }
+.h2, .tx h3 { color: var(--ink); }
+.dz { background: var(--black); color: rgb(250 250 247 / .9); border-top: 0; padding-block: clamp(56px, 7vw, 96px); }
+.dz .chapter { color: rgb(250 250 247 / .86); }
+.dz .chapter .sep { color: rgb(250 250 247 / .5); }
+.dz .chapter .sphere { background: radial-gradient(circle at 35% 30%, color-mix(in srgb, var(--red), #fff 35%), var(--red) 70%); box-shadow: none; }
+.dz-text { margin: 0; max-width: 36ch; font: 500 clamp(22px, 2.4vw, 32px)/1.25 var(--body); color: var(--light); }
+.dz-link { display: inline-block; margin-top: 24px; padding-bottom: 4px; border-bottom: 2px solid var(--red); font: 500 13px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--light); text-decoration: none; }
+.dz :focus-visible { outline-color: var(--light); }
+
+/* DIREZIONE D, secondo giro: A chi serve di nuovo su carta, vela blu, niente sottolineature, azioni con gerarchia */
+.pill--ghost { min-height: 44px; padding: 11px 22px; background: transparent; color: var(--navy); }
+.pill--ghost:hover { background: color-mix(in srgb, var(--navy) 8%, transparent); }
+.nav-links .pill { text-decoration: none; }
+.nav-links .pill:hover { text-decoration: none; }
+.path-q { margin: 0 0 12px; font: 500 13px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.path .path-note { margin: 0 0 24px; max-width: 46ch; }
+.closing .path h2 { margin-bottom: 16px; }
+.path--in { margin-top: clamp(28px, 3.4vw, 44px); padding-top: clamp(24px, 3vw, 36px); border-top: 1px solid var(--line); max-width: 640px; }
+.path-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.path .path-q--app { margin-top: 26px; }
+.dz-link .arr { color: var(--red); }
+.dz-link { border-bottom: 0; padding-bottom: 0; }
+@media (max-width: 767px) { .nav-links .pill { padding: 10px 18px; min-height: 40px; } }
 </style>
 </head>
 <body>
@@ -198,12 +256,12 @@ img { max-width: 100%; display: block; }
   <div class="hero-top cut-host">
   <div class="cut" aria-hidden="true"></div>
   <nav class="container nav" aria-label="Principale">
-    <a class="wordmark" href="#top" aria-label="Hyper.Parts, inizio pagina">Hyper<span class="sphere" aria-hidden="true"></span>Parts</a>
+    <a class="wordmark" href="#top" aria-label="Hyper.Parts, inizio pagina"><img class="wordmark-icon" src="assets/hyperparts-icona-hover.svg" alt="" width="44" height="44"><span class="wordmark-text" aria-hidden="true">Hyper<span class="sphere"></span>Parts</span></a>
     <div class="nav-links">
       <a class="sec" href="#come-si-vede">Come si vede</a>
       <a class="sec" href="#a-chi-serve">A chi serve</a>
       <a class="sec" href="#come-funziona">Come funziona</a>
-      <a href="https://hyperparts.it">Accesso clienti</a>
+      <a class="pill pill--ghost" href="https://hyperparts.it">Accedi</a>
     </div>
   </nav>
   <div class="container hero-text">
@@ -226,8 +284,7 @@ img { max-width: 100%; display: block; }
 <main>
   <section class="scene" id="come-si-vede" aria-labelledby="scene-title">
     <div class="sent" data-step="0"></div><div class="sent" data-step="1"></div><div class="sent" data-step="2"></div>
-    <div class="pin cut-host">
-      <div class="cut" aria-hidden="true"></div>
+    <div class="pin">
       <div class="container pin-grid">
         <div class="pin-head">
           <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 1 <span class="sep">|</span> Come si vede</p>
@@ -236,7 +293,7 @@ img { max-width: 100%; display: block; }
         <div class="texts">
           <div class="tx" data-tx="0"><h3 class="prov">Inquadra il QR</h3><p class="prov">Il tecnico è davanti alla macchina. Con l’app inquadra il QR e la riconosce, anche senza rete.</p></div>
           <div class="tx" data-tx="1"><h3 class="prov">Apre la matricola</h3><p class="prov">Ogni macchina ha la sua scheda, con il disegno e i dati di quella matricola.</p></div>
-          <div class="tx" data-tx="2"><h3 class="prov">Trova quello che serve</h3><p class="prov">Documenti, ricambi consigliati e disponibilità a magazzino, nello stesso posto.</p></div>
+          <div class="tx" data-tx="2"><h3 class="prov">Trova quello che serve</h3><p class="prov">Documenti, video, ricambi consigliati e disponibilità a magazzino, nello stesso posto.</p></div>
         </div>
         <div class="phone">
           <div class="film">
@@ -253,79 +310,80 @@ img { max-width: 100%; display: block; }
     </div>
   </section>
 
-  <section class="section" id="a-chi-serve" aria-labelledby="risolve-title">
+  <section class="section need" id="a-chi-serve" aria-labelledby="risolve-title">
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 2 <span class="sep">|</span> A chi serve</p>
-      <h2 class="h2 prov" id="risolve-title">Cosa cambia, per chi lavora con i ricambi</h2>
-      <ul class="roles">
-        <li class="role">
-          <h3 class="prov">Ufficio ricambi e post-vendita</h3>
-          <div class="swap">
-            <div class="was"><span class="lab">Oggi</span><p class="prov">Richieste per telefono o email, descritte a parole, da ricondurre al codice incrociando distinta e disegno.</p></div>
-            <div class="now"><span class="lab">Con Hyper.Parts</span><p class="prov">Il cliente trova il pezzo sul disegno della sua matricola e ordina il codice giusto.</p></div>
-          </div>
-        </li>
-        <li class="role">
-          <h3 class="prov">Tecnici e manutenzione in campo</h3>
-          <div class="swap">
-            <div class="was"><span class="lab">Oggi</span><p class="prov">In reparto servono manuali e schemi, spesso dove la rete non arriva.</p></div>
-            <div class="now"><span class="lab">Con Hyper.Parts</span><p class="prov">Il QR sulla macchina apre tavole e documenti dall’app, anche offline.</p></div>
-          </div>
-        </li>
-        <li class="role">
-          <h3 class="prov">Costruttori di macchine</h3>
-          <div class="swap">
-            <div class="was"><span class="lab">Oggi</span><p class="prov">Cataloghi PDF da aggiornare e listini da gestire cliente per cliente.</p></div>
-            <div class="now"><span class="lab">Con Hyper.Parts</span><p class="prov">Tavole legate alla matricola, listini multivaluta, ricarichi e disponibilità in un unico posto.</p></div>
-          </div>
-        </li>
-        <li class="role">
-          <h3 class="prov">Pianificazione della manutenzione</h3>
-          <div class="swap">
-            <div class="was"><span class="lab">Oggi</span><p class="prov">Lo storico dei ricambi ordinati è sparso tra email e gestionale.</p></div>
-            <div class="now"><span class="lab">Con Hyper.Parts</span><p class="prov">Report sui componenti più soggetti a usura, per programmare gli interventi.</p></div>
-          </div>
-        </li>
-      </ul>
+      <h2 class="need-h prov" id="risolve-title">Cosa cambia per te</h2>
+      <table class="cmp">
+        <colgroup><col class="c-role"><col class="c-was"><col class="c-now"></colgroup>
+        <thead><tr><th scope="col"><span class="sr">Ruolo</span></th><th scope="col" class="was">Oggi</th><th scope="col" class="now"><span class="sphere" aria-hidden="true"></span>Con Hyper.Parts</th></tr></thead>
+        <tbody>
+          <tr class="cmp-row" data-reveal><th scope="row" class="prov">Se segui ricambi e post-vendita</th><td class="was prov" data-label="Oggi">Ti chiamano o ti scrivono e descrivono il pezzo a parole: tocca a te risalire al codice incrociando distinta e disegno.</td><td class="now prov" data-label="Con Hyper.Parts">Il cliente trova il pezzo sul disegno della sua matricola e ordina il <strong>codice giusto</strong>.</td></tr>
+          <tr class="cmp-row" data-reveal><th scope="row" class="prov">Se sei un tecnico in campo</th><td class="was prov" data-label="Oggi">In reparto servono manuali e schemi, e spesso la rete non arriva.</td><td class="now prov" data-label="Con Hyper.Parts">Inquadri il QR sulla macchina e l’app apre tavole e documenti, <strong>anche offline</strong>.</td></tr>
+          <tr class="cmp-row" data-reveal><th scope="row" class="prov">Se costruisci macchine</th><td class="was prov" data-label="Oggi">Cataloghi PDF da aggiornare e listini da gestire cliente per cliente.</td><td class="now prov" data-label="Con Hyper.Parts">Tavole legate alla matricola, listini multivaluta, ricarichi e disponibilità <strong>in un unico posto</strong>.</td></tr>
+          <tr class="cmp-row" data-reveal><th scope="row" class="prov">Se pianifichi la manutenzione</th><td class="was prov" data-label="Oggi">Lo storico dei ricambi ordinati è sparso tra email e gestionale.</td><td class="now prov" data-label="Con Hyper.Parts">Report sui componenti più soggetti a usura, per <strong>programmare gli interventi</strong>.</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <section class="section" id="come-funziona" aria-labelledby="how-title">
+  <section class="section how" id="come-funziona" aria-labelledby="how-title">
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 3 <span class="sep">|</span> Come funziona</p>
       <h2 class="h2 prov" id="how-title">Come funziona</h2>
       <p class="how-intro prov">Un servizio gestito: il catalogo lo prepara Due.Zero insieme al costruttore.</p>
-      <div class="how-grid">
-        <article><h3 class="prov">La richiesta</h3><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></article>
-        <article><h3 class="prov">Il catalogo costruito insieme</h3><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></article>
-        <article><h3 class="prov">La crescita</h3><p class="prov">Il costruttore abilita clienti e rivenditori. Macchine e documenti si aggiungono nel tempo.</p></article>
-      </div>
+      <ol class="flow">
+        <li class="flow-step" data-reveal><p class="flow-k">Passo 1</p><img class="flow-img" src="assets/img/passo-1-richiesta.webp" alt="Un manuale tecnico aperto su una scrivania, con il disegno in vista esplosa di una macchina e una distinta base, davanti a una linea di confezionamento" width="1448" height="1086" loading="lazy"><h3 class="prov">La richiesta</h3><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></li>
+        <li class="flow-step" data-reveal><p class="flow-k">Passo 2</p><img class="flow-img" src="assets/img/passo-2-catalogo.webp" alt="Un monitor che mostra il disegno in vista esplosa di una macchina, con alcune parti evidenziate in giallo" width="1448" height="1086" loading="lazy"><h3 class="prov">Il catalogo costruito insieme</h3><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></li>
+        <li class="flow-step" data-reveal><p class="flow-k">Passo 3</p><img class="flow-img" src="assets/img/passo-3-crescita.webp" alt="Un portatile con una mappa del mondo e grafici a barre, accanto a una cassetta di ricambi" width="1448" height="1086" loading="lazy"><h3 class="prov">La crescita</h3><p class="prov">Il costruttore abilita clienti e rivenditori, ciascuno con la propria area. Macchine e documenti si aggiungono nel tempo.</p></li>
+      </ol>
     </div>
   </section>
 
-  <section class="section" id="due-zero" aria-labelledby="dz-title">
+  <section class="section faq" id="domande" aria-labelledby="faq-title">
     <div class="container">
-      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 4 <span class="sep">|</span> Due.Zero</p>
-      <h2 class="dz-lines prov" id="dz-title" data-reveal>Hyper.Parts è di Due.Zero: da oltre vent’anni, a Bologna, l’ufficio tecnico documentazione che affianca l’industria manifatturiera.</h2>
-      <a class="textlink" href="https://www.duezero.eu/">duezero.eu</a>
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 4 <span class="sep">|</span> Domande</p>
+      <h2 class="h2 prov" id="faq-title">Cosa serve sapere</h2>
+      <dl class="faq-list">
+        <div class="faq-item" data-reveal><dt class="prov">Come si ottiene l’accesso?</dt><dd class="prov">L’accesso è riservato: le credenziali le fornisce il costruttore della macchina, oppure si richiede dalla pagina di accesso.</dd></div>
+        <div class="faq-item" data-reveal><dt class="prov">Cosa si trova per ogni macchina?</dt><dd class="prov">Le tavole ricambi legate alla matricola, i documenti, i video, i ricambi consigliati e la disponibilità a magazzino.</dd></div>
+        <div class="faq-item" data-reveal><dt class="prov">Serve la rete?</dt><dd class="prov">Il QR sulla macchina apre tavole e documenti dall’app, anche offline.</dd></div>
+        <div class="faq-item" data-reveal><dt class="prov">Da quali dispositivi si usa?</dt><dd class="prov">Da browser e dall’app, per iPhone e Android.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section dz" id="due-zero" aria-labelledby="dz-title">
+    <div class="container">
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 5 <span class="sep">|</span> Due.Zero</p>
+      <p class="dz-text prov" id="dz-title">Hyper.Parts è di Due.Zero: dal 2008, a Bologna, l’ufficio tecnico documentazione che affianca l’industria manifatturiera.</p>
+      <a class="dz-link" href="https://www.duezero.eu/">duezero.eu <span class="arr" aria-hidden="true">→</span></a>
     </div>
   </section>
 
   <section class="section closing cut-host" id="contatti" aria-labelledby="closing-title">
     <div class="cut" aria-hidden="true"></div>
     <div class="container">
-      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 5 <span class="sep">|</span> Contatti</p>
-      <h2 class="prov" id="closing-title">Parliamo dei vostri ricambi.</h2>
-      <div class="closing-row">
+      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 6 <span class="sep">|</span> Contatti</p>
+      <div class="path">
+        <p class="path-q">Vuoi attivare Hyper.Parts?</p>
+        <h2 id="closing-title">Parliamo dei vostri ricambi.</h2>
+        <p class="path-note">L’accesso è riservato: le credenziali le fornisce il costruttore della macchina.</p>
         <!-- TODO destinazione del contatto da definire (il brief indica #contatti come segnaposto) -->
         <a class="pill" href="#contatti">Parla con noi <span class="plus">[+]</span></a>
-        <p class="prov">L’accesso è riservato: le credenziali le fornisce il costruttore della macchina.</p>
       </div>
-      <p class="closing-links">
-        <a class="textlink" href="https://hyperparts.it">Accesso clienti</a>
-        <a class="textlink" href="https://apps.apple.com/it/app/hyperparts/id6797175665">App per iPhone</a>
-        <a class="textlink" href="https://play.google.com/store/apps/details?id=it.hyperparts.app&amp;hl=it">App per Android</a>
-      </p>
+      <div class="path path--in">
+        <p class="path-q">Accedi o richiedi l’accesso</p>
+        <div class="path-actions">
+          <a class="pill pill--ghost" href="https://hyperparts.it">Accedi</a>
+          <a class="pill pill--ghost" href="https://hyperparts.it/RichiestaAcceso.aspx">Richiedi accesso</a>
+        </div>
+        <p class="path-q path-q--app">Scarica l’app</p>
+        <div class="badges">
+          <a href="https://apps.apple.com/it/app/hyperparts/id6797175665"><img src="assets/badges/app-store.svg" alt="Scarica su App Store" width="132" height="44"></a>
+          <a href="https://play.google.com/store/apps/details?id=it.hyperparts.app&amp;hl=it"><img src="assets/badges/google-play.svg" alt="Disponibile su Google Play" width="148" height="44"></a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -333,29 +391,8 @@ img { max-width: 100%; display: block; }
 <footer class="foot">
   <div class="container">
     <span>© 2026 Due.Zero Srl, Bologna</span>
-    <span>Bozza, testo provvisorio</span>
   </div>
 </footer>
-
-<details class="draft">
-  <summary>Bozza con il taglio del logo</summary>
-  <div class="draft-body">
-    <p>Testo provvisorio, sottolineato a tratteggio. Immagini provvisorie da duezero.eu e dall’App Store.</p>
-    <div class="seg">
-      <button type="button" id="toggle-marks" aria-pressed="true">Segni del testo provvisorio</button>
-      <button type="button" id="replay">Rivedi l’apertura</button>
-    </div>
-    <p>Colore del taglio</p>
-    <div class="seg" id="cut-seg">
-      <button type="button" data-cut="grafite" aria-pressed="true">Grafite</button>
-      <button type="button" data-cut="blu" aria-pressed="false">Blu</button>
-    </div>
-    <p>Vetro sull’immagine</p>
-    <div class="seg">
-      <button type="button" id="toggle-glass" aria-pressed="true">Didascalia in vetro</button>
-    </div>
-  </div>
-</details>
 
 <!--
   TODO immagini: originali dall'azienda per eco_hyperparts_bg (chiarire se foto o fotomontaggio) e per le schermate dell'app; schermata desktop della tavola ricambi.
@@ -412,17 +449,6 @@ img { max-width: 100%; display: block; }
     scene.querySelectorAll('.sent').forEach(function (s) { sceneIO.observe(s); });
   }
 
-  // a chi serve: la riga passa da «Oggi» a «Con Hyper.Parts» quando supera la metà dello schermo, e torna indietro risalendo
-  if (!reduce && hasIO) {
-    var roleIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        var above = e.boundingClientRect.top < (e.rootBounds ? e.rootBounds.top : 0);
-        e.target.classList.toggle('done', e.isIntersecting || above);
-      });
-    }, { rootMargin: '0px 0px -48% 0px', threshold: 0 });
-    document.querySelectorAll('.role').forEach(function (r) { roleIO.observe(r); });
-  }
-
   // etichette e righe che entrano
   var reveals = document.querySelectorAll('[data-reveal]');
   if (!reduce && hasIO) {
@@ -433,27 +459,6 @@ img { max-width: 100%; display: block; }
   } else {
     reveals.forEach(function (t) { t.classList.add('is-in'); });
   }
-
-  var marks = document.getElementById('toggle-marks');
-  marks.addEventListener('click', function () {
-    var on = root.classList.toggle('marks');
-    marks.setAttribute('aria-pressed', on ? 'true' : 'false');
-  });
-  document.querySelectorAll('#cut-seg button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      root.dataset.cut = b.dataset.cut;
-      document.querySelectorAll('#cut-seg button').forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-    });
-  });
-  var glass = document.getElementById('toggle-glass');
-  glass.addEventListener('click', function () {
-    var off = root.classList.toggle('no-glass');
-    glass.setAttribute('aria-pressed', off ? 'false' : 'true');
-  });
-  document.getElementById('replay').addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
-    if (!reduce) setTimeout(playHero, 450);
-  });
 })();
 </script>
 </body>
