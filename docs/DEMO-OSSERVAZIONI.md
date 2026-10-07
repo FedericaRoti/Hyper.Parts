@@ -24,3 +24,19 @@ Letta il 2026-10-07, in sola lettura (nessun ordine, nessuna modifica). Solo il 
 - Un indirizzo che avvii la demo senza passare dal login.
 - Se la demo si azzera e se più visitatori condividono lo stesso utente di prova.
 - Se in demo si possono creare macchine o inviare preventivi e richieste di supporto veri (il pulsante «Nuova macchina» e il modulo supporto sono attivi).
+
+## Cosa non funziona (segnalato da chi l'ha provata, 2026-10-07)
+Percorso: Products → HYPER-MACHINE (SN00002) → scheda della macchina → clic su un componente del disegno.
+1. La scheda della macchina si apre bene: disegno esploso, con il suggerimento «Passa con il mouse sul tuo prodotto.. / Clicca e visualizza il gruppo! Enjoy :-)» (in italiano, mentre il resto è in inglese).
+2. Cliccando un componente compare «**Unit not available in your machine:**» con il solo pulsante BACK, sopra un riquadro grigio vuoto. Il messaggio finisce con i due punti e non dice quale unità manca. Probabilmente l'unità cliccata non è collegata a questa matricola nei dati della demo.
+3. Il pannello **Warehouse** (linguetta a sinistra) non si apre. Non è verificato se sia un errore dell'app o dati demo mancanti.
+4. Anche **Plants** è vuota (vedi sopra).
+
+## Proposta per chi sviluppa l'app: una demo senza vicoli ciechi
+Una demo serve a convincere, quindi ogni clic deve portare a qualcosa. Una lista di controllo prima di renderla pubblica:
+- Ogni componente cliccabile del disegno porta a un'unità che esiste per quella matricola (e ogni unità ha ricambi).
+- Warehouse e Plants hanno dati di esempio; le linguette che non servono in demo si nascondono.
+- I messaggi di errore sono completi e dicono cosa fare («Questa unità non è disponibile per la tua macchina: scegli un altro componente»).
+- Una lingua sola nell'interfaccia (o una scelta chiara) e un solo nome: «HyperParts» o «Hyperparts».
+- I dati della demo si azzerano e le azioni che scrivono (nuova macchina, preventivo, richiesta di supporto) non arrivano a nessuno.
+- Una prova completa da telefono e da computer prima di collegare la demo dalla landing.
