@@ -30,6 +30,7 @@ Stessi contenuti del pannello «Note per la revisione» della versione navigabil
 **Da guardare e decidere**
 - Sono i ruoli giusti, nell'ordine giusto? Ne manca qualcuno?
 - Le frasi «Oggi» sono realistiche per i vostri clienti?
+- «Report sui componenti più soggetti a usura» è una funzione che Hyper.Parts ha davvero? Non è tra i fatti verificati.
 
 ## Come funziona
 **Perché c'è.** Chiarisce che è un servizio gestito con Due.Zero, non un prodotto da attivare da soli.
