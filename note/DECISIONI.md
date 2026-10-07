@@ -60,7 +60,7 @@ Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders 
 7. **Capitolo 5, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
 8. **Capitolo 6, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Accedi o richiedi l'accesso» con due pulsanti a contorno (Accedi, Richiedi accesso, che porta al modulo di richiesta dell'app) e sotto «Scarica l'app» con i badge ufficiali App Store e Google Play. Sotto, la vela blu e il footer con solo la riga del copyright.
 
-Il pannello bozza è stato tolto dalla pagina; esiste solo nella versione per la revisione. Le direzioni provate per le sezioni centrali sono in `varianti/`.
+Il pannello bozza è stato tolto dalla pagina. Le note per la revisione sono nel documento inviato al capo, non nel repo.
 
 ## Decisioni prese
 
@@ -77,7 +77,7 @@ Il pannello bozza è stato tolto dalla pagina; esiste solo nella versione per la
 - **Due.Zero**: piccola sezione scura prima dei contatti. Nel testo «dal 2008», non «da oltre vent'anni». Niente frase bianca sulla vela nel footer.
 - **Sezioni centrali**: «A chi serve» e «Come funziona» su carta, righe allineate, titoli di dimensione media. Meno tipografia: i titoli giganti in maiuscolo sono stati ridotti.
 - **Sezioni centrali meno solo-testo**: la tabella di «A chi serve» ha colonne colorate e tono diretto; «Come funziona» ha tre immagini illustrative generate (prompt in `docs/PROMPT-IMMAGINI.md`), con schermi sfocati e senza testo perché non mostrano l'interfaccia vera. Provati e tolti due ritagli della foto di apertura, che ripetevano la hero. Il footer non ha più la scritta «Bozza, testo provvisorio».
-- **Obiettivo della pagina**: far percepire in fretta perché ha valore usare un software come questo. Versione per i commenti: `revisione/index.html`, generata da `tools/build-revisione.py`, con le note in `docs/DOMANDE-PER-IL-CAPO.md`.
+- **Obiettivo della pagina**: far percepire in fretta perché ha valore usare un software come questo. Le note per la revisione stanno nel documento inviato per email.
 - **Nessuna sottolineatura**: né i segni del testo provvisorio né quelle dei link. I link d'azione sono pulsanti.
 - **Niente quarta azione in chiusura**: i link dell'app sono i badge ufficiali, non pulsanti. Da chiedere al capo se richiesta di accesso e consulenza («Parla con noi») devono restare due azioni diverse.
 - **Azioni con gerarchia**: una sola azione primaria piena («Parla con noi»), le altre a contorno. L'accesso per chi ha già le credenziali è sempre raggiungibile (in alto) e ha un suo percorso in chiusura.
@@ -109,8 +109,8 @@ Il pannello bozza è stato tolto dalla pagina; esiste solo nella versione per la
 - **GSAP**: caricato da cdnjs solo per l'immagine che si allarga. duezero.eu non lo usa: va deciso se tenerlo in produzione.
 - **Ritmo della parte centrale**: con «A chi serve» e «Come funziona» entrambe su carta e a righe, la parte centrale è calma; il contrasto viene da Due.Zero (nero) e dalla vela. Da rivalutare.
 - **Due.Zero**: manca il logo; il rosso `#E2231A` è dedotto dal sito, da confermare come segno di Due.Zero.
-- **Testo definitivo**: da ricevere. Il motivo di ogni sezione è in [SEZIONI.md](SEZIONI.md).
-- **Spunti da confermare con Due.Zero**: «ciascuno con la propria area» (passo «La crescita») e «video» tra i contenuti; vedi l'elenco in SEZIONI.md.
+- **Testo definitivo**: da ricevere. Il motivo di ogni sezione è nel documento per il capo.
+- **Spunti da confermare con Due.Zero**: «ciascuno con la propria area» (passo «La crescita») e «video» tra i contenuti.
 
 ## Immagini
 
