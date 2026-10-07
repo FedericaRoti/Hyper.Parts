@@ -135,34 +135,9 @@ img { max-width: 100%; display: block; }
 .source { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; max-width: 34ch; }
 
 /* A chi serve: navy, righe allineate. Il titolo del ruolo sta sopra, sotto «Oggi» e «Con Hyper.Parts» in due colonne uguali */
-.need { --steel: color-mix(in srgb, var(--navy) 42%, var(--light)); background: var(--navy); color: rgb(250 250 247 / .9); border-top: 0; }
-.need .chapter { color: rgb(250 250 247 / .86); }
-.need .chapter .sep { color: rgb(250 250 247 / .5); }
-.need-h { margin: 0; max-width: 24ch; font: 800 clamp(30px, 3.4vw, 48px)/1.02 var(--display); color: var(--light); text-wrap: balance; }
-.need-grid { margin-top: clamp(32px, 4vw, 56px); }
-.need-list { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid rgb(250 250 247 / .25); }
-.need-item { padding-block: clamp(22px, 2.6vw, 36px); border-top: 1px solid rgb(250 250 247 / .25); }
-.need-item h3 { margin: 0 0 14px; font: 800 clamp(26px, 2.6vw, 38px)/1.05 var(--display); color: var(--light); text-wrap: balance; }
-.need-txt { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(20px, 3vw, 40px); }
-.need-txt p { margin: 0; padding-top: 12px; border-top: 2px solid rgb(250 250 247 / .25); max-width: 40ch; }
-.need-txt .lab { display: block; margin-bottom: 6px; font: 13px var(--mono); color: inherit; opacity: .8; }
-.need-was { color: var(--steel); }
-.need-now { border-top-color: var(--light) !important; color: var(--light); }
-.need-now .prov { font-size: clamp(17px, 1.5vw, 20px); }
-.js:not(.reduce) .need-item { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .9s var(--ease); }
-.js:not(.reduce) .need-item.is-in { opacity: 1; transform: none; }
 
 /* come funziona: un passaggio per riga, titolo grande a sinistra, testo a destra */
-.how .h2 { color: var(--ink); }
 .how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
-.how-body { margin-top: clamp(32px, 4vw, 56px); }
-.how-steps { list-style: none; margin: 0; padding: 0; }
-.how-step { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); column-gap: clamp(24px, 4vw, 64px); align-items: start; padding-block: clamp(22px, 2.6vw, 36px); border-top: 1px solid var(--ink); }
-.how-step .tab { display: block; width: 56px; height: 8px; background: var(--navy); margin-bottom: 16px; }
-.how-step h3 { margin: 0; font: 800 clamp(26px, 2.6vw, 38px)/1.05 var(--display); color: var(--ink); text-wrap: balance; }
-.how-step p { margin: 0; max-width: 46ch; padding-top: 22px; }
-.js:not(.reduce) .how-step { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .9s var(--ease); }
-.js:not(.reduce) .how-step.is-in { opacity: 1; transform: none; }
 
 .faq { background: var(--bg); }
 .faq-list { margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
@@ -173,9 +148,48 @@ img { max-width: 100%; display: block; }
 .js:not(.reduce) .faq-item.is-in { opacity: 1; transform: none; }
 @media (max-width: 767px) { .faq-item { grid-template-columns: 1fr; row-gap: 8px; } }
 
+/* A chi serve: ogni ruolo è una riga calda. «Oggi» spento a sinistra, «Con Hyper.Parts» in risalto con una tinta gialla morbida */
+.need { background: var(--bg); border-top: 1px solid var(--line); }
+.need-h { margin: 0; max-width: 18ch; font: 800 clamp(34px, 4vw, 56px)/1 var(--display); color: var(--ink); text-wrap: balance; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.cmp { width: 100%; margin-top: clamp(28px, 3.6vw, 52px); border-collapse: separate; border-spacing: 0 14px; table-layout: fixed; }
+.cmp .c-role { width: 26%; } .cmp .c-was { width: 29%; }
+.cmp thead th { padding: 0 clamp(20px, 2.4vw, 32px) 2px; text-align: left; font: 500 12.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.cmp thead th.now { padding-left: clamp(28px, 3.4vw, 48px); color: var(--navy); }
+.cmp thead th.now .sphere { width: 11px; height: 11px; margin-right: 10px; vertical-align: -1px; }
+.cmp th[scope="row"] { padding: 8px clamp(16px, 2vw, 28px) 8px 0; text-align: left; vertical-align: middle; font: 800 clamp(24px, 2.6vw, 36px)/1.05 var(--display); color: var(--ink); text-wrap: balance; }
+.cmp td { padding: 26px clamp(20px, 2.4vw, 32px); vertical-align: middle; line-height: 1.5; }
+.cmp td.was { background: color-mix(in srgb, var(--ink) 6%, var(--bg)); color: var(--muted); border-radius: 16px 0 0 16px; }
+.cmp td.now { --now-bg: color-mix(in srgb, var(--accent) 24%, var(--bg)); position: relative; padding-left: clamp(28px, 3.4vw, 48px); background: linear-gradient(var(--now-bg), var(--now-bg)) no-repeat 0 0 / 100% 100%; color: var(--ink); border-radius: 0 16px 16px 0; font-size: clamp(18px, 1.6vw, 21px); transition: background-color .3s ease; }
+.cmp td.now strong { font-weight: 700; color: var(--navy); }
+.cmp td.now::before { content: "\2192"; position: absolute; left: -16px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--light); font: 500 15px/1 var(--mono); }
+.cmp-row:hover td.now { --now-bg: color-mix(in srgb, var(--accent) 36%, var(--bg)); }
+.js:not(.reduce) .cmp td.now { background-size: 0% 100%; transition: background-size .9s var(--ease) .15s, background-color .3s ease; }
+.js:not(.reduce) .cmp-row.is-in td.now { background-size: 100% 100%; }
+.js:not(.reduce) .cmp td.was { transition: opacity .6s ease .4s; }
+.js:not(.reduce) .cmp-row.is-in td.was { opacity: .75; }
+
+/* Come funziona: tre passaggi, ognuno con la sua immagine */
+.how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
+.flow { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); }
+.flow-step { min-width: 0; }
+.flow-k { margin: 0 0 12px; padding-top: 12px; border-top: 3px solid var(--navy); font: 500 12.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.flow-img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; margin-bottom: 18px; border-radius: 2px; object-fit: cover; background: var(--line); }
+.flow-step h3 { margin: 0 0 8px; font: 800 clamp(24px, 2.4vw, 34px)/1.05 var(--display); color: var(--ink); text-wrap: balance; }
+.flow-step p:not(.flow-k) { margin: 0; max-width: 40ch; }
+.js:not(.reduce) .flow-step { opacity: 0; transform: translateY(20px); transition: opacity .7s ease calc(var(--i, 0) * 120ms), transform .9s var(--ease) calc(var(--i, 0) * 120ms); }
+.js:not(.reduce) .flow-step.is-in { opacity: 1; transform: none; }
+.flow-step:nth-child(2) { --i: 1; } .flow-step:nth-child(3) { --i: 2; }
+
+/* Scarica l'app: i badge ufficiali, a un'altezza sola */
+.badges { display: flex; flex-wrap: wrap; gap: 12px; }
+.badges a { display: block; line-height: 0; border-radius: 8px; }
+.badges img { display: block; height: 44px; width: auto; }
+.badges a:focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; }
+
 /* chiusura */
 .closing h2 { font: 800 clamp(36px, 5vw, 72px)/.96 var(--display); color: var(--ink); margin: 0 0 clamp(24px, 3vw, 40px); max-width: 16ch; }
-.closing { border-top: 0; }
+.closing { border-top: 0; padding-bottom: clamp(150px, 19vw, 280px); }
 .foot { background: var(--cut); color: rgb(250 250 247 / .74); font-size: 14px; transition: background-color .5s ease; }
 .foot .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 20px 28px; border-top: 1px solid rgb(250 250 247 / .2); }
 
@@ -191,9 +205,18 @@ img { max-width: 100%; display: block; }
   .pin-grid { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; }
   .texts { min-height: 190px; }
   .phone { --pw: min(170px, 23dvh); grid-row: 3; grid-column: 1; justify-self: center; border-width: 5px; border-radius: 24px; }
-  .need-txt { grid-template-columns: 1fr; row-gap: 14px; }
-  .how-step { grid-template-columns: 1fr; row-gap: 14px; }
-  .how-step p { padding-top: 0; }
+}
+@media (max-width: 899px) { .flow { grid-template-columns: 1fr; } .flow-img { aspect-ratio: 16 / 10; } }
+@media (max-width: 767px) {
+  .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: auto; }
+  .cmp thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .cmp colgroup { display: none; }
+  .cmp-row { margin-bottom: 20px; }
+  .cmp th[scope="row"] { padding: 0 0 10px; }
+  .cmp td.was { border-radius: 16px 16px 0 0; padding: 20px 22px 14px; }
+  .cmp td.now { border-radius: 0 0 16px 16px; padding: 14px 22px 22px; }
+  .cmp td::before { content: attr(data-label); display: block; margin-bottom: 6px; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
+  .cmp td.now::before { content: attr(data-label); position: static; transform: none; display: block; width: auto; height: auto; border-radius: 0; background: none; color: var(--navy); font: 500 12px/1 var(--mono); opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
@@ -202,8 +225,6 @@ img { max-width: 100%; display: block; }
 /* DIREZIONE D, casa Due.Zero e prodotto Hyper.Parts: struttura in carta, inchiostro e nero; navy e giallo solo dove c'è il prodotto; rosso solo per Due.Zero */
 :root { --black: #0A0A0A; --ink: #141412; --red: #E2231A; }
 .h2, .tx h3 { color: var(--ink); }
-.need { --steel: rgb(250 250 247 / .55); background: var(--black); }
-.need-now .lab { color: color-mix(in srgb, var(--navy) 55%, var(--light)); opacity: 1; }
 .dz { background: var(--black); color: rgb(250 250 247 / .9); border-top: 0; padding-block: clamp(56px, 7vw, 96px); }
 .dz .chapter { color: rgb(250 250 247 / .86); }
 .dz .chapter .sep { color: rgb(250 250 247 / .5); }
@@ -213,17 +234,6 @@ img { max-width: 100%; display: block; }
 .dz :focus-visible { outline-color: var(--light); }
 
 /* DIREZIONE D, secondo giro: A chi serve di nuovo su carta, vela blu, niente sottolineature, azioni con gerarchia */
-.need { background: var(--bg); color: var(--text); border-top: 1px solid var(--line); }
-.need .chapter { color: var(--navy); }
-.need .chapter .sep { color: var(--muted); }
-.need-h, .need-item h3 { color: var(--ink); }
-.need-list { border-bottom-color: var(--line); }
-.need-item { border-top-color: var(--line); }
-.need-txt p { border-top-color: var(--line); }
-.need-was { color: var(--muted); }
-.need-now { border-top-color: var(--navy) !important; color: var(--ink); }
-.need-now .lab { color: var(--navy); opacity: 1; }
-.need-was .lab { color: var(--muted); }
 .pill--ghost { min-height: 44px; padding: 11px 22px; background: transparent; color: var(--navy); }
 .pill--ghost:hover { background: color-mix(in srgb, var(--navy) 8%, transparent); }
 .nav-links .pill { text-decoration: none; }
@@ -233,6 +243,7 @@ img { max-width: 100%; display: block; }
 .closing .path h2 { margin-bottom: 16px; }
 .path--in { margin-top: clamp(28px, 3.4vw, 44px); padding-top: clamp(24px, 3vw, 36px); border-top: 1px solid var(--line); max-width: 640px; }
 .path-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.path .path-q--app { margin-top: 26px; }
 .dz-link .arr { color: var(--red); }
 .dz-link { border-bottom: 0; padding-bottom: 0; }
 @media (max-width: 767px) { .nav-links .pill { padding: 10px 18px; min-height: 40px; } }
@@ -301,39 +312,17 @@ img { max-width: 100%; display: block; }
   <section class="section need" id="a-chi-serve" aria-labelledby="risolve-title">
     <div class="container">
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 2 <span class="sep">|</span> A chi serve</p>
-      <h2 class="need-h prov" id="risolve-title">Cosa cambia, per chi lavora con i ricambi</h2>
-      <div class="need-grid">
-        <ul class="need-list">
-        <li class="need-item" data-reveal>
-          <h3 class="prov">Ufficio ricambi e post-vendita</h3>
-          <div class="need-txt">
-            <p class="need-was"><span class="lab">Oggi</span><span class="prov">Richieste per telefono o email, descritte a parole, da ricondurre al codice incrociando distinta e disegno.</span></p>
-            <p class="need-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Il cliente trova il pezzo sul disegno della sua matricola e ordina il codice giusto.</span></p>
-          </div>
-        </li>
-        <li class="need-item" data-reveal>
-          <h3 class="prov">Tecnici e manutenzione in campo</h3>
-          <div class="need-txt">
-            <p class="need-was"><span class="lab">Oggi</span><span class="prov">In reparto servono manuali e schemi, spesso dove la rete non arriva.</span></p>
-            <p class="need-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Il QR sulla macchina apre tavole e documenti dall’app, anche offline.</span></p>
-          </div>
-        </li>
-        <li class="need-item" data-reveal>
-          <h3 class="prov">Costruttori di macchine</h3>
-          <div class="need-txt">
-            <p class="need-was"><span class="lab">Oggi</span><span class="prov">Cataloghi PDF da aggiornare e listini da gestire cliente per cliente.</span></p>
-            <p class="need-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Tavole legate alla matricola, listini multivaluta, ricarichi e disponibilità in un unico posto.</span></p>
-          </div>
-        </li>
-        <li class="need-item" data-reveal>
-          <h3 class="prov">Pianificazione della manutenzione</h3>
-          <div class="need-txt">
-            <p class="need-was"><span class="lab">Oggi</span><span class="prov">Lo storico dei ricambi ordinati è sparso tra email e gestionale.</span></p>
-            <p class="need-now"><span class="lab">Con Hyper.Parts</span><span class="prov">Report sui componenti più soggetti a usura, per programmare gli interventi.</span></p>
-          </div>
-        </li>
-        </ul>
-      </div>
+      <h2 class="need-h prov" id="risolve-title">Cosa cambia per te</h2>
+      <table class="cmp">
+        <colgroup><col class="c-role"><col class="c-was"><col class="c-now"></colgroup>
+        <thead><tr><th scope="col"><span class="sr">Ruolo</span></th><th scope="col" class="was">Oggi</th><th scope="col" class="now"><span class="sphere" aria-hidden="true"></span>Con Hyper.Parts</th></tr></thead>
+        <tbody>
+          <tr class="cmp-row" data-reveal><th scope="row" class="prov">Se segui ricambi e post-vendita</th><td class="was prov" data-label="Oggi">Ti chiamano o ti scrivono e descrivono il pezzo a parole: tocca a te risalire al codice incrociando distinta e disegno.</td><td class="now prov" data-label="Con Hyper.Parts">Il cliente trova il pezzo sul disegno della sua matricola e ordina il <strong>codice giusto</strong>.</td></tr>
+          <tr class="cmp-row" data-reveal><th scope="row" class="prov">Se sei un tecnico in campo</th><td class="was prov" data-label="Oggi">In reparto servono manuali e schemi, e spesso la rete non arriva.</td><td class="now prov" data-label="Con Hyper.Parts">Inquadri il QR sulla macchina e l’app apre tavole e documenti, <strong>anche offline</strong>.</td></tr>
+          <tr class="cmp-row" data-reveal><th scope="row" class="prov">Se costruisci macchine</th><td class="was prov" data-label="Oggi">Cataloghi PDF da aggiornare e listini da gestire cliente per cliente.</td><td class="now prov" data-label="Con Hyper.Parts">Tavole legate alla matricola, listini multivaluta, ricarichi e disponibilità <strong>in un unico posto</strong>.</td></tr>
+          <tr class="cmp-row" data-reveal><th scope="row" class="prov">Se pianifichi la manutenzione</th><td class="was prov" data-label="Oggi">Lo storico dei ricambi ordinati è sparso tra email e gestionale.</td><td class="now prov" data-label="Con Hyper.Parts">Report sui componenti più soggetti a usura, per <strong>programmare gli interventi</strong>.</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -342,13 +331,11 @@ img { max-width: 100%; display: block; }
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 3 <span class="sep">|</span> Come funziona</p>
       <h2 class="h2 prov" id="how-title">Come funziona</h2>
       <p class="how-intro prov">Un servizio gestito: il catalogo lo prepara Due.Zero insieme al costruttore.</p>
-      <div class="how-body">
-        <ol class="how-steps">
-        <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">La richiesta</h3></div><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></li>
-        <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">Il catalogo costruito insieme</h3></div><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></li>
-        <li class="how-step" data-reveal><div><span class="tab" aria-hidden="true"></span><h3 class="prov">La crescita</h3></div><p class="prov">Il costruttore abilita clienti e rivenditori, ciascuno con la propria area. Macchine e documenti si aggiungono nel tempo.</p></li>
-        </ol>
-      </div>
+      <ol class="flow">
+        <li class="flow-step" data-reveal><p class="flow-k">Passo 1</p><img class="flow-img" src="assets/img/passo-1-richiesta.webp" alt="Un manuale tecnico aperto su una scrivania, con il disegno in vista esplosa di una macchina e una distinta base, davanti a una linea di confezionamento" width="1448" height="1086" loading="lazy"><h3 class="prov">La richiesta</h3><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></li>
+        <li class="flow-step" data-reveal><p class="flow-k">Passo 2</p><img class="flow-img" src="assets/img/passo-2-catalogo.webp" alt="Un monitor che mostra il disegno in vista esplosa di una macchina, con alcune parti evidenziate in giallo" width="1448" height="1086" loading="lazy"><h3 class="prov">Il catalogo costruito insieme</h3><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></li>
+        <li class="flow-step" data-reveal><p class="flow-k">Passo 3</p><img class="flow-img" src="assets/img/passo-3-crescita.webp" alt="Un portatile con una mappa del mondo e grafici a barre, accanto a una cassetta di ricambi" width="1448" height="1086" loading="lazy"><h3 class="prov">La crescita</h3><p class="prov">Il costruttore abilita clienti e rivenditori, ciascuno con la propria area. Macchine e documenti si aggiungono nel tempo.</p></li>
+      </ol>
     </div>
   </section>
 
@@ -389,8 +376,11 @@ img { max-width: 100%; display: block; }
         <div class="path-actions">
           <a class="pill pill--ghost" href="https://hyperparts.it">Accedi</a>
           <a class="pill pill--ghost" href="https://hyperparts.it/RichiestaAcceso.aspx">Richiedi accesso</a>
-          <a class="pill pill--ghost" href="https://apps.apple.com/it/app/hyperparts/id6797175665">App iPhone</a>
-          <a class="pill pill--ghost" href="https://play.google.com/store/apps/details?id=it.hyperparts.app&amp;hl=it">App Android</a>
+        </div>
+        <p class="path-q path-q--app">Scarica l’app</p>
+        <div class="badges">
+          <a href="https://apps.apple.com/it/app/hyperparts/id6797175665"><img src="assets/badges/app-store.svg" alt="Scarica su App Store" width="132" height="44"></a>
+          <a href="https://play.google.com/store/apps/details?id=it.hyperparts.app&amp;hl=it"><img src="assets/badges/google-play.svg" alt="Disponibile su Google Play" width="148" height="44"></a>
         </div>
       </div>
     </div>
