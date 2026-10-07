@@ -60,7 +60,7 @@ Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders 
 7. **Capitolo 5, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
 8. **Capitolo 6, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Hai già le credenziali?» con tre pulsanti a contorno: Accedi, App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
 
-Il pannello bozza è stato tolto. Le direzioni provate per le sezioni centrali sono in `varianti/`.
+Il pannello bozza è stato tolto dalla pagina; esiste solo nella versione per la revisione. Le direzioni provate per le sezioni centrali sono in `varianti/`.
 
 ## Decisioni prese
 
@@ -76,7 +76,8 @@ Il pannello bozza è stato tolto. Le direzioni provate per le sezioni centrali s
 - **Vela solo in apertura e nel footer**: tolta dalla scena del telefono, perché due curve ravvicinate si pestavano. Colore blu (il livello del logo), non grigio.
 - **Due.Zero**: piccola sezione scura prima dei contatti. Nel testo «dal 2008», non «da oltre vent'anni». Niente frase bianca sulla vela nel footer.
 - **Sezioni centrali**: «A chi serve» e «Come funziona» su carta, righe allineate, titoli di dimensione media. Meno tipografia: i titoli giganti in maiuscolo sono stati ridotti.
-- **Immagini reali nelle sezioni centrali**: per non avere sezioni solo di testo si usano ritagli della foto di apertura (manuale e linea di produzione, dashboard), mai immagini ricostruite. Il footer non ha più la scritta «Bozza, testo provvisorio».
+- **Niente immagini aggiunte nelle sezioni centrali**: provati due ritagli della foto di apertura, tolti perché ripetevano la hero. Nessuna immagine generata con l'AI: mostrerebbero schermate del prodotto che non esistono. Il footer non ha più la scritta «Bozza, testo provvisorio».
+- **Obiettivo della pagina**: far percepire in fretta perché ha valore usare un software come questo. Versione per i commenti: `revisione/index.html`, generata da `tools/build-revisione.py`, con le note in `docs/DOMANDE-PER-IL-CAPO.md`.
 - **Nessuna sottolineatura**: né i segni del testo provvisorio né quelle dei link. I link d'azione sono pulsanti.
 - **Azioni con gerarchia**: una sola azione primaria piena («Parla con noi»), le altre a contorno. L'accesso per chi ha già le credenziali è sempre raggiungibile (in alto) e ha un suo percorso in chiusura.
 
