@@ -273,6 +273,33 @@ img { max-width: 100%; display: block; }
   .cmp td.now::before { color: var(--navy); }
   .cmp td.now { margin-top: 6px; }
 }
+
+/* A CHI SERVE, secondo giro: la colonna «Con Hyper.Parts» è quella che conta */
+.cmp { --now-tint: color-mix(in srgb, var(--navy) 10%, var(--bg)); }
+.cmp .c-role { width: 24%; } .cmp .c-was { width: 28%; }
+.cmp thead th { padding: 0; }
+.cmp thead .tab { display: flex; align-items: center; gap: 10px; padding: 14px clamp(16px, 2vw, 28px); font: 500 12.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.cmp thead th.was .tab { background: color-mix(in srgb, var(--ink) 14%, var(--bg)); color: var(--ink); }
+.cmp thead th.now .tab { background: var(--navy); color: var(--light); }
+.cmp thead th.now .sphere { width: 11px; height: 11px; }
+.cmp th[scope="row"] { border-top: 2px solid var(--ink); padding-top: 18px; font-size: clamp(24px, 2.7vw, 38px); }
+.cmp td.was { color: var(--muted); }
+.cmp td.now { position: relative; padding-block: 22px; padding-inline: clamp(24px, 3vw, 44px) clamp(16px, 2vw, 28px); background: linear-gradient(var(--now-tint), var(--now-tint)) no-repeat 0 0 / 100% 100%; border-left: 0; box-shadow: inset 5px 0 0 var(--navy); font-size: clamp(18px, 1.6vw, 21px); line-height: 1.45; transition: background-color .3s ease; }
+.cmp td.now::before { content: "\2192"; position: absolute; left: -15px; top: 18px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: var(--light); font: 500 15px/1 var(--mono); }
+.cmp-row:hover td.now { --now-tint: color-mix(in srgb, var(--navy) 17%, var(--bg)); }
+.js:not(.reduce) .cmp-row { opacity: 1; transform: none; }
+.js:not(.reduce) .cmp td.now { background-size: 0% 100%; transition: background-size .9s var(--ease) .15s, background-color .3s ease; }
+.js:not(.reduce) .cmp-row.is-in td.now { background-size: 100% 100%; }
+.js:not(.reduce) .cmp td.now > * , .js:not(.reduce) .cmp td.now { color: inherit; }
+.js:not(.reduce) .cmp td.was { transition: opacity .6s ease .4s; }
+.js:not(.reduce) .cmp-row:not(.is-in) td.was { opacity: 1; }
+.js:not(.reduce) .cmp-row.is-in td.was { opacity: .72; }
+@media (max-width: 767px) {
+  .cmp colgroup { display: none; }
+  .cmp td.now::before { content: attr(data-label); position: static; display: block; width: auto; height: auto; margin-bottom: 6px; border-radius: 0; background: none; color: var(--navy); font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+  .cmp td.now { padding-inline: 24px 16px; }
+  .cmp th[scope="row"] { padding-top: 14px; }
+}
 </style>
 </head>
 <body>
@@ -340,7 +367,8 @@ img { max-width: 100%; display: block; }
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 2 <span class="sep">|</span> A chi serve</p>
       <h2 class="need-h prov" id="risolve-title">Cosa cambia, per chi lavora con i ricambi</h2>
       <table class="cmp">
-        <thead><tr><th scope="col"><span class="sr">Ruolo</span></th><th scope="col" class="was">Oggi</th><th scope="col" class="now">Con Hyper.Parts</th></tr></thead>
+        <colgroup><col class="c-role"><col class="c-was"><col class="c-now"></colgroup>
+        <thead><tr><th scope="col"><span class="sr">Ruolo</span></th><th scope="col" class="was"><span class="tab">Oggi</span></th><th scope="col" class="now"><span class="tab"><span class="sphere" aria-hidden="true"></span>Con Hyper.Parts</span></th></tr></thead>
         <tbody><tr class="cmp-row" data-reveal><th scope="row" class="prov">Ufficio ricambi e post-vendita</th><td class="was prov" data-label="Oggi">Richieste per telefono o email, descritte a parole, da ricondurre al codice incrociando distinta e disegno.</td><td class="now prov" data-label="Con Hyper.Parts">Il cliente trova il pezzo sul disegno della sua matricola e ordina il codice giusto.</td></tr><tr class="cmp-row" data-reveal><th scope="row" class="prov">Tecnici e manutenzione in campo</th><td class="was prov" data-label="Oggi">In reparto servono manuali e schemi, spesso dove la rete non arriva.</td><td class="now prov" data-label="Con Hyper.Parts">Il QR sulla macchina apre tavole e documenti dall’app, anche offline.</td></tr><tr class="cmp-row" data-reveal><th scope="row" class="prov">Costruttori di macchine</th><td class="was prov" data-label="Oggi">Cataloghi PDF da aggiornare e listini da gestire cliente per cliente.</td><td class="now prov" data-label="Con Hyper.Parts">Tavole legate alla matricola, listini multivaluta, ricarichi e disponibilità in un unico posto.</td></tr><tr class="cmp-row" data-reveal><th scope="row" class="prov">Pianificazione della manutenzione</th><td class="was prov" data-label="Oggi">Lo storico dei ricambi ordinati è sparso tra email e gestionale.</td><td class="now prov" data-label="Con Hyper.Parts">Report sui componenti più soggetti a usura, per programmare gli interventi.</td></tr></tbody>
       </table>
     </div>
