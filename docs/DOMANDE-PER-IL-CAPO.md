@@ -25,11 +25,11 @@ Stessi contenuti del pannello «Note per la revisione» della versione navigabil
 - Tra i contenuti di ogni macchina compaiono anche i video: confermate?
 
 ## A chi serve
-**Perché c'è.** Quattro ruoli, ognuno con «Oggi» e «Con Hyper.Parts»: chi legge si riconosce e vede cosa cambia.
+**Perché c'è.** Quattro ruoli, ognuno in una riga: «Oggi» a sinistra, «Con Hyper.Parts» in risalto. I titoli parlano direttamente a chi legge («Se sei un tecnico in campo»), così ci si riconosce.
 
 **Da guardare e decidere**
 - Sono i ruoli giusti, nell'ordine giusto? Ne manca qualcuno?
-- Le frasi «Oggi» sono realistiche per i vostri clienti?
+- Le frasi «Oggi» sono realistiche per i vostri clienti? Il tono diretto («Se sei…») va bene o preferite i nomi dei ruoli?
 - «Report sui componenti più soggetti a usura» è una funzione che Hyper.Parts ha davvero? Non è tra i fatti verificati.
 
 ## Come funziona
@@ -38,6 +38,7 @@ Stessi contenuti del pannello «Note per la revisione» della versione navigabil
 **Da guardare e decidere**
 - I tre passi corrispondono al processo vero (disegni CAD, distinte base, documentazione)?
 - «Ciascuno con la propria area»: è corretto per ogni cliente del costruttore?
+- Le tre immagini sono illustrative (generate, non l'interfaccia vera): vanno bene o preferite foto e schermate reali?
 
 ## Domande
 **Perché c'è.** Risponde a quello che ci si chiede prima di scrivere: come si entra, cosa c'è, serve la rete, su cosa si usa.
@@ -57,7 +58,8 @@ Stessi contenuti del pannello «Note per la revisione» della versione navigabil
 **Perché c'è.** Due percorsi separati: chi vuole attivare Hyper.Parts (Parla con noi) e chi lo usa già o deve entrare (Accedi, Richiedi accesso, app).
 
 **Da guardare e decidere**
-- Dove deve portare «Parla con noi»: modulo, email o telefono? (La pagina «Richiedi accesso» dell'app è un modulo per creare un account, non un contatto commerciale: l'abbiamo collegata al pulsante «Richiedi accesso».)
+- Richiesta di accesso e consulenza devono essere due azioni diverse? Oggi «Parla con noi» è il contatto per la consulenza e «Richiedi accesso» porta al modulo per creare un account.
+- Dove deve portare «Parla con noi»: modulo, email o telefono?
 - Chi attiva gli account richiesti dal modulo «Richiedi accesso»: Due.Zero o il costruttore?
 - Aggiungiamo «Guarda la demo»? Oggi la demo ha pagine che non funzionano e non ha un indirizzo diretto.
 - Serve altro per chi non ha le credenziali?

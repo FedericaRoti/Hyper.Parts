@@ -54,11 +54,11 @@ Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders 
 1. **Navigazione**: icona reale (stato blu) con nome in stampatello; link alle sezioni; **Accedi** sempre visibile come pulsante a contorno (va a hyperparts.it), anche su mobile.
 2. **Apertura**: titolo molto grande su due righe, sottotitolo, pulsante primario «Parla con noi» (nell'angolo sulla vela da 900px in su). Vela blu. Sotto, l'immagine del prodotto parte incorniciata e si allarga a tutta larghezza con lo scroll.
 3. **Capitolo 1, Come si vede**: scena fissata su carta, senza vela. Il telefono resta fermo, il testo si sostituisce in tre passi e lo schermo scorre tra tre schermate reali.
-4. **Capitolo 2, A chi serve**: su carta, con a sinistra un ritaglio della foto di apertura (il manuale stampato e la linea di confezionamento, che è il «Oggi») e a destra quattro righe: titolo del ruolo, sotto «Oggi» (grigio) e «Con Hyper.Parts» (filetto e etichetta navy). Su mobile l'immagine passa sopra.
-5. **Capitolo 3, Come funziona**: su carta. Tre passaggi a sinistra (segno navy, titolo, testo) e a destra un ritaglio della foto di apertura con la dashboard sul portatile.
+4. **Capitolo 2, A chi serve**: su carta. Tabella con quattro righe, una per ruolo, con titoli che parlano a chi legge («Se sei un tecnico in campo»). A sinistra «Oggi» su grigio caldo, a destra «Con Hyper.Parts» su una tinta gialla morbida, con le frasi chiave in blu e una freccia navy al centro. Sul computer la colonna «Con» si colora quando la riga entra. Su telefono ogni ruolo è un unico blocco con i due momenti uno sopra l'altro.
+5. **Capitolo 3, Come funziona**: su carta. Tre passaggi in colonna, ognuno con un segno «Passo N» e un'immagine illustrativa (manuale tecnico, monitor col disegno in vista esplosa, portatile con mappa e grafici), generate e non l'interfaccia vera.
 6. **Capitolo 4, Domande**: quattro domande rapide con risposta visibile (accesso, cosa c'è per ogni macchina, rete, dispositivi), solo con fatti verificati.
 7. **Capitolo 5, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
-8. **Capitolo 6, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Accedi o richiedi l'accesso» con quattro pulsanti a contorno: Accedi, Richiedi accesso (porta al modulo di richiesta dell'app), App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
+8. **Capitolo 6, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Accedi o richiedi l'accesso» con due pulsanti a contorno (Accedi, Richiedi accesso, che porta al modulo di richiesta dell'app) e sotto «Scarica l'app» con i badge ufficiali App Store e Google Play. Sotto, la vela blu e il footer con solo la riga del copyright.
 
 Il pannello bozza è stato tolto dalla pagina; esiste solo nella versione per la revisione. Le direzioni provate per le sezioni centrali sono in `varianti/`.
 
@@ -76,9 +76,10 @@ Il pannello bozza è stato tolto dalla pagina; esiste solo nella versione per la
 - **Vela solo in apertura e nel footer**: tolta dalla scena del telefono, perché due curve ravvicinate si pestavano. Colore blu (il livello del logo), non grigio.
 - **Due.Zero**: piccola sezione scura prima dei contatti. Nel testo «dal 2008», non «da oltre vent'anni». Niente frase bianca sulla vela nel footer.
 - **Sezioni centrali**: «A chi serve» e «Come funziona» su carta, righe allineate, titoli di dimensione media. Meno tipografia: i titoli giganti in maiuscolo sono stati ridotti.
-- **Niente immagini aggiunte nelle sezioni centrali**: provati due ritagli della foto di apertura, tolti perché ripetevano la hero. Nessuna immagine generata con l'AI: mostrerebbero schermate del prodotto che non esistono. Il footer non ha più la scritta «Bozza, testo provvisorio».
+- **Sezioni centrali meno solo-testo**: la tabella di «A chi serve» ha colonne colorate e tono diretto; «Come funziona» ha tre immagini illustrative generate (prompt in `docs/PROMPT-IMMAGINI.md`), con schermi sfocati e senza testo perché non mostrano l'interfaccia vera. Provati e tolti due ritagli della foto di apertura, che ripetevano la hero. Il footer non ha più la scritta «Bozza, testo provvisorio».
 - **Obiettivo della pagina**: far percepire in fretta perché ha valore usare un software come questo. Versione per i commenti: `revisione/index.html`, generata da `tools/build-revisione.py`, con le note in `docs/DOMANDE-PER-IL-CAPO.md`.
 - **Nessuna sottolineatura**: né i segni del testo provvisorio né quelle dei link. I link d'azione sono pulsanti.
+- **Niente quarta azione in chiusura**: i link dell'app sono i badge ufficiali, non pulsanti. Da chiedere al capo se richiesta di accesso e consulenza («Parla con noi») devono restare due azioni diverse.
 - **Azioni con gerarchia**: una sola azione primaria piena («Parla con noi»), le altre a contorno. L'accesso per chi ha già le credenziali è sempre raggiungibile (in alto) e ha un suo percorso in chiusura.
 
 ## Scartate, con il motivo
