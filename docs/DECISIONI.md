@@ -30,7 +30,7 @@ Il brief originale è in [BRIEF.md](BRIEF.md). Alcuni punti sono stati superati 
 - Accesso riservato: le credenziali le fornisce il costruttore.
 - Due.Zero è a Bologna dal 2008 (non «da oltre vent'anni») e fa documentazione tecnica per l'industria manifatturiera.
 
-Fonti: duezero.eu, scheda App Store, pagina di login di hyperparts.it. L'ambiente demo di hyperparts.it non è stato aperto.
+Fonti: duezero.eu, scheda App Store, pagina di login di hyperparts.it. La pagina di accesso di hyperparts.it (letta il 2026-10-07) offre: accesso con credenziali, recupero password, pulsante **DEMO**, **Request access** e accesso con **QR dall'app** («Or scan this code with the HyperParts app»). Il testo è in inglese. Tutti questi pulsanti sono azioni interne (`__doPostBack`), non indirizzi: dalla landing si può puntare solo a `https://hyperparts.it/`, non direttamente alla demo né alla richiesta di accesso. `Dashboard.aspx` rimanda al login. La demo non è stata aperta (serve un clic dentro l'app).
 
 ## Palette e font
 
