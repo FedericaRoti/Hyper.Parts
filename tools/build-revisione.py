@@ -40,8 +40,9 @@ SEZIONI = [
    "domande":["«Dal 2008» è la formula giusta?",
               "Quanto brand Due.Zero mostrare? Il rosso e il pallino sono giusti? Abbiamo il logo?"]},
   {"id":"contatti","titolo":"Contatti",
-   "perche":"Due percorsi separati: chi vuole attivare Hyper.Parts e chi ha già le credenziali.",
-   "domande":["Dove deve portare «Parla con noi»: modulo, email o telefono?",
+   "perche":"Due percorsi separati: chi vuole attivare Hyper.Parts (Parla con noi) e chi lo usa già o deve entrare (Accedi, Richiedi accesso, app).",
+   "domande":["Dove deve portare «Parla con noi»: modulo, email o telefono? (La pagina «Richiedi accesso» dell'app è un modulo per creare un account, non un contatto commerciale: l'abbiamo collegata al pulsante «Richiedi accesso».)",
+              "Chi attiva gli account richiesti dal modulo «Richiedi accesso»: Due.Zero o il costruttore?",
               "Aggiungiamo «Guarda la demo»? Oggi la demo ha pagine che non funzionano e non ha un indirizzo diretto.",
               "Serve altro per chi non ha le credenziali?"]},
 ]

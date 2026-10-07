@@ -40,3 +40,8 @@ Una demo serve a convincere, quindi ogni clic deve portare a qualcosa. Una lista
 - Una lingua sola nell'interfaccia (o una scelta chiara) e un solo nome: «HyperParts» o «Hyperparts».
 - I dati della demo si azzerano e le azioni che scrivono (nuova macchina, preventivo, richiesta di supporto) non arrivano a nessuno.
 - Una prova completa da telefono e da computer prima di collegare la demo dalla landing.
+
+## La richiesta di accesso (`RichiestaAcceso.aspx`)
+- Indirizzo diretto: `https://hyperparts.it/RichiestaAcceso.aspx`. Titolo «Request access - HyperParts».
+- Testo: «Fill in the form: we will get back to you as soon as your account is ready.» Campi: email, telefono, password, ripeti password. In fondo «Do you already have an account? Go to Log In».
+- È una richiesta di **account** (con scelta della password), non un contatto commerciale. Da chiedere: chi attiva gli account richiesti, Due.Zero o il costruttore? Cosa succede se una persona non appartiene a nessun costruttore?

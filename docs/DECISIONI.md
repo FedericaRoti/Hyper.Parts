@@ -4,7 +4,7 @@ Aggiornato: 2026-10-05. Resoconto del lavoro di ricerca e di bozza svolto prima 
 
 ## Cos'è
 
-Single page informativa di Hyper.Parts, la piattaforma post-vendita ricambi di Due.Zero (Bologna). Oggi Hyper.Parts **non è un SaaS**: l'accesso lo concede il costruttore della macchina, non esiste registrazione autonoma. La pagina presenta un servizio gestito e il testo deve restare coerente con una possibile trasformazione futura in SaaS, senza anticiparla.
+Single page informativa di Hyper.Parts, la piattaforma post-vendita ricambi di Due.Zero (Bologna). Oggi Hyper.Parts **non è un SaaS**: l'accesso lo concede il costruttore della macchina, oppure si chiede con il modulo «Richiedi accesso» della pagina di accesso (email, telefono e password: l'account viene attivato dopo la richiesta, non subito). La pagina presenta un servizio gestito e il testo deve restare coerente con una possibile trasformazione futura in SaaS, senza anticiparla.
 
 `index.html` è una **bozza di direzione**, non la versione finale. Il testo è provvisorio (le frasi portano la classe `.prov`, oggi senza effetto visivo; serve a ritrovarle): quello definitivo lo fornisce l'azienda prima dello sviluppo.
 
@@ -30,7 +30,7 @@ Il brief originale è in [BRIEF.md](BRIEF.md). Alcuni punti sono stati superati 
 - Accesso riservato: le credenziali le fornisce il costruttore.
 - Due.Zero è a Bologna dal 2008 (non «da oltre vent'anni») e fa documentazione tecnica per l'industria manifatturiera.
 
-Fonti: duezero.eu, scheda App Store, pagina di login di hyperparts.it. La pagina di accesso di hyperparts.it (letta il 2026-10-07) offre: accesso con credenziali, recupero password, pulsante **DEMO**, **Request access** e accesso con **QR dall'app** («Or scan this code with the HyperParts app»). Il testo è in inglese. Tutti questi pulsanti sono azioni interne (`__doPostBack`), non indirizzi: dalla landing si può puntare solo a `https://hyperparts.it/`, non direttamente alla demo né alla richiesta di accesso. `Dashboard.aspx` rimanda al login. La demo non è stata aperta (serve un clic dentro l'app).
+Fonti: duezero.eu, scheda App Store, pagina di login di hyperparts.it. La pagina di accesso di hyperparts.it (letta il 2026-10-07) offre: accesso con credenziali, recupero password, pulsante **DEMO**, **Request access** e accesso con **QR dall'app** («Or scan this code with the HyperParts app»). Il testo è in inglese. «Request access» porta a `https://hyperparts.it/RichiestaAcceso.aspx` (indirizzo diretto, collegabile dalla landing): è un **modulo per creare un account**, non un contatto commerciale; «Parla con noi» non va collegato lì. Tutti questi pulsanti sono azioni interne (`__doPostBack`), non indirizzi: dalla landing si può puntare solo a `https://hyperparts.it/`, non direttamente alla demo né alla richiesta di accesso. `Dashboard.aspx` rimanda al login. La demo non è stata aperta (serve un clic dentro l'app).
 
 ## Palette e font
 
@@ -58,7 +58,7 @@ Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders 
 5. **Capitolo 3, Come funziona**: su carta. Tre passaggi a sinistra (segno navy, titolo, testo) e a destra un ritaglio della foto di apertura con la dashboard sul portatile.
 6. **Capitolo 4, Domande**: quattro domande rapide con risposta visibile (accesso, cosa c'è per ogni macchina, rete, dispositivi), solo con fatti verificati.
 7. **Capitolo 5, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
-8. **Capitolo 6, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Hai già le credenziali?» con tre pulsanti a contorno: Accedi, App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
+8. **Capitolo 6, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Accedi o richiedi l'accesso» con quattro pulsanti a contorno: Accedi, Richiedi accesso (porta al modulo di richiesta dell'app), App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
 
 Il pannello bozza è stato tolto dalla pagina; esiste solo nella versione per la revisione. Le direzioni provate per le sezioni centrali sono in `varianti/`.
 
