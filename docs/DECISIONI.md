@@ -54,8 +54,8 @@ Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders 
 1. **Navigazione**: icona reale (stato blu) con nome in stampatello; link alle sezioni; **Accedi** sempre visibile come pulsante a contorno (va a hyperparts.it), anche su mobile.
 2. **Apertura**: titolo molto grande su due righe, sottotitolo, pulsante primario «Parla con noi» (nell'angolo sulla vela da 900px in su). Vela blu. Sotto, l'immagine del prodotto parte incorniciata e si allarga a tutta larghezza con lo scroll.
 3. **Capitolo 1, Come si vede**: scena fissata su carta, senza vela. Il telefono resta fermo, il testo si sostituisce in tre passi e lo schermo scorre tra tre schermate reali.
-4. **Capitolo 2, A chi serve**: su carta. Quattro righe allineate, tre colonne: ruolo, «Oggi» (grigio), «Con Hyper.Parts» (filetto e etichetta navy).
-5. **Capitolo 3, Come funziona**: su carta. Un passaggio per riga: segno navy, titolo a sinistra, testo a destra.
+4. **Capitolo 2, A chi serve**: su carta, con a sinistra un ritaglio della foto di apertura (il manuale stampato e la linea di confezionamento, che è il «Oggi») e a destra quattro righe: titolo del ruolo, sotto «Oggi» (grigio) e «Con Hyper.Parts» (filetto e etichetta navy). Su mobile l'immagine passa sopra.
+5. **Capitolo 3, Come funziona**: su carta. Tre passaggi a sinistra (segno navy, titolo, testo) e a destra un ritaglio della foto di apertura con la dashboard sul portatile.
 6. **Capitolo 4, Domande**: quattro domande rapide con risposta visibile (accesso, cosa c'è per ogni macchina, rete, dispositivi), solo con fatti verificati.
 7. **Capitolo 5, Due.Zero**: piccola sezione nera, testo chiaro, pallino rosso, link a duezero.eu.
 8. **Capitolo 6, Contatti**: due percorsi separati da una riga. «Vuoi attivare Hyper.Parts?» con titolo, frase sull'accesso riservato e l'unica azione primaria «Parla con noi». «Hai già le credenziali?» con tre pulsanti a contorno: Accedi, App iPhone, App Android. Sotto, la vela blu e il footer con solo la riga del copyright.
@@ -76,6 +76,7 @@ Il pannello bozza è stato tolto. Le direzioni provate per le sezioni centrali s
 - **Vela solo in apertura e nel footer**: tolta dalla scena del telefono, perché due curve ravvicinate si pestavano. Colore blu (il livello del logo), non grigio.
 - **Due.Zero**: piccola sezione scura prima dei contatti. Nel testo «dal 2008», non «da oltre vent'anni». Niente frase bianca sulla vela nel footer.
 - **Sezioni centrali**: «A chi serve» e «Come funziona» su carta, righe allineate, titoli di dimensione media. Meno tipografia: i titoli giganti in maiuscolo sono stati ridotti.
+- **Immagini reali nelle sezioni centrali**: per non avere sezioni solo di testo si usano ritagli della foto di apertura (manuale e linea di produzione, dashboard), mai immagini ricostruite. Il footer non ha più la scritta «Bozza, testo provvisorio».
 - **Nessuna sottolineatura**: né i segni del testo provvisorio né quelle dei link. I link d'azione sono pulsanti.
 - **Azioni con gerarchia**: una sola azione primaria piena («Parla con noi»), le altre a contorno. L'accesso per chi ha già le credenziali è sempre raggiungibile (in alto) e ha un suo percorso in chiusura.
 
