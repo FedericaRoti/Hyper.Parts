@@ -6,7 +6,7 @@ Aggiornato: 2026-10-05. Resoconto del lavoro di ricerca e di bozza svolto prima 
 
 Single page informativa di Hyper.Parts, la piattaforma post-vendita ricambi di Due.Zero (Bologna). Oggi Hyper.Parts **non è un SaaS**: l'accesso lo concede il costruttore della macchina, oppure si chiede con il modulo «Richiedi accesso» della pagina di accesso (email, telefono e password: l'account viene attivato dopo la richiesta, non subito). La pagina presenta un servizio gestito e il testo deve restare coerente con una possibile trasformazione futura in SaaS, senza anticiparla.
 
-`index.html` è una **bozza di direzione**, non la versione finale. Il testo è provvisorio (le frasi portano la classe `.prov`, oggi senza effetto visivo; serve a ritrovarle): quello definitivo lo fornisce l'azienda prima dello sviluppo.
+`docs/index.html` è una **bozza di direzione**, non la versione finale. Il testo è provvisorio (le frasi portano la classe `.prov`, oggi senza effetto visivo; serve a ritrovarle): quello definitivo lo fornisce l'azienda prima dello sviluppo.
 
 Il brief originale è in [BRIEF.md](BRIEF.md). Alcuni punti sono stati superati dalle decisioni qui sotto; dove c'è conflitto vale questo documento.
 
@@ -30,7 +30,7 @@ Il brief originale è in [BRIEF.md](BRIEF.md). Alcuni punti sono stati superati 
 - Accesso riservato: le credenziali le fornisce il costruttore.
 - Due.Zero è a Bologna dal 2008 (non «da oltre vent'anni») e fa documentazione tecnica per l'industria manifatturiera.
 
-Fonti: duezero.eu, scheda App Store, pagina di login di hyperparts.it. La pagina di accesso di hyperparts.it (letta il 2026-10-07) offre: accesso con credenziali, recupero password, pulsante **DEMO**, **Request access** e accesso con **QR dall'app** («Or scan this code with the HyperParts app»). Il testo è in inglese. «Request access» porta a `https://hyperparts.it/RichiestaAcceso.aspx` (indirizzo diretto, collegabile dalla landing): è un **modulo per creare un account**, non un contatto commerciale; «Parla con noi» non va collegato lì. Tutti questi pulsanti sono azioni interne (`__doPostBack`), non indirizzi: dalla landing si può puntare solo a `https://hyperparts.it/`, non direttamente alla demo né alla richiesta di accesso. `Dashboard.aspx` rimanda al login. La demo non è stata aperta (serve un clic dentro l'app).
+Fonti: duezero.eu, scheda App Store, pagina di login di hyperparts.it. La pagina di accesso di hyperparts.it (letta il 2026-10-07) offre: accesso con credenziali, recupero password, pulsante **DEMO**, **Request access** e accesso con **QR dall'app** («Or scan this code with the HyperParts app»). Il testo è in inglese. «Request access» porta a `https://hyperparts.it/RichiestaAcceso.aspx` (indirizzo diretto, collegabile dalla landing): è un **modulo per creare un account**, non un contatto commerciale; «Parla con noi» non va collegato lì. Gli altri pulsanti, DEMO compreso, sono azioni interne (`__doPostBack`), non indirizzi: dalla landing si può puntare a `https://hyperparts.it/` e al modulo di richiesta, non direttamente alla demo. `Dashboard.aspx` rimanda al login. La demo non è stata aperta (serve un clic dentro l'app).
 
 ## Palette e font
 
@@ -49,7 +49,7 @@ Principio: **struttura in carta, inchiostro e nero (casa Due.Zero); navy e giall
 
 Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders Display (titoli), IBM Plex Sans (testo), IBM Plex Mono (etichette e pulsanti).
 
-## Struttura attuale di index.html
+## Struttura attuale di docs/index.html
 
 1. **Navigazione**: icona reale (stato blu) con nome in stampatello; link alle sezioni; **Accedi** sempre visibile come pulsante a contorno (va a hyperparts.it), anche su mobile.
 2. **Apertura**: titolo molto grande su due righe, sottotitolo, pulsante primario «Parla con noi» (nell'angolo sulla vela da 900px in su). Vela blu. Sotto, l'immagine del prodotto parte incorniciata e si allarga a tutta larghezza con lo scroll.
@@ -76,7 +76,7 @@ Il pannello bozza è stato tolto dalla pagina. Le note per la revisione sono nel
 - **Vela solo in apertura e nel footer**: tolta dalla scena del telefono, perché due curve ravvicinate si pestavano. Colore blu (il livello del logo), non grigio.
 - **Due.Zero**: piccola sezione scura prima dei contatti. Nel testo «dal 2008», non «da oltre vent'anni». Niente frase bianca sulla vela nel footer.
 - **Sezioni centrali**: «A chi serve» e «Come funziona» su carta, righe allineate, titoli di dimensione media. Meno tipografia: i titoli giganti in maiuscolo sono stati ridotti.
-- **Sezioni centrali meno solo-testo**: la tabella di «A chi serve» ha colonne colorate e tono diretto; «Come funziona» ha tre immagini illustrative generate (prompt in `docs/PROMPT-IMMAGINI.md`), con schermi sfocati e senza testo perché non mostrano l'interfaccia vera. Provati e tolti due ritagli della foto di apertura, che ripetevano la hero. Il footer non ha più la scritta «Bozza, testo provvisorio».
+- **Sezioni centrali meno solo-testo**: la tabella di «A chi serve» ha colonne colorate e tono diretto; «Come funziona» ha tre immagini illustrative generate (prompt in `note/PROMPT-IMMAGINI.md`), con schermi sfocati e senza testo perché non mostrano l'interfaccia vera. Provati e tolti due ritagli della foto di apertura, che ripetevano la hero. Il footer non ha più la scritta «Bozza, testo provvisorio».
 - **Obiettivo della pagina**: far percepire in fretta perché ha valore usare un software come questo. Le note per la revisione stanno nel documento inviato per email.
 - **Nessuna sottolineatura**: né i segni del testo provvisorio né quelle dei link. I link d'azione sono pulsanti.
 - **Niente quarta azione in chiusura**: i link dell'app sono i badge ufficiali, non pulsanti. Da chiedere al capo se richiesta di accesso e consulenza («Parla con noi») devono restare due azioni diverse.
@@ -114,7 +114,7 @@ Il pannello bozza è stato tolto dalla pagina. Le note per la revisione sono nel
 
 ## Immagini
 
-Le immagini sono in `assets/img/`, scaricate dalle fonti pubbliche dell'azienda. Sono provvisorie: vanno sostituite con gli originali, solo con dati dimostrativi.
+Le immagini sono in `docs/assets/img/`, scaricate dalle fonti pubbliche dell'azienda. Sono provvisorie: vanno sostituite con gli originali, solo con dati dimostrativi.
 
 | File | Origine | Da chiedere |
 |---|---|---|
@@ -122,7 +122,7 @@ Le immagini sono in `assets/img/`, scaricate dalle fonti pubbliche dell'azienda.
 | `app-01-home.webp`, `app-02-matricole.webp`, `app-03-scheda-macchina.webp` | schermate della scheda App Store | schermate originali |
 | mancante | | schermata desktop della tavola ricambi, eventuale registrazione breve |
 
-In `assets/`:
+In `docs/assets/`:
 
 - `hyperparts-icona-originale.svg`: file ricevuto, contiene sovrapposti lo stato a riposo e quello al passaggio del mouse.
 - `hyperparts-icona.svg`: solo lo stato a riposo, ricavato dall'originale.
