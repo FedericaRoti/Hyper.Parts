@@ -125,13 +125,14 @@ html:not(.js) .nav { transform: none; visibility: visible; }
 .section { padding-block: clamp(72px, 9vw, 128px); border-top: 1px solid var(--line); }
 
 /* scena fissata «Dalla macchina al ricambio»: il testo si sostituisce, lo schermo scorre come dentro l'app */
-.scene { position: relative; height: 300dvh; }
-.sent { position: absolute; left: 0; width: 1px; height: 33.34%; pointer-events: none; }
-.sent[data-step="0"] { top: 0; } .sent[data-step="1"] { top: 33.33%; } .sent[data-step="2"] { top: 66.66%; }
+.scene { position: relative; height: 500dvh; }
+.sent { position: absolute; left: 0; width: 1px; height: 20%; pointer-events: none; }
+.sent-first { position: absolute; left: 0; top: calc(50dvh + 80px); width: 1px; height: 1px; pointer-events: none; }
+.sent[data-step="0"] { top: 0; } .sent[data-step="1"] { top: 20%; } .sent[data-step="2"] { top: 40%; } .sent[data-step="3"] { top: 60%; } .sent[data-step="4"] { top: 80%; }
 .pin { position: sticky; top: 0; height: 100dvh; overflow: hidden; }
 .pin-grid { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr auto; column-gap: clamp(24px, 6vw, 96px); padding-block: calc(64px + clamp(16px, 4dvh, 40px)) clamp(48px, 8dvh, 80px); }
 .pin-head { grid-column: 1 / -1; }
-.texts { position: relative; align-self: center; min-height: clamp(200px, 30dvh, 280px); }
+.texts { position: relative; align-self: center; min-height: clamp(240px, 38dvh, 340px); }
 .tx { position: absolute; inset: 0; opacity: 0; transform: translateY(30px); transition: opacity .45s ease, transform .7s var(--ease); }
 .tx.on { opacity: 1; transform: none; }
 .tx.past { transform: translateY(-30px); }
@@ -143,6 +144,23 @@ html:not(.js) .nav { transform: none; visibility: visible; }
 .film img { width: 100%; height: 33.3334%; flex: none; object-fit: cover; }
 .progress { position: relative; align-self: end; height: 3px; background: var(--line); max-width: 460px; margin-top: 24px; }
 .progress .sphere { position: absolute; top: -10px; left: -11px; width: 23px; height: 23px; transition: transform .8s var(--ease); }
+
+/* sticker: spuntano con un pop leggero, a ondate sfalsate, e si impilano uno sull'altro */
+.stickers { --tl: max(clamp(20px, 5vw, 72px), calc((100% - 1240px) / 2 + clamp(20px, 5vw, 72px))); position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.pin-grid { position: relative; z-index: 1; }
+.st { --d: 0ms; --ox: calc((var(--x) - 50) * .25vw); --oy: calc((var(--y) - 50) * .25vh); position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); width: clamp(56px, calc(var(--w) * 1vw), 230px); height: auto; opacity: 0; z-index: var(--z, 1);
+  transform: translate(-50%, -50%) rotate(calc(var(--r) * 1deg)) scale(.3); transition: opacity .25s ease, transform .25s ease; }
+.st.on { opacity: 1; transform: translate(-50%, -50%) rotate(calc(var(--r) * 1deg)); }
+.js:not(.reduce) .st.on { animation: pop .8s cubic-bezier(.3, 1.3, .5, 1) var(--d) backwards; }
+@keyframes pop {
+  0% { opacity: 0; transform: translate(calc(-50% + var(--ox)), calc(-50% + var(--oy))) rotate(calc(var(--r) * 1deg + 28deg)) scale(.15); }
+  55% { opacity: 1; transform: translate(-50%, -50%) rotate(calc(var(--r) * 1deg - 7deg)) scale(1.16); }
+  100% { opacity: 1; transform: translate(-50%, -50%) rotate(calc(var(--r) * 1deg)) scale(1); }
+}
+html:not(.js) .st { opacity: 1; }
+.st[data-side] { width: clamp(40px, min(calc(var(--w) * 1vw), calc(var(--tl) * .8)), 230px); }
+.st[data-side="l"] { left: calc(var(--tl) * var(--lx)); }
+.st[data-side="r"] { left: calc(100% - var(--tl) * var(--lx)); }
 .source { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; max-width: 34ch; }
 
 /* A chi serve: navy, righe allineate. Il titolo del ruolo sta sopra, sotto «Oggi» e «Con Hyper.Parts» in due colonne uguali */
@@ -217,6 +235,9 @@ html:not(.js) .nav { transform: none; visibility: visible; }
   .nav-in { height: 56px; }
   .login-art, .qr-slot { display: none; }
   .pin-grid { grid-template-columns: 1fr; grid-template-rows: auto auto 1fr auto; }
+  .st { --ox: calc((var(--mx, 50) - 50) * .25vw); --oy: calc((var(--my, 50) - 50) * .25vh); left: calc(var(--mx, 50) * 1%); top: calc(var(--my, 50) * 1%); width: calc(var(--mw, 0) * 1vw); }
+  .st[data-side] { left: calc(var(--mx, 50) * 1%); width: calc(var(--mw, 0) * 1vw); }
+  .st:not([style*="--mw"]) { display: none; }
   .texts { min-height: 190px; }
   .phone { --pw: min(170px, 23dvh); grid-row: 3; grid-column: 1; justify-self: center; border-width: 5px; border-radius: 24px; }
 }
@@ -320,8 +341,74 @@ html:not(.js) .nav { transform: none; visibility: visible; }
 
 <main>
   <section class="scene" id="come-si-vede" aria-labelledby="scene-title">
-    <div class="sent" data-step="0"></div><div class="sent" data-step="1"></div><div class="sent" data-step="2"></div>
+    <div class="sent" data-step="0"></div><div class="sent" data-step="1"></div><div class="sent" data-step="2"></div><div class="sent" data-step="3"></div><div class="sent" data-step="4"></div>
+    <div class="sent-first"></div>
     <div class="pin">
+      <div class="stickers" aria-hidden="true">
+        <img class="st" data-step="1" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:59;--y:11;--w:9.6;--r:-30;--d:60ms;--z:1">
+        <img class="st" data-step="1" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:58;--y:93;--w:7.4;--r:33;--d:120ms;--z:2;--mx:34;--my:98;--mw:13.3">
+        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:88;--w:7.3;--r:-4;--d:60ms;--z:3;--lx:0.22">
+        <img class="st" data-step="1" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:74;--y:90;--w:8.2;--r:-13;--d:260ms;--z:4">
+        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:57;--w:9.6;--r:23;--d:260ms;--z:5;--lx:0.1;--mx:6;--my:55;--mw:14.1">
+        <img class="st" data-step="1" data-side="r" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:43;--w:9.6;--r:35;--d:60ms;--z:6;--lx:0.05">
+        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:46;--w:8.1;--r:-36;--d:60ms;--z:7;--lx:0.02">
+        <img class="st" data-step="1" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:64;--y:99;--w:6.3;--r:-12;--d:60ms;--z:8">
+        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:96;--w:9.7;--r:-33;--d:0ms;--z:9;--lx:0.22;--mx:14;--my:72;--mw:14.7">
+        <img class="st" data-step="1" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:54;--y:96;--w:7.5;--r:4;--d:520ms;--z:10">
+        <img class="st" data-step="1" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:55;--y:92;--w:11.2;--r:-36;--d:0ms;--z:11;--mx:38;--my:100;--mw:17.2">
+        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:28;--w:6.0;--r:18;--d:260ms;--z:12;--lx:0.38">
+        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:70;--w:8.0;--r:27;--d:260ms;--z:13;--lx:0.26">
+        <img class="st" data-step="2" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:60;--y:15;--w:8.6;--r:-10;--d:120ms;--z:14">
+        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:67;--w:12.1;--r:16;--d:260ms;--z:15;--lx:0.38">
+        <img class="st" data-step="2" data-side="l" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:70;--w:8.0;--r:-19;--d:0ms;--z:16;--lx:0.36">
+        <img class="st" data-step="2" data-side="l" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:46;--w:6.8;--r:-10;--d:420ms;--z:17;--lx:0.22">
+        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:14;--w:8.2;--r:31;--d:0ms;--z:18;--lx:0.3;--mx:83;--my:71;--mw:10.6">
+        <img class="st" data-step="2" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:80;--y:92;--w:5.9;--r:-37;--d:420ms;--z:19">
+        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:93;--w:8.2;--r:15;--d:0ms;--z:20;--lx:0.12">
+        <img class="st" data-step="2" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:64;--y:87;--w:6.5;--r:31;--d:0ms;--z:21">
+        <img class="st" data-step="2" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:40;--y:104;--w:7.3;--r:20;--d:120ms;--z:22">
+        <img class="st" data-step="2" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:49;--y:71;--w:6.2;--r:-37;--d:120ms;--z:23">
+        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:49;--w:9.6;--r:-37;--d:0ms;--z:24;--lx:0.09">
+        <img class="st" data-step="2" data-side="l" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:33;--w:8.0;--r:-30;--d:340ms;--z:25;--lx:0.17">
+        <img class="st" data-step="2" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:37;--y:102;--w:7.3;--r:29;--d:420ms;--z:26">
+        <img class="st" data-step="3" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:74;--y:9;--w:8.1;--r:-29;--d:260ms;--z:27">
+        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:68;--w:10.0;--r:8;--d:60ms;--z:28;--lx:0.39;--mx:93;--my:67;--mw:11.1">
+        <img class="st" data-step="3" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:81;--y:11;--w:9.7;--r:-3;--d:120ms;--z:29">
+        <img class="st" data-step="3" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:66;--y:14;--w:9.7;--r:-5;--d:120ms;--z:30">
+        <img class="st" data-step="3" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:84;--y:96;--w:7.9;--r:13;--d:120ms;--z:31">
+        <img class="st" data-step="3" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:31;--y:103;--w:9.4;--r:-8;--d:60ms;--z:32">
+        <img class="st" data-step="3" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:36;--y:71;--w:5.4;--r:-22;--d:420ms;--z:33">
+        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:10;--w:5.7;--r:32;--d:180ms;--z:34;--lx:0.38">
+        <img class="st" data-step="3" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:74;--y:13;--w:6.0;--r:-26;--d:120ms;--z:35">
+        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:16;--w:10.7;--r:-35;--d:180ms;--z:36;--lx:0.2">
+        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:83;--w:7.1;--r:32;--d:60ms;--z:37;--lx:0.07;--mx:81;--my:52;--mw:12.7">
+        <img class="st" data-step="3" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:31;--y:74;--w:4.1;--r:25;--d:260ms;--z:38">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:95;--w:6.5;--r:37;--d:60ms;--z:39;--lx:0.07;--mx:13;--my:65;--mw:14.4">
+        <img class="st" data-step="4" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:57;--y:71;--w:4.7;--r:-17;--d:180ms;--z:40">
+        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:71;--w:9.7;--r:-3;--d:120ms;--z:41;--lx:0.23">
+        <img class="st" data-step="4" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:83;--y:11;--w:7.4;--r:-34;--d:340ms;--z:42">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:40;--w:9.6;--r:1;--d:420ms;--z:43;--lx:0.01">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:47;--w:6.9;--r:-13;--d:520ms;--z:44;--lx:0.08;--mx:10;--my:60;--mw:14.7">
+        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:61;--w:7.6;--r:39;--d:180ms;--z:45;--lx:0.11;--mx:84;--my:73;--mw:10.0">
+        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:28;--w:11.3;--r:6;--d:120ms;--z:46;--lx:0.27;--mx:82;--my:67;--mw:13.4">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:67;--w:11.6;--r:-1;--d:180ms;--z:47;--lx:0.18">
+        <img class="st" data-step="4" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:59;--y:99;--w:10.3;--r:-24;--d:340ms;--z:48">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:40;--w:7.5;--r:-35;--d:0ms;--z:49;--lx:0.2;--mx:19;--my:59;--mw:12.5">
+        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:37;--w:7.1;--r:28;--d:60ms;--z:50;--lx:0.08">
+        <img class="st" data-step="4" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:61;--y:16;--w:9.6;--r:-35;--d:120ms;--z:51">
+        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:41;--w:9.7;--r:35;--d:120ms;--z:52;--lx:0.47;--mx:90;--my:62;--mw:12.5">
+        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:48;--w:11.3;--r:-36;--d:520ms;--z:53;--lx:0.34">
+        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:94;--w:7.6;--r:7;--d:340ms;--z:54;--lx:0.29;--mx:82;--my:55;--mw:10.1">
+        <img class="st" data-step="5" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:63;--y:21;--w:7.2;--r:39;--d:260ms;--z:55">
+        <img class="st" data-step="5" data-side="l" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:67;--w:7.0;--r:16;--d:60ms;--z:56;--lx:0.39">
+        <img class="st" data-step="5" data-side="l" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:9;--w:8.1;--r:-32;--d:420ms;--z:57;--lx:0.18;--mx:6;--my:63;--mw:10.0">
+        <img class="st" data-step="5" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:17;--y:70;--w:6.4;--r:-8;--d:520ms;--z:58">
+        <img class="st" data-step="5" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:46;--y:71;--w:8.6;--r:-6;--d:60ms;--z:59">
+        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:75;--w:7.5;--r:25;--d:420ms;--z:60;--lx:0.23">
+        <img class="st" data-step="5" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:29;--y:102;--w:7.6;--r:14;--d:420ms;--z:61">
+        <img class="st" data-step="5" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:70;--y:94;--w:7.5;--r:39;--d:420ms;--z:62">
+        <img class="st" data-step="5" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:41;--y:104;--w:6.4;--r:-15;--d:0ms;--z:63">
+      </div>
       <div class="container pin-grid">
         <div class="pin-head">
           <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 1 <span class="sep">|</span> Come si vede</p>
@@ -330,7 +417,9 @@ html:not(.js) .nav { transform: none; visibility: visible; }
         <div class="texts">
           <div class="tx" data-tx="0"><h3 class="prov">Inquadra il QR</h3><p class="prov">Il tecnico è davanti alla macchina. Con l’app inquadra il QR e la riconosce, anche senza rete.</p></div>
           <div class="tx" data-tx="1"><h3 class="prov">Apre la matricola</h3><p class="prov">Ogni macchina ha la sua scheda, con il disegno e i dati di quella matricola.</p></div>
-          <div class="tx" data-tx="2"><h3 class="prov">Trova quello che serve</h3><p class="prov">Documenti, video, ricambi consigliati e disponibilità a magazzino, nello stesso posto.</p></div>
+          <div class="tx" data-tx="2"><h3 class="prov">Trova il ricambio</h3><p class="prov">Documenti, video e ricambi consigliati, nello stesso posto.</p></div>
+          <div class="tx" data-tx="3"><h3 class="prov">Controlla disponibilità e listino</h3><p class="prov">La disponibilità a magazzino e i listini, anche in più valute, sono nella stessa scheda.</p></div>
+          <div class="tx" data-tx="4"><h3 class="prov">Chiede il preventivo</h3><p class="prov">Aggiunge i ricambi al carrello e invia la richiesta di preventivo.</p></div>
         </div>
         <div class="phone">
           <div class="film">
@@ -479,20 +568,36 @@ html:not(.js) .nav { transform: none; visibility: visible; }
 
   // scena fissata: il passo attivo è quello la cui fascia attraversa la linea di mezzo dello schermo
   var scene = document.querySelector('.scene');
+  // il primo gruppo di sticker aspetta il primo scroll dentro la scena; gli altri seguono i passi
+  var started = false;
+  function paintStickers() {
+    var i = Number(scene.dataset.active || 0);
+    started = scene.querySelector('.sent-first').getBoundingClientRect().top < innerHeight / 2;
+    scene.querySelectorAll('.st').forEach(function (el) {
+      var g = Number(el.dataset.step);
+      el.classList.toggle('on', g === 1 ? (started || i > 0) : g <= i + 1);
+    });
+  }
   function setStep(i) {
     if (scene.dataset.active === String(i)) return;
     scene.dataset.active = i;
     scene.querySelectorAll('[data-tx]').forEach(function (el, n) { el.classList.toggle('on', n === i); el.classList.toggle('past', n < i); });
-    scene.querySelector('.film').style.transform = 'translateY(' + (-33.3334 * i) + '%)';
+    scene.querySelector('.film').style.transform = 'translateY(' + (-33.3334 * [0, 1, 2, 2, 2][i]) + '%)';
+    paintStickers();
     var prog = scene.querySelector('.progress');
-    prog.querySelector('.sphere').style.transform = 'translateX(' + (prog.clientWidth * i / 2) + 'px)';
+    prog.querySelector('.sphere').style.transform = 'translateX(' + (prog.clientWidth * i / 4) + 'px)';
   }
   setStep(0);
   if (hasIO) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { started = e.isIntersecting || e.boundingClientRect.top < 0; paintStickers(); });
+    }, { rootMargin: '0px 0px -50% 0px', threshold: 0 }).observe(scene.querySelector('.sent-first'));
     var sceneIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) setStep(Number(e.target.dataset.step)); });
     }, { rootMargin: '-49% 0px -49% 0px', threshold: 0 });
     scene.querySelectorAll('.sent').forEach(function (s) { sceneIO.observe(s); });
+  } else {
+    started = true; paintStickers();
   }
 
   // etichette e righe che entrano
