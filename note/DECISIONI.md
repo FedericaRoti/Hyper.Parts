@@ -13,7 +13,7 @@ Il brief originale è in [BRIEF.md](BRIEF.md). Alcuni punti sono stati superati 
 ## Vincoli
 
 - Un solo file statico, HTML/CSS/JS vanilla, nessun build, nessun backend.
-- Niente prezzi pubblici, niente «Prova gratis» o «Registrati», niente login come sezione centrale. Una sola azione: «Parla con noi».
+- Niente prezzi pubblici, niente «Prova gratis» o «Registrati». Dal 2026-10-14 l'accesso (login) è in apertura, per richiesta del capo. Azioni: «Accedi» in apertura e «Parla con noi» in chiusura.
 - Solo tema chiaro (una fascia navy di sezione è ammessa). Il tema scuro automatico è stato provato e bocciato: non ha motivazione per un fornitore industriale.
 - Il prodotto si mostra solo con immagini e schermate reali, mai ricostruite in HTML o SVG.
 - Nessuna texture sul fondo.
@@ -51,8 +51,9 @@ Il rosso `#CC0000` del login di hyperparts.it non è usato. Font: Big Shoulders 
 
 ## Struttura attuale di docs/index.html
 
-1. **Navigazione**: icona reale (stato blu) con nome in stampatello; link alle sezioni; **Accedi** sempre visibile come pulsante a contorno (va a hyperparts.it), anche su mobile.
-2. **Apertura**: titolo molto grande su due righe, sottotitolo, pulsante primario «Parla con noi» (nell'angolo sulla vela da 900px in su). Vela blu. Sotto, l'immagine del prodotto parte incorniciata e si allarga a tutta larghezza con lo scroll.
+1. **Navigazione**: fissa in alto, compare solo dopo l'apertura, con i soli link alle sezioni. Niente logo, nome né «Accedi».
+2. **Apertura**: a tutto schermo. Foto di sfondo scelta a caso a ogni caricamento tra tre generate senza testo (blu alimentare, ambra bevande, verde farmaceutico, in `docs/assets/img/sfondi/`), con una sfumatura scura in basso perché SCROLL giallo si legga anche sui fondi chiari. A sinistra una scheda di accesso sollevata (32vw, tra 380 e 520 px), staccata dai bordi, con angoli arrotondati su tutti e quattro i lati e ombra, quasi a tutta altezza (margine di circa 2,6svh sopra e sotto; prova per vedere se piace più della colonna a tutta altezza). Sotto i 740px di altezza lo schermo l'illustrazione sparisce: logo e scritta dall'immagine `hp-pagina-avvio.png`, email, password, «Password dimenticata?» e «Accedi», una piccola vista esplosa stilizzata (`esploso.webp`, un solo pezzo giallo, fusa col fondo con `mix-blend-mode: multiply`), poi la parte gialla con «Richiedi accesso», il QR grande (segnaposto) e la frase. Il pulsante DEMO dell'originale non c'è. A destra la vela blu, come nella versione originale: curva concava, piatta in basso e ripida verso destra, con la punta al centro dello schermo (50%) e alta sul lato destro. In basso al centro dello schermo l'icona, la freccia gialla e la parola SCROLL gialla, sotto la punta. Sotto i 960px la scheda diventa una scheda sopra la foto (sotto i 768px senza illustrazione né QR). Nessun titolo visibile (resta un `h1` nascosto). Il form non autentica: svuota i campi e apre hyperparts.it, in attesa del codice dell'app.
+2b. **Immagine del prodotto**: subito dopo l'apertura, su fondo blu che continua la vela (stesso `--cut`, senza stacco). L'immagine `apertura-dashboard-app.webp` parte in cornice (`inset 7% 16%`), si apre a tutta larghezza a metà percorso e si richiude prima del Capitolo 1 (GSAP + ScrollTrigger da cdnjs, scrub, solo senza `prefers-reduced-motion`). Senza didascalia in vetro. Sopra l'immagine, nella fascia blu, il claim provvisorio «Il ricambio giusto, al primo ordine.» in bianco su due righe, con a destra «Tavole ricambi legate alla matricola di ogni macchina, da browser e da app.» (prova: da confermare se piace e se il testo resta).
 3. **Capitolo 1, Come si vede**: scena fissata su carta, senza vela. Il telefono resta fermo, il testo si sostituisce in tre passi e lo schermo scorre tra tre schermate reali.
 4. **Capitolo 2, A chi serve**: su carta. Tabella con quattro righe, una per ruolo, con titoli che parlano a chi legge («Se sei un tecnico in campo»). A sinistra «Oggi» su grigio caldo, a destra «Con Hyper.Parts» su una tinta gialla morbida, con le frasi chiave in blu e una freccia navy al centro. Sul computer la colonna «Con» si colora quando la riga entra. Su telefono ogni ruolo è un unico blocco con i due momenti uno sopra l'altro.
 5. **Capitolo 3, Come funziona**: su carta. Tre passaggi in colonna, ognuno con un segno «Passo N» e un'immagine illustrativa (manuale tecnico, monitor col disegno in vista esplosa, portatile con mappa e grafici), generate e non l'interfaccia vera.
@@ -67,11 +68,11 @@ Il pannello bozza è stato tolto dalla pagina. Le note per la revisione sono nel
 - **Modo di comunicare**: affidabilità operativa («il ricambio giusto, al primo ordine»). Scartata la direzione sul valore economico.
 - **Carattere dalla coreografia dello scroll e dalla scala tipografica**, non dal colore. Le scene che fissano lo scroll sono ammesse, come su duezero.eu.
 - **Scena centrale**: tutto fermo, il testo si sostituisce, lo schermo scorre in verticale.
-- **Immagine del prodotto intera** in apertura, che si allarga scorrendo.
+- **Apertura sostituita (2026-10-14, richiesta del capo)**: accesso a sinistra su foto di sfondo, vela blu ridotta, via titolo, immagine del prodotto che si allargava, logo e nome in alto, «Accedi» in navbar e «Parla con noi» sulla vela. Il logo passa in basso al centro con la freccia di scroll.
 - **Pulsanti**: pillola in mono maiuscolo con `[+]`, il linguaggio di duezero.eu.
 - **Passaggi tra sezioni**: etichetta «Capitolo N | titolo» con la sfera gialla.
 - **La sfera** è il punto di Hyper.Parts e segna solo dove sei (logo, capitoli, avanzamento della scena). Non è un elenco puntato.
-- **Il taglio del logo** come elemento riconoscibile: la curva che divide l'icona, in grande, separa la carta da una superficie di colore. Compare in apertura e in chiusura (non nella scena del telefono). Il disco chiaro è la carta, sotto resta `--cut`.
+- **Il taglio del logo** come elemento riconoscibile: la curva che divide l'icona, separa la carta da una superficie di colore. Compare in chiusura e, ridotto a vela in basso a destra, in apertura (non nella scena del telefono).
 - **Palette per ruoli**: struttura neutra (carta, inchiostro, nero), navy e giallo solo sul prodotto, rosso solo Due.Zero. Titoli in inchiostro, non più in blu.
 - **Vela solo in apertura e nel footer**: tolta dalla scena del telefono, perché due curve ravvicinate si pestavano. Colore blu (il livello del logo), non grigio.
 - **Due.Zero**: piccola sezione scura prima dei contatti. Nel testo «dal 2008», non «da oltre vent'anni». Niente frase bianca sulla vela nel footer.
@@ -80,7 +81,7 @@ Il pannello bozza è stato tolto dalla pagina. Le note per la revisione sono nel
 - **Obiettivo della pagina**: far percepire in fretta perché ha valore usare un software come questo. Le note per la revisione stanno nel documento inviato per email.
 - **Nessuna sottolineatura**: né i segni del testo provvisorio né quelle dei link. I link d'azione sono pulsanti.
 - **Niente quarta azione in chiusura**: i link dell'app sono i badge ufficiali, non pulsanti. Da chiedere al capo se richiesta di accesso e consulenza («Parla con noi») devono restare due azioni diverse.
-- **Azioni con gerarchia**: una sola azione primaria piena («Parla con noi»), le altre a contorno. L'accesso per chi ha già le credenziali è sempre raggiungibile (in alto) e ha un suo percorso in chiusura.
+- **Azioni con gerarchia** (aggiornata il 2026-10-14): in apertura «Accedi» è l'azione piena del pannello; in chiusura «Parla con noi» resta piena, le altre sono a contorno. Le azioni piene sono due, per richiesta del capo. Scartata: una sola azione primaria piena.
 
 ## Scartate, con il motivo
 
@@ -103,10 +104,9 @@ Il pannello bozza è stato tolto dalla pagina. Le note per la revisione sono nel
 ## Aperte
 
 - **Colore del taglio**: ora blu `#003B75` (il livello del logo), provato su richiesta. Il grafite `#324646` resta disponibile: si cambia con `data-cut` su `<html>`.
-- **Vetro**: provato solo come didascalia sopra l'immagine del prodotto (classe `.glass`), oggi sempre acceso. Da confermare o togliere.
+- **Vetro**: non più usato (era sul pannello di accesso, che ora è opaco come l'originale).
 - **Nome**: «Hyper.Parts» o «HyperParts».
 - **Destinazione di «Parla con noi»**: oggi `#contatti`, segnaposto.
-- **GSAP**: caricato da cdnjs solo per l'immagine che si allarga. duezero.eu non lo usa: va deciso se tenerlo in produzione.
 - **Ritmo della parte centrale**: con «A chi serve» e «Come funziona» entrambe su carta e a righe, la parte centrale è calma; il contrasto viene da Due.Zero (nero) e dalla vela. Da rivalutare.
 - **Due.Zero**: manca il logo; il rosso `#E2231A` è dedotto dal sito, da confermare come segno di Due.Zero.
 - **Testo definitivo**: da ricevere. Il motivo di ogni sezione è nel documento per il capo.
@@ -118,8 +118,10 @@ Le immagini sono in `docs/assets/img/`, scaricate dalle fonti pubbliche dell'azi
 
 | File | Origine | Da chiedere |
 |---|---|---|
-| `apertura-dashboard-app.webp` (1920×1080) | `duezero.eu/img/eco_hyperparts_bg.webp` | originale; chiarire se è una foto o un fotomontaggio |
 | `app-01-home.webp`, `app-02-matricole.webp`, `app-03-scheda-macchina.webp` | schermate della scheda App Store | schermate originali |
+| `blu-alimentare.webp`, `ambra-bevande.webp`, `verde-farmaceutico.webp` (1672×941) | generate con un'AI il 2026-10-14, senza testo; tre colori e tre settori | provvisorie: rigenerare più grandi (2560×1440) se serve nitidezza sugli schermi grandi |
+| `hp-pagina-avvio.png` (420×551) | `hyperparts.it/immagini/HP_Pagina_Avvio.png` | sfondo della scheda di accesso: contiene logo e scritta, da confermare con l'azienda |
+| `esploso.webp` (1619×469) | generata con un'AI il 2026-10-14, ritagliata al contenuto | illustrazione di fantasia, non un disegno tecnico reale di una macchina |
 | mancante | | schermata desktop della tavola ricambi, eventuale registrazione breve |
 
 In `docs/assets/`:
@@ -135,8 +137,8 @@ Il logo è l'icona. In pagina il nome è composto in testo, con la sfera al post
 - Gli stati iniziali delle animazioni si applicano solo sotto `html.js:not(.reduce)`: senza JavaScript o con movimento ridotto la pagina è già nello stato finale.
 - Nessun listener di `scroll`: si usano `IntersectionObserver` e `position: sticky`. La scena cambia passo con tre sentinelle e `rootMargin: '-49% 0px -49% 0px'`.
 - `IntersectionObserver` non rileva un elemento ritagliato del tutto da `clip-path`: si osserva il contenitore.
-- Il taglio è un cerchio di 400vw color carta dentro un contenitore `.cut-host` con `overflow: hidden` e fondo `--cut`.
-- Sotto i 900px il pulsante dell'apertura resta accanto al testo; sopra, passa nell'angolo sul taglio.
+- La vela dell'apertura è un `<svg>` con `preserveAspectRatio="none"` e un solo tracciato: cuneo con punta sul bordo basso, al centro. Con una maschera CSS la punta restava piatta e si vedeva solo molto più a destra. Il taglio in chiusura e nel footer resta il cerchio di 400vw dentro `.cut-host`.
+- Sotto i 768px il QR si nasconde (serve a inquadrare dall'app da un altro schermo) e la vela si riduce.
 
 ## Non verificato
 
