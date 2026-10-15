@@ -138,7 +138,8 @@ html:not(.js) .nav { transform: none; visibility: visible; }
 .tx.past { transform: translateY(-30px); }
 .tx h3 { font: 800 clamp(40px, 6.4vw, 96px)/.95 var(--display); color: var(--navy); margin: 0 0 14px; }
 .tx p { margin: 0; max-width: 36ch; font-size: clamp(17px, 1.4vw, 20px); }
-.phone { --pw: min(280px, 31dvh); position: relative; width: var(--pw); aspect-ratio: 600 / 1300; align-self: center; grid-row: 2 / 4; grid-column: 2; border-radius: 34px; border: 8px solid var(--ink); background: #F4F5F7; overflow: hidden;
+.phone { --pw: min(330px, 36dvh); position: relative; width: var(--pw); aspect-ratio: 600 / 1300; align-self: center; grid-row: 2 / 4; grid-column: 2; border-radius: 34px; border: 8px solid var(--ink); background: #F4F5F7; overflow: hidden;
+.phone { box-shadow: 0 0 0 16px rgb(237 237 234 / .92), 0 44px 80px -24px rgb(10 20 35 / .5); }
   box-shadow: 0 1px 2px rgb(var(--r-shadow) / .08), 0 14px 28px -8px rgb(var(--r-shadow) / .22), 0 40px 70px -24px rgb(var(--r-shadow) / .3); }
 .film { display: flex; flex-direction: column; height: 300%; transition: transform .8s var(--ease); }
 .film img { width: 100%; height: 33.3334%; flex: none; object-fit: cover; }
@@ -159,7 +160,7 @@ html:not(.js) .nav { transform: none; visibility: visible; }
   100% { opacity: 1; transform: translate(-50%, -50%) rotate(calc(var(--r) * 1deg)) scale(1); }
 }
 html:not(.js) .st { opacity: 1; }
-.st[data-side] { width: clamp(40px, min(calc(var(--w) * 1vw), calc(var(--tl) * .8)), 230px); }
+.st[data-side] { width: clamp(40px, min(calc(var(--w) * 1vw), calc(var(--tl) * .62)), 230px); }
 .st[data-side="l"] { left: calc(var(--tl) * var(--lx)); }
 .st[data-side="r"] { left: calc(100% - var(--tl) * var(--lx)); }
 .source { font: 13px var(--mono); color: var(--muted); margin: 14px 0 0; max-width: 34ch; }
@@ -167,7 +168,7 @@ html:not(.js) .st { opacity: 1; }
 /* A chi serve: navy, righe allineate. Il titolo del ruolo sta sopra, sotto «Oggi» e «Con Hyper.Parts» in due colonne uguali */
 
 /* come funziona: un passaggio per riga, titolo grande a sinistra, testo a destra */
-.how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
+.how { border-top: 0; }
 
 .faq { background: var(--bg); }
 .faq-list { margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; border-bottom: 1px solid var(--line); }
@@ -181,10 +182,14 @@ html:not(.js) .st { opacity: 1; }
 /* A chi serve: ogni ruolo è una riga calda. «Oggi» spento a sinistra, «Con Hyper.Parts» in risalto con una tinta gialla morbida */
 .need { position: relative; background: var(--bg); border-top: 0; padding-top: 0; }
 .cmp-pin { position: relative; padding-top: clamp(56px, 9dvh, 110px); }
-.need::before { content: ""; position: absolute; z-index: 0; top: 0; left: 0; right: 0; height: clamp(520px, 52vw, 800px); pointer-events: none;
-  background: radial-gradient(circle, rgb(0 59 117 / .3) 1.6px, transparent 2.2px) 0 0 / 13px 13px;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / .55) 14%, #000 26%, rgb(0 0 0 / .6) 48%, rgb(0 0 0 / .3) 68%, rgb(0 0 0 / .1) 86%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, rgb(0 0 0 / .55) 14%, #000 26%, rgb(0 0 0 / .6) 48%, rgb(0 0 0 / .3) 68%, rgb(0 0 0 / .1) 86%, transparent 100%); }
+/* fondo del Capitolo 2: schizzi a penna degli stessi pezzi degli sticker, ricavati dagli sticker (solo linee), fermi e molto tenui, fuori dalle colonne di testo; a destra stanno dietro la parte «Con Hyper.Parts», dove poi arriva il giallo e li copre */
+.cmp-pin { isolation: isolate; --pt: var(--pin-top, 90px); }
+.sketches { --tl: max(clamp(20px, 5vw, 72px), calc((var(--vw, 100vw) - 1240px) / 2 + clamp(20px, 5vw, 72px))); position: absolute; z-index: -1; left: calc(50% - var(--vw, 100vw) / 2); width: var(--vw, 100vw); top: calc(-1 * var(--pt)); height: 100dvh; pointer-events: none; opacity: .15; }
+.sk { position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%); width: clamp(48px, calc(var(--w) * 1vw), 300px); height: auto; transform: translate(-50%, -50%) rotate(calc(var(--r) * 1deg)); }
+.sk[data-side] { width: clamp(40px, min(calc(var(--w) * 1vw), calc(var(--tl) * .8)), 230px); }
+.sk[data-side="l"] { left: calc(var(--tl) * var(--lx)); }
+.cmp-scene.nopin .sketches { display: none; }
+@media (max-width: 767px) { .sketches { display: none; } }
 .need > .container { position: relative; z-index: 1; }
 .need-h { margin: 0; max-width: 18ch; font: 800 clamp(34px, 4vw, 56px)/1 var(--display); color: var(--ink); text-wrap: balance; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -234,17 +239,29 @@ html:not(.js) .st { opacity: 1; }
 .js:not(.reduce) .cmp td.now::before { opacity: 0; transition: opacity .4s ease .3s; }
 .js:not(.reduce) .cmp-row.go td.now::before { opacity: 1; }
 
-/* Come funziona: tre passaggi, ognuno con la sua immagine */
-.how-intro { margin: 14px 0 0; max-width: 46ch; font-size: 18px; }
-.flow { list-style: none; margin: clamp(32px, 4vw, 56px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); }
-.flow-step { min-width: 0; }
-.flow-k { margin: 0 0 12px; padding-top: 12px; border-top: 3px solid var(--navy); font: 500 12.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
-.flow-img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; margin-bottom: 18px; border-radius: 2px; object-fit: cover; background: var(--line); }
-.flow-step h3 { margin: 0 0 8px; font: 800 clamp(24px, 2.4vw, 34px)/1.05 var(--display); color: var(--ink); text-wrap: balance; }
-.flow-step p:not(.flow-k) { margin: 0; max-width: 40ch; }
-.js:not(.reduce) .flow-step { opacity: 0; transform: translateY(20px); transition: opacity .7s ease calc(var(--i, 0) * 120ms), transform .9s var(--ease) calc(var(--i, 0) * 120ms); }
-.js:not(.reduce) .flow-step.is-in { opacity: 1; transform: none; }
-.flow-step:nth-child(2) { --i: 1; } .flow-step:nth-child(3) { --i: 2; }
+/* Capitolo 3: quattro punti di confronto, un'immagine per riga che si alterna. Da solo (grigio, piccolo) contro Con Due.Zero (scuro, grande). */
+.how { --tint: #DCE8F5; }
+.how-head .h2 { max-width: 24ch; }
+.duo { list-style: none; margin: clamp(28px, 4vw, 56px) 0 0; padding: 0; display: grid; gap: clamp(20px, 3vw, 36px); }
+.duo-row { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(22px, 4vw, 56px); align-items: center; padding: clamp(14px, 2vw, 24px); border-radius: 22px; background: var(--tint); }
+.duo-row.rev { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+.duo-row.rev .duo-fig { order: 2; }
+.duo-fig { margin: 0; border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--light); }
+.duo-fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.duo-num { aspect-ratio: 4 / 3; display: grid; place-items: center; border-radius: 14px; background: var(--navy); color: var(--accent); font: 800 clamp(64px, 11vw, 150px)/1 var(--display); letter-spacing: -.02em; }
+.duo-k { margin: 0 0 clamp(14px, 2vw, 22px); font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.duo-lab { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font: 500 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.duo-dz .duo-lab { color: var(--navy); }
+.duo-dz .duo-lab .sphere { width: 14px; height: 14px; }
+.duo-big { margin: 0; font: 800 clamp(26px, 3.2vw, 46px)/1 var(--display); color: var(--ink); }
+.duo-solo { margin-top: clamp(16px, 2vw, 26px); padding-top: clamp(14px, 1.6vw, 20px); border-top: 1px dashed #8B9099; }
+.duo-solo .duo-lab { color: #6B7078; }
+.duo-solo .duo-lab::before { content: ""; width: 12px; height: 12px; border-radius: 3px; background: #8B9099; }
+.duo-small { margin: 0; max-width: 40ch; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.4; color: #5B6068; }
+@media (max-width: 767px) {
+  .duo-row, .duo-row.rev { grid-template-columns: 1fr; }
+  .duo-row.rev .duo-fig { order: 0; }
+}
 
 /* Scarica l'app: i badge ufficiali, a un'altezza sola */
 .badges { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -277,7 +294,6 @@ html:not(.js) .st { opacity: 1; }
   .texts { min-height: 190px; }
   .phone { --pw: min(170px, 23dvh); grid-row: 3; grid-column: 1; justify-self: center; border-width: 5px; border-radius: 24px; }
 }
-@media (max-width: 899px) { .flow { grid-template-columns: 1fr; } .flow-img { aspect-ratio: 16 / 10; } }
 @media (max-width: 767px) {
   .cmp, .cmp tbody, .cmp tr, .cmp th, .cmp td { display: block; width: auto; }
   .cmp thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -382,69 +398,39 @@ html:not(.js) .st { opacity: 1; }
     <div class="sent-first"></div>
     <div class="pin">
       <div class="stickers" aria-hidden="true">
-        <img class="st" data-step="1" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:59;--y:11;--w:9.6;--r:-30;--d:260ms;--z:1">
-        <img class="st" data-step="1" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:58;--y:88;--w:5.9;--r:33;--d:420ms;--z:2">
-        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:81;--w:9.0;--r:-4;--d:520ms;--z:3;--lx:0.22">
-        <img class="st" data-step="1" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:58;--y:85;--w:8.2;--r:-13;--d:260ms;--z:4">
-        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:53;--w:11.5;--r:23;--d:340ms;--z:5;--lx:0.1">
-        <img class="st" data-step="1" data-side="r" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:40;--w:9.6;--r:35;--d:0ms;--z:6;--lx:0.05;--mx:91;--my:67;--mw:13.7">
-        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:43;--w:8.1;--r:-36;--d:180ms;--z:7;--lx:0.02;--mx:19;--my:73;--mw:11.3">
-        <img class="st" data-step="1" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:64;--y:91;--w:6.9;--r:-12;--d:120ms;--z:8">
-        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:89;--w:9.7;--r:-33;--d:60ms;--z:9;--lx:0.22">
-        <img class="st" data-step="1" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:54;--y:90;--w:9.4;--r:4;--d:120ms;--z:10">
-        <img class="st" data-step="1" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:55;--y:87;--w:8.3;--r:-36;--d:60ms;--z:11">
-        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:26;--w:7.0;--r:18;--d:260ms;--z:12;--lx:0.38;--mx:20;--my:72;--mw:14.7">
-        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:65;--w:5.6;--r:27;--d:260ms;--z:13;--lx:0.26;--mx:12;--my:74;--mw:9.9">
-        <img class="st" data-step="2" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:60;--y:15;--w:11.6;--r:-10;--d:0ms;--z:14">
-        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:62;--w:11.1;--r:16;--d:180ms;--z:15;--lx:0.38">
-        <img class="st" data-step="2" data-side="l" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:65;--w:9.6;--r:-19;--d:60ms;--z:16;--lx:0.36">
-        <img class="st" data-step="2" data-side="l" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:43;--w:8.0;--r:-10;--d:120ms;--z:17;--lx:0.22">
-        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:13;--w:6.4;--r:31;--d:120ms;--z:18;--lx:0.3">
-        <img class="st" data-step="2" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:63;--y:86;--w:7.4;--r:-37;--d:180ms;--z:19">
-        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:86;--w:8.2;--r:15;--d:520ms;--z:20;--lx:0.12;--mx:90;--my:72;--mw:14.7">
-        <img class="st" data-step="2" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:64;--y:85;--w:5.2;--r:31;--d:0ms;--z:21">
-        <img class="st" data-step="2" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:49;--y:76;--w:5.1;--r:20;--d:120ms;--z:22">
-        <img class="st" data-step="2" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:83;--y:87;--w:8.4;--r:-37;--d:260ms;--z:23">
-        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:11;--w:9.9;--r:-14;--d:0ms;--z:24;--lx:0.4">
-        <img class="st" data-step="2" data-side="l" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:43;--w:9.0;--r:14;--d:420ms;--z:25;--lx:0.38;--mx:6;--my:68;--mw:10.6">
-        <img class="st" data-step="2" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:44;--y:73;--w:5.6;--r:36;--d:0ms;--z:26">
-        <img class="st" data-step="3" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:74;--y:16;--w:7.2;--r:-2;--d:60ms;--z:27;--mx:94;--my:8;--mw:12.4">
-        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:49;--w:7.9;--r:-33;--d:520ms;--z:28;--lx:0.43;--mx:98;--my:68;--mw:11.4">
-        <img class="st" data-step="3" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:80;--y:14;--w:9.1;--r:18;--d:340ms;--z:29">
-        <img class="st" data-step="3" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:64;--y:14;--w:8.3;--r:4;--d:260ms;--z:30">
-        <img class="st" data-step="3" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:76;--y:88;--w:8.2;--r:-20;--d:0ms;--z:31">
-        <img class="st" data-step="3" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:47;--y:75;--w:5.6;--r:21;--d:120ms;--z:32">
-        <img class="st" data-step="3" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:73;--y:87;--w:9.2;--r:9;--d:180ms;--z:33">
-        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:59;--w:9.9;--r:24;--d:260ms;--z:34;--lx:0.19">
-        <img class="st" data-step="3" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:79;--y:14;--w:12.5;--r:-5;--d:60ms;--z:35;--mx:90;--my:8;--mw:10.5">
-        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:18;--w:9.9;--r:-7;--d:120ms;--z:36;--lx:0.39;--mx:88;--my:61;--mw:12.3">
-        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:12;--w:12.8;--r:32;--d:120ms;--z:37;--lx:0.32">
-        <img class="st" data-step="3" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:23;--y:73;--w:5.7;--r:-5;--d:120ms;--z:38">
-        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:41;--w:9.6;--r:-17;--d:60ms;--z:39;--lx:0.3;--mx:3;--my:76;--mw:11.5">
-        <img class="st" data-step="4" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:57;--y:74;--w:5.9;--r:-3;--d:60ms;--z:40">
-        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:83;--w:7.0;--r:-35;--d:420ms;--z:41;--lx:0.49">
-        <img class="st" data-step="4" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:72;--y:15;--w:5.9;--r:-38;--d:340ms;--z:42;--mx:87;--my:3;--mw:10.1">
-        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:66;--w:9.7;--r:-3;--d:60ms;--z:43;--lx:0.19">
-        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:58;--w:9.5;--r:-34;--d:180ms;--z:44;--lx:0.33">
-        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:37;--w:8.7;--r:1;--d:420ms;--z:45;--lx:0.01;--mx:85;--my:71;--mw:9.6">
-        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:44;--w:8.3;--r:-13;--d:340ms;--z:46;--lx:0.1">
-        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:57;--w:7.6;--r:39;--d:60ms;--z:47;--lx:0.09">
-        <img class="st" data-step="4" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:61;--y:86;--w:10.2;--r:6;--d:180ms;--z:48">
-        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:62;--w:9.5;--r:-1;--d:120ms;--z:49;--lx:0.18;--mx:8;--my:58;--mw:13.1">
-        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:89;--w:10.3;--r:-24;--d:340ms;--z:50;--lx:0.18">
-        <img class="st" data-step="4" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:62;--y:15;--w:10.2;--r:-35;--d:420ms;--z:51">
-        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:35;--w:7.1;--r:28;--d:520ms;--z:52;--lx:0.08">
-        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:44;--w:8.0;--r:-35;--d:60ms;--z:53;--lx:0.16;--mx:88;--my:75;--mw:13.6">
-        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:39;--w:11.7;--r:35;--d:340ms;--z:54;--lx:0.47;--mx:89;--my:69;--mw:10.3">
-        <img class="st" data-step="5" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:63;--y:16;--w:10.3;--r:-36;--d:0ms;--z:55">
-        <img class="st" data-step="5" data-side="l" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:87;--w:9.4;--r:7;--d:0ms;--z:56;--lx:0.23;--mx:3;--my:75;--mw:11.3">
-        <img class="st" data-step="5" data-side="l" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:75;--w:6.8;--r:39;--d:520ms;--z:57;--lx:0.25;--mx:5;--my:54;--mw:9.4">
-        <img class="st" data-step="5" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:86;--y:89;--w:5.9;--r:16;--d:0ms;--z:58">
-        <img class="st" data-step="5" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:34;--y:70;--w:5.7;--r:-32;--d:120ms;--z:59">
-        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:37;--w:6.9;--r:-36;--d:260ms;--z:60;--lx:0.21;--mx:81;--my:65;--mw:10.7">
-        <img class="st" data-step="5" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:46;--y:71;--w:6.4;--r:-6;--d:340ms;--z:61">
-        <img class="st" data-step="5" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:60;--y:89;--w:10.4;--r:25;--d:180ms;--z:62">
-        <img class="st" data-step="5" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:35;--y:71;--w:5.8;--r:14;--d:520ms;--z:63">
+        <img class="st" data-step="1" data-side="r" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:69;--w:9.0;--r:39;--d:60ms;--z:1;--lx:0.2">
+        <img class="st" data-step="1" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:56;--y:86;--w:6.2;--r:7;--d:420ms;--z:2">
+        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:48;--w:8.7;--r:20;--d:180ms;--z:3;--lx:0.06;--mx:20;--my:65;--mw:13.0">
+        <img class="st" data-step="1" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:52;--y:85;--w:5.1;--r:-20;--d:260ms;--z:4">
+        <img class="st" data-step="1" data-side="r" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:16;--w:10.7;--r:-15;--d:120ms;--z:5;--lx:0.3;--mx:85;--my:75;--mw:12.4">
+        <img class="st" data-step="1" data-side="l" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:55;--w:9.6;--r:32;--d:340ms;--z:6;--lx:0.1">
+        <img class="st" data-step="1" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:19;--y:75;--w:4.5;--r:2;--d:60ms;--z:7">
+        <img class="st" data-step="2" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:38;--y:72;--w:4.8;--r:18;--d:520ms;--z:8">
+        <img class="st" data-step="2" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:52;--y:88;--w:6.1;--r:23;--d:60ms;--z:9">
+        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:88;--w:11.8;--r:9;--d:260ms;--z:10;--lx:0.19;--mx:98;--my:56;--mw:11.1">
+        <img class="st" data-step="2" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:53;--y:85;--w:5.0;--r:13;--d:520ms;--z:11">
+        <img class="st" data-step="2" data-side="r" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:86;--w:5.9;--r:-12;--d:0ms;--z:12;--lx:0.35">
+        <img class="st" data-step="2" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:47;--y:72;--w:5.4;--r:16;--d:0ms;--z:13">
+        <img class="st" data-step="2" src="assets/img/stickers/portablocco.webp" alt="" loading="lazy" decoding="async" style="--x:51;--y:86;--w:5.5;--r:-16;--d:60ms;--z:14">
+        <img class="st" data-step="3" data-side="l" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:26;--w:9.0;--r:18;--d:120ms;--z:15;--lx:0.33;--mx:3;--my:67;--mw:11.4">
+        <img class="st" data-step="3" data-side="l" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:65;--w:9.0;--r:27;--d:420ms;--z:16;--lx:0.23">
+        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/bancale.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:43;--w:10.3;--r:-10;--d:340ms;--z:17;--lx:0.21">
+        <img class="st" data-step="3" data-side="r" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:62;--w:10.1;--r:16;--d:260ms;--z:18;--lx:0.34;--mx:84;--my:62;--mw:11.4">
+        <img class="st" data-step="3" data-side="l" src="assets/img/stickers/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:65;--w:8.0;--r:-19;--d:60ms;--z:19;--lx:0.31;--mx:12;--my:75;--mw:11.6">
+        <img class="st" data-step="3" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:38;--y:73;--w:5.1;--r:-10;--d:120ms;--z:20">
+        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:76;--w:9.9;--r:38;--d:0ms;--z:21;--lx:0.29">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/molla.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:87;--w:5.3;--r:40;--d:60ms;--z:22;--lx:0.05;--mx:15;--my:63;--mw:10.5">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:86;--w:9.3;--r:15;--d:120ms;--z:23;--lx:0.09;--mx:11;--my:66;--mw:13.9">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:18;--w:7.2;--r:31;--d:0ms;--z:24;--lx:0.24;--mx:13;--my:70;--mw:12.0">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:89;--w:10.0;--r:20;--d:120ms;--z:25;--lx:0.28;--mx:21;--my:72;--mw:11.6">
+        <img class="st" data-step="4" data-side="r" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:73;--w:6.3;--r:3;--d:120ms;--z:26;--lx:0.24">
+        <img class="st" data-step="4" data-side="l" src="assets/img/stickers/qr.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:64;--w:6.8;--r:11;--d:340ms;--z:27;--lx:0.07">
+        <img class="st" data-step="5" data-side="l" src="assets/img/stickers/targhetta.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:86;--w:7.6;--r:17;--d:60ms;--z:28;--lx:0.26">
+        <img class="st" data-step="5" data-side="l" src="assets/img/stickers/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:65;--w:7.6;--r:-5;--d:120ms;--z:29;--lx:0.17">
+        <img class="st" data-step="5" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:22;--y:73;--w:5.1;--r:31;--d:180ms;--z:30">
+        <img class="st" data-step="5" data-side="l" src="assets/img/stickers/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:79;--w:11.5;--r:-12;--d:180ms;--z:31;--lx:0.31;--mx:4;--my:66;--mw:14.0">
+        <img class="st" data-step="5" data-side="l" src="assets/img/stickers/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:58;--w:11.3;--r:-38;--d:420ms;--z:32;--lx:0.24;--mx:14;--my:60;--mw:9.3">
+        <img class="st" data-step="5" data-side="r" src="assets/img/stickers/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:97;--y:74;--w:7.5;--r:0;--d:340ms;--z:33;--lx:0.25;--mx:90;--my:63;--mw:14.8">
       </div>
       <div class="container pin-grid">
         <div class="pin-head">
@@ -492,6 +478,18 @@ html:not(.js) .st { opacity: 1; }
       <img class="st" data-step="5" src="assets/img/stickers/vite.webp" alt="" loading="lazy" decoding="async" style="--x:76;--y:92;--w:5;--r:-20;--d:460ms;--z:31">
       <img class="st" data-step="5" src="assets/img/stickers/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:85;--y:90;--w:5;--r:12;--d:500ms;--z:32">
       </div>
+      <div class="sketches" aria-hidden="true">
+        <img class="sk" data-side="l" src="assets/img/schizzi/ingranaggio.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:30;--lx:0.35;--w:7;--r:12">
+        <img class="sk" data-side="l" src="assets/img/schizzi/chiave.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:52;--lx:0.4;--w:9;--r:-35">
+        <img class="sk" data-side="l" src="assets/img/schizzi/cuscinetto.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:74;--lx:0.3;--w:7.5;--r:8">
+        <img class="sk" data-side="l" src="assets/img/schizzi/vite.webp" alt="" loading="lazy" decoding="async" style="--x:3;--y:90;--lx:0.5;--w:6;--r:28">
+        <img class="sk" src="assets/img/schizzi/esploso.webp" alt="" loading="lazy" decoding="async" style="--x:78;--y:44;--w:20;--r:-8">
+        <img class="sk" src="assets/img/schizzi/cassettiera.webp" alt="" loading="lazy" decoding="async" style="--x:94;--y:36;--w:8;--r:6">
+        <img class="sk" src="assets/img/schizzi/qr.webp" alt="" loading="lazy" decoding="async" style="--x:66;--y:56;--w:7;--r:-10">
+        <img class="sk" src="assets/img/schizzi/molla.webp" alt="" loading="lazy" decoding="async" style="--x:71;--y:74;--w:6;--r:20">
+        <img class="sk" src="assets/img/schizzi/flangia.webp" alt="" loading="lazy" decoding="async" style="--x:90;--y:66;--w:11;--r:14">
+        <img class="sk" src="assets/img/schizzi/scatola.webp" alt="" loading="lazy" decoding="async" style="--x:84;--y:89;--w:9;--r:-6">
+      </div>
       <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 2 <span class="sep">|</span> A chi serve</p>
       <h2 class="need-h prov" id="risolve-title">Cosa cambia per te</h2>
       <table class="cmp">
@@ -512,13 +510,43 @@ html:not(.js) .st { opacity: 1; }
 
   <section class="section how" id="come-funziona" aria-labelledby="how-title">
     <div class="container">
-      <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 3 <span class="sep">|</span> Come funziona</p>
-      <h2 class="h2 prov" id="how-title">Come funziona</h2>
-      <p class="how-intro prov">Un servizio gestito: il catalogo lo prepara Due.Zero insieme al costruttore.</p>
-      <ol class="flow">
-        <li class="flow-step" data-reveal><p class="flow-k">Passo 1</p><img class="flow-img" src="assets/img/passo-1-richiesta.webp" alt="Un manuale tecnico aperto su una scrivania, con il disegno in vista esplosa di una macchina e una distinta base, davanti a una linea di confezionamento" width="1448" height="1086" loading="lazy"><h3 class="prov">La richiesta</h3><p class="prov">Il costruttore consegna a Due.Zero disegni CAD, distinte base e documentazione tecnica delle macchine.</p></li>
-        <li class="flow-step" data-reveal><p class="flow-k">Passo 2</p><img class="flow-img" src="assets/img/passo-2-catalogo.webp" alt="Un monitor che mostra il disegno in vista esplosa di una macchina, con alcune parti evidenziate in giallo" width="1448" height="1086" loading="lazy"><h3 class="prov">Il catalogo costruito insieme</h3><p class="prov">Il team tecnico di Due.Zero prepara le tavole interattive secondo la codifica del costruttore.</p></li>
-        <li class="flow-step" data-reveal><p class="flow-k">Passo 3</p><img class="flow-img" src="assets/img/passo-3-crescita.webp" alt="Un portatile con una mappa del mondo e grafici a barre, accanto a una cassetta di ricambi" width="1448" height="1086" loading="lazy"><h3 class="prov">La crescita</h3><p class="prov">Il costruttore abilita clienti e rivenditori, ciascuno con la propria area. Macchine e documenti si aggiungono nel tempo.</p></li>
+      <div class="how-head">
+        <p class="chapter" data-reveal><span class="sphere" aria-hidden="true"></span>Capitolo 3 <span class="sep">|</span> Come funziona</p>
+        <h2 class="h2 prov" id="how-title">Un passaggio in più, fatto da chi lo fa di mestiere.</h2>
+      </div>
+      <ol class="duo">
+        <li class="duo-row" data-reveal>
+          <figure class="duo-fig"><img src="assets/img/passo-1-richiesta.webp" alt="Disegni, distinta base e libro tecnico sul tavolo di un costruttore di macchine" width="1448" height="1086" loading="lazy"></figure>
+          <div class="duo-txt">
+            <p class="duo-k">01 · Disegni e distinte</p>
+            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Due.Zero</p><p class="duo-big prov">Ci dai i disegni. Il resto è nostro.</p></div>
+            <div class="duo-solo"><p class="duo-lab">Da solo</p><p class="duo-small prov">Trasformare disegni e distinte in un catalogo resta un lavoro tuo.</p></div>
+          </div>
+        </li>
+        <li class="duo-row rev" data-reveal>
+          <figure class="duo-fig"><img src="assets/img/passo-2-catalogo.webp" alt="Esploso tridimensionale di una macchina sul monitor, con alcuni pezzi evidenziati" width="1448" height="1086" loading="lazy"></figure>
+          <div class="duo-txt">
+            <p class="duo-k">02 · Tavole 3D</p>
+            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Due.Zero</p><p class="duo-big prov">Le tavole le costruisce il nostro team tecnico, con la tua codifica.</p></div>
+            <div class="duo-solo"><p class="duo-lab">Da solo</p><p class="duo-small prov">Le prepari e le controlli tu, una per una, e fai rispettare la tua codifica.</p></div>
+          </div>
+        </li>
+        <li class="duo-row" data-reveal>
+          <figure class="duo-fig"><img src="assets/img/passo-3-crescita.webp" alt="Portatile con mappa e grafici in crescita, accanto a una cassetta di ricambi" width="1448" height="1086" loading="lazy"></figure>
+          <div class="duo-txt">
+            <p class="duo-k">03 · Il catalogo cresce</p>
+            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Due.Zero</p><p class="duo-big prov">Il catalogo cresce con le tue macchine.</p></div>
+            <div class="duo-solo"><p class="duo-lab">Da solo</p><p class="duo-small prov">Ogni macchina nuova è di nuovo un lavoro tuo.</p></div>
+          </div>
+        </li>
+        <li class="duo-row rev" data-reveal>
+          <div class="duo-num" aria-hidden="true">2008</div>
+          <div class="duo-txt">
+            <p class="duo-k">04 · Documentazione tecnica</p>
+            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Due.Zero</p><p class="duo-big prov">Dietro c’è chi fa documentazione tecnica dal 2008.</p></div>
+            <div class="duo-solo"><p class="duo-lab">Da solo</p><p class="duo-small prov">La documentazione tecnica è un altro mestiere da tenere in casa.</p></div>
+          </div>
+        </li>
       </ol>
     </div>
   </section>
@@ -646,6 +674,7 @@ html:not(.js) .st { opacity: 1; }
       layoutCmp();
     }
   }
+
 
   // la navigazione compare quando l'apertura esce dallo schermo
   var nav = document.getElementById('nav');
