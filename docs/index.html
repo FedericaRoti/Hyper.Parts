@@ -324,6 +324,28 @@ html:not(.js) .st { opacity: 1; }
 /* DIREZIONE D, secondo giro: A chi serve di nuovo su carta, vela blu, niente sottolineature, azioni con gerarchia */
 .pill--ghost { min-height: 44px; padding: 11px 22px; background: transparent; color: var(--navy); }
 .pill--ghost:hover { background: color-mix(in srgb, var(--navy) 8%, transparent); }
+.closing .chapter + .path { margin-top: clamp(22px, 2.6vw, 34px); }
+/* Capitolo 6: modulo di contatto che si apre di fianco a «Parla con noi» (sotto i 1100px resta sotto il pulsante) */
+.contact { position: relative; margin-top: 24px; max-width: 560px; padding: clamp(24px, 3vw, 40px); background: #F7F9FB; border-radius: 22px; box-shadow: 0 34px 80px -22px rgb(10 20 35 / .45), 0 10px 28px -8px rgb(10 20 35 / .25); }
+.contact[hidden] { display: none; }
+.contact .field textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: rgb(255 255 255 / .92); font: 16px/1.4 var(--body); color: var(--ink); resize: vertical; min-height: 190px; }
+.contact .field textarea:focus { outline: 2px solid var(--navy); outline-offset: 1px; border-color: var(--navy); }
+.contact .field input { min-height: 56px; border-radius: 10px; }
+.contact .path-q { margin-bottom: 20px; padding-right: 36px; font-size: 14px; }
+.contact .field { margin-bottom: 14px; }
+.contact .pill { min-height: 54px; padding-inline: 32px; }
+.contact-x { position: absolute; top: 12px; right: 14px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: transparent; color: var(--navy); font-size: 26px; line-height: 1; cursor: pointer; }
+.contact-x:hover { background: color-mix(in srgb, var(--navy) 8%, transparent); }
+.contact-err { margin: 0 0 12px; font-size: 14px; color: #A12A2A; }
+.contact-done { margin: 0; font: 800 clamp(22px, 2.2vw, 28px)/1.15 var(--display); color: var(--ink); }
+.contact-done .prov { display: block; margin-top: 10px; font: 400 14px/1.4 var(--body); }
+@media (min-width: 1100px) {
+  .contact { position: absolute; right: 0; top: clamp(50px, 5vw, 80px); width: clamp(400px, 42%, 560px); margin-top: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .contact:not([hidden]) { animation: contact-in .45s cubic-bezier(.2, .7, .2, 1) both; }
+  @keyframes contact-in { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+}
 .path-q { margin: 0 0 12px; font: 500 13px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .path .path-note { margin: 0 0 24px; max-width: 46ch; }
 .closing .path h2 { margin-bottom: 16px; }
@@ -580,13 +602,24 @@ html:not(.js) .st { opacity: 1; }
         <p class="path-q">Vuoi attivare Hyper.Parts?</p>
         <h2 id="closing-title">Parliamo dei vostri ricambi.</h2>
         <p class="path-note">L’accesso è riservato: le credenziali le fornisce il costruttore della macchina.</p>
-        <!-- TODO destinazione del contatto da definire (il brief indica #contatti come segnaposto) -->
-        <a class="pill" href="#contatti">Parla con noi <span class="plus">[+]</span></a>
+        <button class="pill" type="button" id="contact-open" aria-expanded="false" aria-controls="contact-card">Parla con noi <span class="plus">[+]</span></button>
+        <aside class="contact" id="contact-card" aria-labelledby="contact-title" hidden>
+          <button class="contact-x" type="button" id="contact-close" aria-label="Chiudi il modulo">&times;</button>
+          <p class="path-q" id="contact-title">Scrivici</p>
+          <form id="contact-form" novalidate>
+            <label class="field"><span class="sr-only">Nome e azienda</span><input type="text" name="name" placeholder="Nome e azienda" autocomplete="name" maxlength="150" required></label>
+            <label class="field"><span class="sr-only">Email</span><input type="email" name="email" placeholder="Email" autocomplete="email" maxlength="150" required></label>
+            <label class="field"><span class="sr-only">Di cosa hai bisogno?</span><textarea name="need" placeholder="Di cosa hai bisogno?" rows="5" maxlength="4000" required></textarea></label>
+            <p class="contact-err" id="contact-err" role="alert" hidden>Compila tutti i campi con un’email valida.</p>
+            <button class="pill" type="submit">Invia richiesta <span class="plus">[+]</span></button>
+          </form>
+          <p class="contact-done" id="contact-done" role="status" hidden>Richiesta pronta. <span class="prov">Anteprima: l’invio non è ancora collegato.</span></p>
+        </aside>
       </div>
       <div class="path path--in">
         <p class="path-q">Accedi o richiedi l’accesso</p>
         <div class="path-actions">
-          <a class="pill pill--ghost" href="https://hyperparts.it">Accedi</a>
+          <a class="pill pill--ghost" href="#top">Accedi</a>
           <a class="pill pill--ghost" href="https://hyperparts.it/RichiestaAcceso.aspx">Richiedi accesso</a>
         </div>
         <p class="path-q path-q--app">Scarica l’app</p>
@@ -684,6 +717,28 @@ html:not(.js) .st { opacity: 1; }
     }, { threshold: 0, rootMargin: '-64px 0px 0px 0px' }).observe(hero);
   } else {
     nav.classList.add('show');
+  }
+
+  // modulo di contatto: provvisorio, l'invio non è collegato (vedi note/DECISIONI.md)
+  var cOpen = document.getElementById('contact-open'), cCard = document.getElementById('contact-card');
+  if (cOpen && cCard) {
+    var cForm = document.getElementById('contact-form'), cErr = document.getElementById('contact-err'), cDone = document.getElementById('contact-done');
+    var cSet = function (open) {
+      cCard.hidden = !open;
+      cOpen.setAttribute('aria-expanded', open);
+      if (open) { cForm.hidden = false; cDone.hidden = true; cErr.hidden = true; cForm.elements.name.focus({ preventScroll: true }); }
+      else cOpen.focus();
+    };
+    cOpen.addEventListener('click', function () { cSet(cCard.hidden); });
+    document.getElementById('contact-close').addEventListener('click', function () { cSet(false); });
+    cCard.addEventListener('keydown', function (e) { if (e.key === 'Escape') cSet(false); });
+    cForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var ok = cForm.checkValidity() && /^\S+@\S+\.\S+$/.test(cForm.elements.email.value.trim()) && cForm.elements.name.value.trim() && cForm.elements.need.value.trim();
+      cErr.hidden = !!ok;
+      if (!ok) return;
+      cForm.reset(); cForm.hidden = true; cDone.hidden = false;
+    });
   }
 
   // provvisorio: la pagina non può autenticare (l'accesso sta nell'app su hyperparts.it), quindi le credenziali non partono: si svuotano i campi e si apre l'app
