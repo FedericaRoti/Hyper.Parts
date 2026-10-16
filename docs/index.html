@@ -239,7 +239,7 @@ html:not(.js) .st { opacity: 1; }
 .js:not(.reduce) .cmp td.now::before { opacity: 0; transition: opacity .4s ease .3s; }
 .js:not(.reduce) .cmp-row.go td.now::before { opacity: 1; }
 
-/* Capitolo 3: quattro punti di confronto, un'immagine per riga che si alterna. Da solo (grigio, piccolo) contro Con Due.Zero (scuro, grande). */
+/* Capitolo 3: quattro punti di confronto, un'immagine per riga che si alterna. Da solo (grigio, piccolo) contro Con Hyper.Parts (scuro, grande). */
 .how { --tint: #DCE8F5; }
 .how-head .h2 { max-width: 24ch; }
 .duo { list-style: none; margin: clamp(28px, 4vw, 56px) 0 0; padding: 0; display: grid; gap: clamp(20px, 3vw, 36px); }
@@ -248,8 +248,8 @@ html:not(.js) .st { opacity: 1; }
 .duo-row.rev .duo-fig { order: 2; }
 .duo-fig { margin: 0; border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--light); }
 .duo-fig img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.duo-num { aspect-ratio: 4 / 3; display: grid; place-items: center; border-radius: 14px; background: var(--navy); color: var(--accent); font: 800 clamp(64px, 11vw, 150px)/1 var(--display); letter-spacing: -.02em; }
-.duo-k { margin: 0 0 clamp(14px, 2vw, 22px); font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); }
+.duo-k { margin: 0 0 clamp(26px, 3.4vw, 40px); font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--navy); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 7px; }
+.duo-k .sep { text-decoration: none; display: inline-block; margin: 0 .35em; opacity: .55; }
 .duo-lab { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font: 500 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 .duo-dz .duo-lab { color: var(--navy); }
 .duo-dz .duo-lab .sphere { width: 14px; height: 14px; }
@@ -518,32 +518,32 @@ html:not(.js) .st { opacity: 1; }
         <li class="duo-row" data-reveal>
           <figure class="duo-fig"><img src="assets/img/passo-1-richiesta.webp" alt="Disegni, distinta base e libro tecnico sul tavolo di un costruttore di macchine" width="1448" height="1086" loading="lazy"></figure>
           <div class="duo-txt">
-            <p class="duo-k">01 · Disegni e distinte</p>
-            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Due.Zero</p><p class="duo-big prov">Ci dai i disegni. Il resto è nostro.</p></div>
+            <p class="duo-k">01 <span class="sep">|</span> Disegni e distinte</p>
+            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Hyper.Parts</p><p class="duo-big prov">Ci dai i disegni. Il resto è nostro.</p></div>
             <div class="duo-solo"><p class="duo-lab">Da solo</p><p class="duo-small prov">Trasformare disegni e distinte in un catalogo resta un lavoro tuo.</p></div>
           </div>
         </li>
         <li class="duo-row rev" data-reveal>
           <figure class="duo-fig"><img src="assets/img/passo-2-catalogo.webp" alt="Esploso tridimensionale di una macchina sul monitor, con alcuni pezzi evidenziati" width="1448" height="1086" loading="lazy"></figure>
           <div class="duo-txt">
-            <p class="duo-k">02 · Tavole 3D</p>
-            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Due.Zero</p><p class="duo-big prov">Le tavole le costruisce il nostro team tecnico, con la tua codifica.</p></div>
+            <p class="duo-k">02 <span class="sep">|</span> Tavole 3D</p>
+            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Hyper.Parts</p><p class="duo-big prov">Le tavole le costruisce il nostro team tecnico, con la tua codifica.</p></div>
             <div class="duo-solo"><p class="duo-lab">Da solo</p><p class="duo-small prov">Le prepari e le controlli tu, una per una, e fai rispettare la tua codifica.</p></div>
           </div>
         </li>
         <li class="duo-row" data-reveal>
           <figure class="duo-fig"><img src="assets/img/passo-3-crescita.webp" alt="Portatile con mappa e grafici in crescita, accanto a una cassetta di ricambi" width="1448" height="1086" loading="lazy"></figure>
           <div class="duo-txt">
-            <p class="duo-k">03 · Il catalogo cresce</p>
-            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Due.Zero</p><p class="duo-big prov">Il catalogo cresce con le tue macchine.</p></div>
+            <p class="duo-k">03 <span class="sep">|</span> Il catalogo cresce</p>
+            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Hyper.Parts</p><p class="duo-big prov">Il catalogo cresce con le tue macchine.</p></div>
             <div class="duo-solo"><p class="duo-lab">Da solo</p><p class="duo-small prov">Ogni macchina nuova è di nuovo un lavoro tuo.</p></div>
           </div>
         </li>
         <li class="duo-row rev" data-reveal>
-          <div class="duo-num" aria-hidden="true">2008</div>
+          <figure class="duo-fig"><img src="assets/img/passo-4-documentazione.webp" alt="Pila di manuali tecnici con raccoglitori blu e un tablet con schemi tecnici, davanti a una linea di confezionamento" width="1448" height="1086" loading="lazy"></figure>
           <div class="duo-txt">
-            <p class="duo-k">04 · Documentazione tecnica</p>
-            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Due.Zero</p><p class="duo-big prov">Dietro c’è chi fa documentazione tecnica dal 2008.</p></div>
+            <p class="duo-k">04 <span class="sep">|</span> Documentazione tecnica</p>
+            <div class="duo-dz"><p class="duo-lab"><span class="sphere" aria-hidden="true"></span>Con Hyper.Parts</p><p class="duo-big prov">Dietro c’è chi fa documentazione tecnica dal 2008.</p></div>
             <div class="duo-solo"><p class="duo-lab">Da solo</p><p class="duo-small prov">La documentazione tecnica è un altro mestiere da tenere in casa.</p></div>
           </div>
         </li>
